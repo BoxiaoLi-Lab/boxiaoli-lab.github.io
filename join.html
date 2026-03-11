@@ -316,7 +316,7 @@
                     };
                     
                     // 保存职位信息
-                    const positions = document.querySelectorAll('.grid.grid-cols-1.md\:grid-cols-2.gap-8 .bg-white');
+                    const positions = document.querySelectorAll('.grid.gap-8 .bg-white');
                     positions.forEach(position => {
                         try {
                             joinData.positions.push({
@@ -379,7 +379,7 @@
                         
                         // 加载职位信息
                         if (joinData.positions && joinData.positions.length > 0) {
-                            const positionsContainer = document.querySelector('.grid.grid-cols-1.md\:grid-cols-2.gap-8');
+                            const positionsContainer = document.querySelector('.grid.gap-8');
                             if (positionsContainer) {
                                 positionsContainer.innerHTML = '';
                                 
