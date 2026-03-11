@@ -307,8 +307,8 @@
             function saveJoin() {
                 const joinData = {
                     hero: {
-                        title: document.querySelector('header.bg-gradient-to-r h1').textContent,
-                        description: document.querySelector('header.bg-gradient-to-r p').textContent
+                        title: document.querySelector('header h1').textContent,
+                        description: document.querySelector('header p').textContent
                     },
                     positions: [],
                     process: [],
@@ -360,8 +360,8 @@
                     
                     // 加载英雄区域内容
                     if (joinData.hero) {
-                        document.querySelector('header.bg-gradient-to-r h1').textContent = joinData.hero.title;
-                        document.querySelector('header.bg-gradient-to-r p').textContent = joinData.hero.description;
+                        document.querySelector('header h1').textContent = joinData.hero.title;
+                        document.querySelector('header p').textContent = joinData.hero.description;
                     }
                     
                     // 加载职位信息
@@ -449,6 +449,10 @@
                     saveJoin();
                 }
             });
+            
+            // 测试本地存储功能
+            console.log('Join Us page loaded');
+            console.log('Saved join data:', localStorage.getItem('boxlabJoin'));
         });
     </script>
 </body>
