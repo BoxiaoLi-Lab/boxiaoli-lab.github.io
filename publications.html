@@ -364,14 +364,14 @@
                         const publicationItem = document.createElement('div');
                         publicationItem.className = 'mb-8 pb-8 border-b border-gray-200 publication-item';
                         publicationItem.innerHTML = `
-                            <h3 class="text-xl font-bold mb-2 publication-title">${pub.title}</h3>
-                            <p class="text-gray-600 mb-2 publication-authors">${pub.authors}</p>
-                            <p class="text-gray-600 mb-2 publication-journal">${pub.journal}</p>
+                            <h3 class="text-xl font-bold mb-2 publication-title editable" contenteditable="false">${pub.title}</h3>
+                            <p class="text-gray-600 mb-2 publication-authors editable" contenteditable="false">${pub.authors}</p>
+                            <p class="text-gray-600 mb-2 publication-journal editable" contenteditable="false">${pub.journal}</p>
                             <div class="flex space-x-4 mt-4">
-                                <a href="${pub.pdf}" class="text-accent hover:underline publication-pdf">
+                                <a href="${pub.pdf}" class="text-accent hover:underline publication-pdf editable" contenteditable="false">
                                     <i class="fa fa-file-pdf-o mr-1"></i> PDF
                                 </a>
-                                <a href="${pub.link}" class="text-accent hover:underline publication-link">
+                                <a href="${pub.link}" class="text-accent hover:underline publication-link editable" contenteditable="false">
                                     <i class="fa fa-external-link mr-1"></i> 期刊链接
                                 </a>
                             </div>
@@ -471,7 +471,7 @@
             
             // 为可编辑元素添加自动保存功能
             document.addEventListener('input', function(e) {
-                if (e.target.isContentEditable && isEditing) {
+                if (e.target.classList.contains('editable') && isEditing) {
                     savePublications();
                 }
             });

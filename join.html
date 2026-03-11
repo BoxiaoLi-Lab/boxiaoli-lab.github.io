@@ -363,11 +363,11 @@
                             const positionElement = document.createElement('div');
                             positionElement.className = 'bg-white rounded-lg shadow-md p-6 border-l-4 border-accent card-hover transition-all-300';
                             positionElement.innerHTML = `
-                                <h3 class="text-xl font-bold mb-3">${position.title}</h3>
-                                <p class="text-gray-600 mb-4">${position.description}</p>
-                                <p class="text-gray-600 mb-4">${position.requirements}</p>
-                                <p class="text-gray-600 mb-4">${position.benefits}</p>
-                                <a href="${position.link}" class="text-accent hover:underline font-medium">申请详情</a>
+                                <h3 class="text-xl font-bold mb-3 editable" contenteditable="false">${position.title}</h3>
+                                <p class="text-gray-600 mb-4 editable" contenteditable="false">${position.description}</p>
+                                <p class="text-gray-600 mb-4 editable" contenteditable="false">${position.requirements}</p>
+                                <p class="text-gray-600 mb-4 editable" contenteditable="false">${position.benefits}</p>
+                                <a href="${position.link}" class="text-accent hover:underline font-medium editable" contenteditable="false">申请详情</a>
                             `;
                             positionsContainer.appendChild(positionElement);
                         });
@@ -386,8 +386,8 @@
                                     <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">${index + 1}</div>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold mb-2">${step.title}</h3>
-                                    <p class="text-gray-600">${step.description}</p>
+                                    <h3 class="text-xl font-bold mb-2 editable" contenteditable="false">${step.title}</h3>
+                                    <p class="text-gray-600 editable" contenteditable="false">${step.description}</p>
                                 </div>
                             `;
                             processContainer.appendChild(stepElement);
@@ -437,7 +437,7 @@
             
             // 为可编辑元素添加自动保存功能
             document.addEventListener('input', function(e) {
-                if (e.target.isContentEditable && isEditing) {
+                if (e.target.classList.contains('editable') && isEditing) {
                     saveJoin();
                 }
             });
