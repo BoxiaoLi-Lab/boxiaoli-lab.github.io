@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members | Dr. 姓名</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#334155',
+                        secondary: '#475569',
+                        accent: '#64748b',
+                        light: '#f8fafc',
+                        dark: '#334155'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav class="bg-primary text-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold">Dr. 姓名</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-accent transition-all-300">Home</a>
+                    <a href="publications.html" class="hover:text-accent transition-all-300">Publications</a>
+                    <a href="members.html" class="hover:text-accent transition-all-300">Members</a>
+                    <a href="researches.html" class="hover:text-accent transition-all-300">Researches</a>
+                    <a href="join.html" class="hover:text-accent transition-all-300">Join Us</a>
+                </div>
+                <button class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="bg-gradient-to-r from-primary to-secondary text-white pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow">Members</h1>
+            <p class="text-lg mb-8">Team members of Dr. 姓名's research group</p>
+        </div>
+    </header>
+
+    <!-- 团队成员 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- PI -->
+            <h2 class="text-3xl font-bold mb-8 text-center">PI</h2>
+            <div class="flex justify-center mb-16">
+                <div class="bg-white rounded-lg shadow-md p-8 max-w-2xl card-hover transition-all-300">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-48 h-48 rounded-full overflow-hidden mb-6 md:mb-0 md:mr-8">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20university%20professor%20in%20formal%20attire%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="Dr. 姓名" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-2xl font-bold mb-2">Dr. 姓名</h3>
+                            <p class="text-gray-600 mb-4">Principal Investigator</p>
+                            <p class="text-gray-600 mb-4">所属学院 | 研究方向 | 专业领域</p>
+                            <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                                <a href="#" class="text-accent hover:text-primary transition-all-300">
+                                    <i class="fa fa-envelope text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300">
+                                    <i class="fa fa-google-scholar text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300">
+                                    <i class="fa fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300">
+                                    <i class="fa fa-researchgate text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Now (当前成员) -->
+            <h2 class="text-3xl font-bold mb-8 text-center">Now</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- 成员1 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20young%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员1" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名1</h4>
+                    <p class="text-gray-600 text-center mb-4">博士后研究员</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+                <!-- 成员2 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20female%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员2" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名2</h4>
+                    <p class="text-gray-600 text-center mb-4">博士研究生</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+                <!-- 成员3 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20young%20male%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员3" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名3</h4>
+                    <p class="text-gray-600 text-center mb-4">博士研究生</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+                <!-- 成员4 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20female%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员4" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名4</h4>
+                    <p class="text-gray-600 text-center mb-4">硕士研究生</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+                <!-- 成员5 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20young%20male%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员5" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名5</h4>
+                    <p class="text-gray-600 text-center mb-4">硕士研究生</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+                <!-- 成员6 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <div class="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20young%20female%20researcher%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="团队成员6" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-center">成员姓名6</h4>
+                    <p class="text-gray-600 text-center mb-4">研究助理</p>
+                    <p class="text-gray-600 text-center">研究方向：[研究方向]</p>
+                </div>
+            </div>
+
+            <!-- Alumni (校友) -->
+            <h2 class="text-3xl font-bold mt-16 mb-8 text-center">Alumni</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- 校友1 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名7</h4>
+                    <p class="text-gray-600 mb-2">Ph.D. 2024</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+                <!-- 校友2 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名8</h4>
+                    <p class="text-gray-600 mb-2">Ph.D. 2023</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+                <!-- 校友3 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名9</h4>
+                    <p class="text-gray-600 mb-2">Postdoc 2022</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+                <!-- 校友4 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名10</h4>
+                    <p class="text-gray-600 mb-2">Ph.D. 2022</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+                <!-- 校友5 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名11</h4>
+                    <p class="text-gray-600 mb-2">Master 2023</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+                <!-- 校友6 -->
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover transition-all-300">
+                    <h4 class="text-xl font-bold mb-2">成员姓名12</h4>
+                    <p class="text-gray-600 mb-2">Postdoc 2021</p>
+                    <p class="text-gray-600">现在职位：[职位名称]，[机构名称]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2026 Dr. 姓名. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-all-300">Home</a>
+                    <a href="publications.html" class="hover:text-accent transition-all-300">Publications</a>
+                    <a href="members.html" class="hover:text-accent transition-all-300">Members</a>
+                    <a href="researches.html" class="hover:text-accent transition-all-300">Researches</a>
+                    <a href="join.html" class="hover:text-accent transition-all-300">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 登录验证功能
+            let isAuthenticated = false;
+            const adminUsername = 'admin';
+            const adminPassword = 'password'; // 这里可以根据需要修改密码
+
+            // 创建登录对话框
+            const loginModal = document.createElement('div');
+            loginModal.id = 'loginModal';
+            loginModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+            loginModal.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold">管理员登录</h3>
+                        <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                            <i class="fa fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">用户名</label>
+                            <input type="text" id="loginUsername" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">密码</label>
+                            <input type="password" id="loginPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" required>
+                        </div>
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" id="cancelLogin" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100">取消</button>
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary">登录</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(loginModal);
+
+            // 添加编辑模式切换按钮（使用图标）
+            const editButton = document.createElement('button');
+            editButton.innerHTML = '<i class="fa fa-pencil"></i>';
+            editButton.title = '编辑模式';
+            editButton.className = 'fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg z-20 hover:bg-secondary transition-all-300 flex items-center justify-center';
+            document.body.appendChild(editButton);
+
+            // 导航栏滚动效果
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.classList.add('py-2');
+                    nav.classList.remove('py-3');
+                } else {
+                    nav.classList.add('py-3');
+                    nav.classList.remove('py-2');
+                }
+            });
+
+            // 登录功能
+            const loginForm = document.getElementById('loginForm');
+            const closeLoginModal = document.getElementById('closeLoginModal');
+            const cancelLogin = document.getElementById('cancelLogin');
+
+            // 显示登录对话框
+            function showLoginModal() {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+
+            // 隐藏登录对话框
+            function hideLoginModal() {
+                document.getElementById('loginModal').classList.add('hidden');
+            }
+
+            // 登录表单提交
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+
+                if (username === adminUsername && password === adminPassword) {
+                    isAuthenticated = true;
+                    hideLoginModal();
+                    editButton.classList.remove('hidden'); // 显示编辑按钮
+                } else {
+                    alert('用户名或密码错误');
+                }
+            });
+
+            // 关闭登录对话框
+            closeLoginModal.addEventListener('click', hideLoginModal);
+            cancelLogin.addEventListener('click', hideLoginModal);
+
+            // 点击编辑按钮时显示登录对话框（如果未登录）
+            editButton.addEventListener('click', function() {
+                if (!isAuthenticated) {
+                    showLoginModal();
+                }
+            });
+
+            // 编辑模式切换功能
+            let isEditing = false;
+            editButton.addEventListener('click', function() {
+                // 如果未登录，显示登录对话框
+                if (!isAuthenticated) {
+                    showLoginModal();
+                    return;
+                }
+
+                isEditing = !isEditing;
+                const editableElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span');
+                editableElements.forEach(element => {
+                    if (!element.closest('nav') || element.closest('nav') && element.tagName === 'A') {
+                        element.contentEditable = isEditing;
+                        if (isEditing) {
+                            element.classList.add('border-b-2', 'border-dashed', 'border-accent');
+                        } else {
+                            element.classList.remove('border-b-2', 'border-dashed', 'border-accent');
+                        }
+                    }
+                });
+
+                // 为照片添加编辑功能
+                const photoContainers = document.querySelectorAll('div[class*="rounded-full overflow-hidden"]');
+                photoContainers.forEach(container => {
+                    if (isEditing) {
+                        container.classList.add('cursor-pointer', 'hover:opacity-80', 'transition-all-300');
+                        // 检查是否已有文件输入
+                        let fileInput = container.querySelector('input[type="file"]');
+                        if (!fileInput) {
+                            fileInput = document.createElement('input');
+                            fileInput.type = 'file';
+                            fileInput.accept = 'image/*';
+                            fileInput.className = 'hidden';
+                            container.appendChild(fileInput);
+
+                            // 添加文件上传处理
+                            fileInput.addEventListener('change', function(e) {
+                                const file = e.target.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    const photo = container.querySelector('img');
+                                    reader.onload = function(e) {
+                                        photo.src = e.target.result;
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            });
+                        }
+
+                        // 添加点击事件
+                        container.addEventListener('click', function() {
+                            const fileInput = this.querySelector('input[type="file"]');
+                            fileInput.click();
+                        });
+                    } else {
+                        container.classList.remove('cursor-pointer', 'hover:opacity-80');
+                        container.removeEventListener('click', function() {
+                            const fileInput = this.querySelector('input[type="file"]');
+                            fileInput.click();
+                        });
+                    }
+                });
+
+                editButton.innerHTML = isEditing ? '<i class="fa fa-check"></i>' : '<i class="fa fa-pencil"></i>';
+                editButton.title = isEditing ? '退出编辑模式' : '编辑模式';
+                editButton.classList.toggle('bg-accent');
+            });
+        });
+    </script>
+</body>
+</html>

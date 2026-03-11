@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us | Dr. 姓名</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#334155',
+                        secondary: '#475569',
+                        accent: '#64748b',
+                        light: '#f8fafc',
+                        dark: '#334155'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans text-dark">
+    <!-- 导航栏 -->
+    <nav class="bg-primary text-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold">Dr. 姓名</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-accent transition-all-300">Home</a>
+                    <a href="publications.html" class="hover:text-accent transition-all-300">Publications</a>
+                    <a href="members.html" class="hover:text-accent transition-all-300">Members</a>
+                    <a href="researches.html" class="hover:text-accent transition-all-300">Researches</a>
+                    <a href="join.html" class="hover:text-accent transition-all-300">Join Us</a>
+                </div>
+                <button class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="bg-gradient-to-r from-primary to-secondary text-white pt-24 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow">Join Us</h1>
+            <p class="text-lg mb-8">Join Dr. 姓名's research group</p>
+        </div>
+    </header>
+
+    <!-- 加入我们 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- 职位空缺 -->
+            <h2 class="text-3xl font-bold mb-12 text-center">Open Positions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 职位1 -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-accent card-hover transition-all-300">
+                    <h3 class="text-xl font-bold mb-3">博士后研究员</h3>
+                    <p class="text-gray-600 mb-4">职位描述：我们正在寻找具有[研究领域]背景的博士后研究员，参与[具体项目]的研究工作。</p>
+                    <p class="text-gray-600 mb-4">要求：博士学位，具有[具体技能]经验，发表过高水平学术论文。</p>
+                    <p class="text-gray-600 mb-4">待遇：提供有竞争力的薪资和福利，支持参加国际会议和学术交流。</p>
+                    <a href="#" class="text-accent hover:underline font-medium">申请详情</a>
+                </div>
+                <!-- 职位2 -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-accent card-hover transition-all-300">
+                    <h3 class="text-xl font-bold mb-3">博士研究生</h3>
+                    <p class="text-gray-600 mb-4">职位描述：招收对[研究领域]感兴趣的博士研究生，提供全额奖学金。</p>
+                    <p class="text-gray-600 mb-4">要求：具有[相关专业]背景，GPA优秀，有研究经验优先。</p>
+                    <p class="text-gray-600 mb-4">待遇：提供全额学费减免和生活津贴，支持参加国际会议。</p>
+                    <a href="#" class="text-accent hover:underline font-medium">申请详情</a>
+                </div>
+                <!-- 职位3 -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-accent card-hover transition-all-300">
+                    <h3 class="text-xl font-bold mb-3">硕士研究生</h3>
+                    <p class="text-gray-600 mb-4">职位描述：招收对[研究领域]感兴趣的硕士研究生，提供研究助理职位。</p>
+                    <p class="text-gray-600 mb-4">要求：具有[相关专业]背景，对研究有热情。</p>
+                    <p class="text-gray-600 mb-4">待遇：提供研究助理津贴，支持学术发展。</p>
+                    <a href="#" class="text-accent hover:underline font-medium">申请详情</a>
+                </div>
+                <!-- 职位4 -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-accent card-hover transition-all-300">
+                    <h3 class="text-xl font-bold mb-3">研究助理</h3>
+                    <p class="text-gray-600 mb-4">职位描述：招聘研究助理，协助实验室日常工作和研究项目。</p>
+                    <p class="text-gray-600 mb-4">要求：具有[相关专业]背景，有实验室经验优先。</p>
+                    <p class="text-gray-600 mb-4">待遇：提供 competitive salary 和职业发展机会。</p>
+                    <a href="#" class="text-accent hover:underline font-medium">申请详情</a>
+                </div>
+            </div>
+
+            <!-- 申请流程 -->
+            <h2 class="text-3xl font-bold mt-16 mb-12 text-center">Application Process</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">1</div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">准备申请材料</h3>
+                            <p class="text-gray-600">准备个人简历、研究计划、成绩单（学生）、发表论文列表等材料。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">2</div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">提交申请</h3>
+                            <p class="text-gray-600">通过电子邮件发送申请材料至 <a href="mailto:email@university.edu" class="text-accent hover:underline">email@university.edu</a>，邮件主题请注明申请职位。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">3</div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">面试</h3>
+                            <p class="text-gray-600">通过初步筛选后，我们将安排面试，讨论您的研究背景和兴趣。</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0 mr-4">
+                            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">4</div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">录取通知</h3>
+                            <p class="text-gray-600">通过面试后，我们将发送正式录取通知，包含详细的职位信息和待遇。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 联系我们 -->
+            <h2 class="text-3xl font-bold mt-16 mb-8 text-center">Contact Us</h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <p class="text-gray-600 mb-6">如果您对加入我们的团队有任何疑问，请随时联系我们：</p>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="text-accent text-xl mr-4 mt-1">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">电子邮箱</h4>
+                            <p class="text-gray-600">email@university.edu</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-accent text-xl mr-4 mt-1">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">电话</h4>
+                            <p class="text-gray-600">+86 123 4567 8910</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-accent text-xl mr-4 mt-1">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">办公地址</h4>
+                            <p class="text-gray-600">大学名称，学院名称，办公楼X楼XXX室</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2026 Dr. 姓名. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="hover:text-accent transition-all-300">Home</a>
+                    <a href="publications.html" class="hover:text-accent transition-all-300">Publications</a>
+                    <a href="members.html" class="hover:text-accent transition-all-300">Members</a>
+                    <a href="researches.html" class="hover:text-accent transition-all-300">Researches</a>
+                    <a href="join.html" class="hover:text-accent transition-all-300">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 登录验证功能
+            let isAuthenticated = false;
+            const adminUsername = 'admin';
+            const adminPassword = 'password'; // 这里可以根据需要修改密码
+
+            // 创建登录对话框
+            const loginModal = document.createElement('div');
+            loginModal.id = 'loginModal';
+            loginModal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+            loginModal.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold">管理员登录</h3>
+                        <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                            <i class="fa fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">用户名</label>
+                            <input type="text" id="loginUsername" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">密码</label>
+                            <input type="password" id="loginPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent" required>
+                        </div>
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" id="cancelLogin" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100">取消</button>
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary">登录</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(loginModal);
+
+            // 添加编辑模式切换按钮（使用图标）
+            const editButton = document.createElement('button');
+            editButton.innerHTML = '<i class="fa fa-pencil"></i>';
+            editButton.title = '编辑模式';
+            editButton.className = 'fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg z-20 hover:bg-secondary transition-all-300 flex items-center justify-center';
+            document.body.appendChild(editButton);
+
+            // 导航栏滚动效果
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.classList.add('py-2');
+                    nav.classList.remove('py-3');
+                } else {
+                    nav.classList.add('py-3');
+                    nav.classList.remove('py-2');
+                }
+            });
+
+            // 登录功能
+            const loginForm = document.getElementById('loginForm');
+            const closeLoginModal = document.getElementById('closeLoginModal');
+            const cancelLogin = document.getElementById('cancelLogin');
+
+            // 显示登录对话框
+            function showLoginModal() {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+
+            // 隐藏登录对话框
+            function hideLoginModal() {
+                document.getElementById('loginModal').classList.add('hidden');
+            }
+
+            // 登录表单提交
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+
+                if (username === adminUsername && password === adminPassword) {
+                    isAuthenticated = true;
+                    hideLoginModal();
+                    editButton.classList.remove('hidden'); // 显示编辑按钮
+                } else {
+                    alert('用户名或密码错误');
+                }
+            });
+
+            // 关闭登录对话框
+            closeLoginModal.addEventListener('click', hideLoginModal);
+            cancelLogin.addEventListener('click', hideLoginModal);
+
+            // 点击编辑按钮时显示登录对话框（如果未登录）
+            editButton.addEventListener('click', function() {
+                if (!isAuthenticated) {
+                    showLoginModal();
+                }
+            });
+
+            // 编辑模式切换功能
+            let isEditing = false;
+            editButton.addEventListener('click', function() {
+                // 如果未登录，显示登录对话框
+                if (!isAuthenticated) {
+                    showLoginModal();
+                    return;
+                }
+
+                isEditing = !isEditing;
+                const editableElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span');
+                editableElements.forEach(element => {
+                    if (!element.closest('nav') || element.closest('nav') && element.tagName === 'A') {
+                        element.contentEditable = isEditing;
+                        if (isEditing) {
+                            element.classList.add('border-b-2', 'border-dashed', 'border-accent');
+                        } else {
+                            element.classList.remove('border-b-2', 'border-dashed', 'border-accent');
+                        }
+                    }
+                });
+                editButton.innerHTML = isEditing ? '<i class="fa fa-check"></i>' : '<i class="fa fa-pencil"></i>';
+                editButton.title = isEditing ? '退出编辑模式' : '编辑模式';
+                editButton.classList.toggle('bg-accent');
+            });
+        });
+    </script>
+</body>
+</html>
