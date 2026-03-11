@@ -605,6 +605,78 @@ editButton.addEventListener('click', function() {
                 newsItems[newIndex].dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
             });
         });
+// 保存数据到本地存储
+function saveData() {
+    // 保存文本内容
+    const editableElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span');
+    const textData = {};
+    editableElements.forEach(element => {
+        if (!element.closest('nav') || element.closest('nav') && element.tagName === 'A') {
+            const selector = getElementSelector(element);
+            textData[selector] = element.innerHTML;
+        }
+    });
+    
+    // 保存图片
+    const images = document.querySelectorAll('img');
+    const imageData = {};
+    images.forEach(image => {
+        if (image.src.startsWith('data:')) {
+            const selector = getElementSelector(image);
+            imageData[selector] = image.src;
+        }
+    });
+    
+    // 保存到本地存储
+    localStorage.setItem('boxlabTextData', JSON.stringify(textData));
+    localStorage.setItem('boxlabImageData', JSON.stringify(imageData));
+}
+
+// 从本地存储加载数据
+function loadData() {
+    // 加载文本内容
+    const textData = JSON.parse(localStorage.getItem('boxlabTextData') || '{}');
+    Object.keys(textData).forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.innerHTML = textData[selector];
+        }
+    });
+    
+    // 加载图片
+    const imageData = JSON.parse(localStorage.getItem('boxlabImageData') || '{}');
+    Object.keys(imageData).forEach(selector => {
+        const image = document.querySelector(selector);
+        if (image) {
+            image.src = imageData[selector];
+        }
+    });
+}
+
+// 获取元素的唯一选择器
+function getElementSelector(element) {
+    if (element.id) {
+        return '#' + element.id;
+    }
+    if (element.className) {
+        return '.' + element.className.split(' ').join('.');
+    }
+    if (element.tagName) {
+        return element.tagName.toLowerCase();
+    }
+    return '';
+}
+
+// 页面加载时加载数据
+window.addEventListener('load', loadData);
+
+// 编辑模式退出时保存数据
+editButton.addEventListener('click', function() {
+    if (isAuthenticated && isEditing) {
+        saveData();
+        alert('数据已保存！');
+    }
+});
     </script>
 </body>
 </html>
