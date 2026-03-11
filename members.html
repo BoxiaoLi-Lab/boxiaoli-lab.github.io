@@ -73,17 +73,45 @@
         <div class="container mx-auto px-4">
             <!-- PI -->
             <h2 class="text-3xl font-bold mb-8 text-center editable" contenteditable="false">PI</h2>
-            <div class="flex justify-center mb-16">
-                <div class="bg-white rounded-lg shadow-md p-8 max-w-2xl card-hover transition-all-300">
-                    <div class="flex flex-col md:flex-row items-center">
-                        <div class="w-48 h-48 rounded-full overflow-hidden mb-6 md:mb-0 md:mr-8">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20university%20professor%20in%20formal%20attire%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="Dr. 姓名" class="w-full h-full object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Senior PI -->
+                <div class="bg-white rounded-lg shadow-md p-8 card-hover transition-all-300">
+                    <div class="flex flex-col items-center">
+                        <div class="w-48 h-48 rounded-full overflow-hidden mb-6">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20senior%20university%20professor%20in%20formal%20attire%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="Senior PI" class="w-full h-full object-cover">
                         </div>
-                        <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold mb-2 editable" contenteditable="false">Dr. 姓名</h3>
-                            <p class="text-gray-600 mb-4 editable" contenteditable="false">Principal Investigator</p>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2 editable" contenteditable="false">Dr. Senior</h3>
+                            <p class="text-gray-600 mb-4 editable" contenteditable="false">Senior Principal Investigator</p>
                             <p class="text-gray-600 mb-4 editable" contenteditable="false">所属学院 | 研究方向 | 专业领域</p>
-                            <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                    <i class="fa fa-envelope text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                    <i class="fa fa-google-scholar text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                    <i class="fa fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                    <i class="fa fa-researchgate text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Junior PI -->
+                <div class="bg-white rounded-lg shadow-md p-8 card-hover transition-all-300">
+                    <div class="flex flex-col items-center">
+                        <div class="w-48 h-48 rounded-full overflow-hidden mb-6">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%20of%20a%20junior%20university%20professor%20in%20formal%20attire%2C%20clean%20background%2C%20high%20quality%20professional%20photo&image_size=square_hd" alt="Junior PI" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2 editable" contenteditable="false">Dr. Junior</h3>
+                            <p class="text-gray-600 mb-4 editable" contenteditable="false">Junior Principal Investigator</p>
+                            <p class="text-gray-600 mb-4 editable" contenteditable="false">所属学院 | 研究方向 | 专业领域</p>
+                            <div class="flex justify-center space-x-4 mt-4">
                                 <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
                                     <i class="fa fa-envelope text-xl"></i>
                                 </a>
@@ -322,49 +350,54 @@
                             title: document.querySelector('header h1').textContent,
                             description: document.querySelector('header p').textContent
                         },
-                        pi: {
-                            name: document.querySelector('.flex.justify-center.mb-16 h3').textContent,
-                            title: document.querySelector('.flex.justify-center.mb-16 p:nth-child(2)').textContent,
-                            info: document.querySelector('.flex.justify-center.mb-16 p:nth-child(3)').textContent,
-                            image: document.querySelector('.flex.justify-center.mb-16 img').src
-                        },
+                        pis: [],
                         current: [],
                         alumni: []
                     };
                     
+                    // 保存PI信息
+                    const piCards = document.querySelectorAll('.grid.grid-cols-1.md\:grid-cols-2.gap-8 > div');
+                    piCards.forEach(card => {
+                        try {
+                            membersData.pis.push({
+                                name: card.querySelector('h3').textContent,
+                                title: card.querySelector('p:nth-child(2)').textContent,
+                                info: card.querySelector('p:nth-child(3)').textContent,
+                                image: card.querySelector('img').src
+                            });
+                        } catch (e) {
+                            console.error('Error saving PI:', e);
+                        }
+                    });
+                    
                     // 保存当前成员
-                    const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
-                    if (sections.length >= 3) {
-                        const currentMembers = sections[2].querySelectorAll('.bg-white');
-                        currentMembers.forEach(member => {
-                            try {
-                                membersData.current.push({
-                                    name: member.querySelector('h4').textContent,
-                                    title: member.querySelector('p:nth-child(2)').textContent,
-                                    research: member.querySelector('p:nth-child(3)').textContent,
-                                    image: member.querySelector('img') ? member.querySelector('img').src : ''
-                                });
-                            } catch (e) {
-                                console.error('Error saving current member:', e);
-                            }
-                        });
-                    }
+                    const currentMembers = document.querySelectorAll('.grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4.gap-8 > div');
+                    currentMembers.forEach(member => {
+                        try {
+                            membersData.current.push({
+                                name: member.querySelector('h4').textContent,
+                                title: member.querySelector('p:nth-child(2)').textContent,
+                                research: member.querySelector('p:nth-child(3)').textContent,
+                                image: member.querySelector('img') ? member.querySelector('img').src : ''
+                            });
+                        } catch (e) {
+                            console.error('Error saving current member:', e);
+                        }
+                    });
                     
                     // 保存校友
-                    if (sections.length >= 4) {
-                        const alumniMembers = sections[3].querySelectorAll('.bg-white');
-                        alumniMembers.forEach(member => {
-                            try {
-                                membersData.alumni.push({
-                                    name: member.querySelector('h4').textContent,
-                                    degree: member.querySelector('p:nth-child(2)').textContent,
-                                    position: member.querySelector('p:nth-child(3)').textContent
-                                });
-                            } catch (e) {
-                                console.error('Error saving alumni member:', e);
-                            }
-                        });
-                    }
+                    const alumniMembers = document.querySelectorAll('.grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.gap-8 > div');
+                    alumniMembers.forEach(member => {
+                        try {
+                            membersData.alumni.push({
+                                name: member.querySelector('h4').textContent,
+                                degree: member.querySelector('p:nth-child(2)').textContent,
+                                position: member.querySelector('p:nth-child(3)').textContent
+                            });
+                        } catch (e) {
+                            console.error('Error saving alumni member:', e);
+                        }
+                    });
                     
                     localStorage.setItem('boxlabMembers', JSON.stringify(membersData));
                     console.log('Members data saved successfully');
@@ -386,18 +419,53 @@
                         }
                         
                         // 加载PI数据
-                        if (membersData.pi) {
-                            document.querySelector('.flex.justify-center.mb-16 h3').textContent = membersData.pi.name;
-                            document.querySelector('.flex.justify-center.mb-16 p:nth-child(2)').textContent = membersData.pi.title;
-                            document.querySelector('.flex.justify-center.mb-16 p:nth-child(3)').textContent = membersData.pi.info;
-                            document.querySelector('.flex.justify-center.mb-16 img').src = membersData.pi.image;
+                        if (membersData.pis && membersData.pis.length > 0) {
+                            const piContainer = document.querySelector('.grid.grid-cols-1.md\:grid-cols-2.gap-8');
+                            if (piContainer) {
+                                piContainer.innerHTML = '';
+                                
+                                membersData.pis.forEach(pi => {
+                                    try {
+                                        const piElement = document.createElement('div');
+                                        piElement.className = 'bg-white rounded-lg shadow-md p-8 card-hover transition-all-300';
+                                        piElement.innerHTML = `
+                                            <div class="flex flex-col items-center">
+                                                <div class="w-48 h-48 rounded-full overflow-hidden mb-6">
+                                                    <img src="${pi.image}" alt="${pi.name}" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="text-center">
+                                                    <h3 class="text-2xl font-bold mb-2 editable" contenteditable="false">${pi.name}</h3>
+                                                    <p class="text-gray-600 mb-4 editable" contenteditable="false">${pi.title}</p>
+                                                    <p class="text-gray-600 mb-4 editable" contenteditable="false">${pi.info}</p>
+                                                    <div class="flex justify-center space-x-4 mt-4">
+                                                        <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                                            <i class="fa fa-envelope text-xl"></i>
+                                                        </a>
+                                                        <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                                            <i class="fa fa-google-scholar text-xl"></i>
+                                                        </a>
+                                                        <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                                            <i class="fa fa-linkedin text-xl"></i>
+                                                        </a>
+                                                        <a href="#" class="text-accent hover:text-primary transition-all-300 editable" contenteditable="false">
+                                                            <i class="fa fa-researchgate text-xl"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        piContainer.appendChild(piElement);
+                                    } catch (e) {
+                                        console.error('Error loading PI:', e);
+                                    }
+                                });
+                            }
                         }
                         
                         // 加载当前成员
                         if (membersData.current && membersData.current.length > 0) {
-                            const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
-                            if (sections.length >= 3) {
-                                const currentContainer = sections[2];
+                            const currentContainer = document.querySelector('.grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4.gap-8');
+                            if (currentContainer) {
                                 currentContainer.innerHTML = '';
                                 
                                 membersData.current.forEach(member => {
@@ -422,9 +490,8 @@
                         
                         // 加载校友
                         if (membersData.alumni && membersData.alumni.length > 0) {
-                            const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
-                            if (sections.length >= 4) {
-                                const alumniContainer = sections[3];
+                            const alumniContainer = document.querySelector('.grid.grid-cols-1.sm\:grid-cols-2.md\:grid-cols-3.gap-8');
+                            if (alumniContainer) {
                                 alumniContainer.innerHTML = '';
                                 
                                 membersData.alumni.forEach(member => {
