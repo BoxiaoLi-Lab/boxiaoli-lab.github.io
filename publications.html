@@ -331,32 +331,106 @@
                 editButton.classList.toggle('bg-accent');
             });
             
+            // 本地存储功能
+            function savePublications() {
+                const publications = [];
+                const publicationItems = document.querySelectorAll('.publication-item');
+                
+                publicationItems.forEach(item => {
+                    publications.push({
+                        title: item.querySelector('.publication-title').textContent,
+                        authors: item.querySelector('.publication-authors').textContent,
+                        journal: item.querySelector('.publication-journal').textContent,
+                        pdf: item.querySelector('.publication-pdf').getAttribute('href'),
+                        link: item.querySelector('.publication-link').getAttribute('href')
+                    });
+                });
+                
+                localStorage.setItem('boxlabPublications', JSON.stringify(publications));
+            }
+            
+            function loadPublications() {
+                const savedPublications = localStorage.getItem('boxlabPublications');
+                if (savedPublications) {
+                    const publications = JSON.parse(savedPublications);
+                    const publicationContainer = document.querySelector('.max-w-4xl');
+                    
+                    // 清空现有内容
+                    const publicationItems = document.querySelectorAll('.publication-item');
+                    publicationItems.forEach(item => item.remove());
+                    
+                    // 加载保存的论文
+                    publications.forEach((pub, index) => {
+                        const publicationItem = document.createElement('div');
+                        publicationItem.className = 'mb-8 pb-8 border-b border-gray-200 publication-item';
+                        publicationItem.innerHTML = `
+                            <h3 class="text-xl font-bold mb-2 publication-title">${pub.title}</h3>
+                            <p class="text-gray-600 mb-2 publication-authors">${pub.authors}</p>
+                            <p class="text-gray-600 mb-2 publication-journal">${pub.journal}</p>
+                            <div class="flex space-x-4 mt-4">
+                                <a href="${pub.pdf}" class="text-accent hover:underline publication-pdf">
+                                    <i class="fa fa-file-pdf-o mr-1"></i> PDF
+                                </a>
+                                <a href="${pub.link}" class="text-accent hover:underline publication-link">
+                                    <i class="fa fa-external-link mr-1"></i> 期刊链接
+                                </a>
+                            </div>
+                        `;
+                        
+                        // 添加双击编辑事件
+                        publicationItem.addEventListener('dblclick', function() {
+                            const title = this.querySelector('.publication-title').textContent;
+                            const authors = this.querySelector('.publication-authors').textContent;
+                            const journal = this.querySelector('.publication-journal').textContent;
+                            const pdfLink = this.querySelector('.publication-pdf').getAttribute('href');
+                            const journalLink = this.querySelector('.publication-link').getAttribute('href');
+                            
+                            document.getElementById('currentPublicationIndex').value = index;
+                            document.getElementById('publicationEditTitle').value = title;
+                            document.getElementById('publicationEditAuthors').value = authors;
+                            document.getElementById('publicationEditJournal').value = journal;
+                            document.getElementById('publicationEditPdf').value = pdfLink;
+                            document.getElementById('publicationEditLink').value = journalLink;
+                            
+                            publicationEditModal.classList.remove('hidden');
+                        });
+                        
+                        publicationContainer.insertBefore(publicationItem, document.querySelector('.text-center.mt-8'));
+                    });
+                }
+            }
+            
             // 论文编辑功能
-            const publicationItems = document.querySelectorAll('.publication-item');
             const publicationEditModal = document.getElementById('publicationEditModal');
             const closePublicationModal = document.getElementById('closePublicationModal');
             const cancelPublicationEdit = document.getElementById('cancelPublicationEdit');
             const publicationEditForm = document.getElementById('publicationEditForm');
             
-            // 打开编辑对话框
-            publicationItems.forEach((item, index) => {
-                item.addEventListener('dblclick', function() {
-                    const title = this.querySelector('.publication-title').textContent;
-                    const authors = this.querySelector('.publication-authors').textContent;
-                    const journal = this.querySelector('.publication-journal').textContent;
-                    const pdfLink = this.querySelector('.publication-pdf').getAttribute('href');
-                    const journalLink = this.querySelector('.publication-link').getAttribute('href');
-                    
-                    document.getElementById('currentPublicationIndex').value = index;
-                    document.getElementById('publicationEditTitle').value = title;
-                    document.getElementById('publicationEditAuthors').value = authors;
-                    document.getElementById('publicationEditJournal').value = journal;
-                    document.getElementById('publicationEditPdf').value = pdfLink;
-                    document.getElementById('publicationEditLink').value = journalLink;
-                    
-                    publicationEditModal.classList.remove('hidden');
+            // 初始化时加载保存的论文
+            loadPublications();
+            
+            // 为所有论文项添加双击编辑事件
+            function addEditEvents() {
+                const publicationItems = document.querySelectorAll('.publication-item');
+                publicationItems.forEach((item, index) => {
+                    item.addEventListener('dblclick', function() {
+                        const title = this.querySelector('.publication-title').textContent;
+                        const authors = this.querySelector('.publication-authors').textContent;
+                        const journal = this.querySelector('.publication-journal').textContent;
+                        const pdfLink = this.querySelector('.publication-pdf').getAttribute('href');
+                        const journalLink = this.querySelector('.publication-link').getAttribute('href');
+                        
+                        document.getElementById('currentPublicationIndex').value = index;
+                        document.getElementById('publicationEditTitle').value = title;
+                        document.getElementById('publicationEditAuthors').value = authors;
+                        document.getElementById('publicationEditJournal').value = journal;
+                        document.getElementById('publicationEditPdf').value = pdfLink;
+                        document.getElementById('publicationEditLink').value = journalLink;
+                        
+                        publicationEditModal.classList.remove('hidden');
+                    });
                 });
-            });
+            }
             
             // 关闭编辑对话框
             closePublicationModal.addEventListener('click', function() {
@@ -378,14 +452,28 @@
                 const pdfLink = document.getElementById('publicationEditPdf').value;
                 const journalLink = document.getElementById('publicationEditLink').value;
                 
+                const publicationItems = document.querySelectorAll('.publication-item');
                 const publicationItem = publicationItems[index];
-                publicationItem.querySelector('.publication-title').textContent = title;
-                publicationItem.querySelector('.publication-authors').textContent = authors;
-                publicationItem.querySelector('.publication-journal').textContent = journal;
-                publicationItem.querySelector('.publication-pdf').setAttribute('href', pdfLink);
-                publicationItem.querySelector('.publication-link').setAttribute('href', journalLink);
+                
+                if (publicationItem) {
+                    publicationItem.querySelector('.publication-title').textContent = title;
+                    publicationItem.querySelector('.publication-authors').textContent = authors;
+                    publicationItem.querySelector('.publication-journal').textContent = journal;
+                    publicationItem.querySelector('.publication-pdf').setAttribute('href', pdfLink);
+                    publicationItem.querySelector('.publication-link').setAttribute('href', journalLink);
+                }
+                
+                // 保存到本地存储
+                savePublications();
                 
                 publicationEditModal.classList.add('hidden');
+            });
+            
+            // 为可编辑元素添加自动保存功能
+            document.addEventListener('input', function(e) {
+                if (e.target.isContentEditable) {
+                    savePublications();
+                }
             });
         });
     </script>
