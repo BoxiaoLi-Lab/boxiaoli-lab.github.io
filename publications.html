@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boxlab</title>
+    <title>Publications | Boxlab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -77,7 +77,6 @@
             text-align: center;
             padding: 20px 0;
         }
-        /* 编辑按钮样式 */
         .edit-btn {
             position: fixed;
             bottom: 30px;
@@ -94,7 +93,6 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
         }
-        /* 登录模态框 */
         .modal {
             display: none;
             position: fixed;
@@ -147,7 +145,6 @@
             justify-content: flex-end;
             margin-top: 20px;
         }
-        /* 编辑模式样式 */
         .editable {
             border: 2px dashed transparent;
             padding: 5px;
@@ -159,7 +156,6 @@
             border-color: #334155;
             background-color: #f0f9ff;
         }
-        /* 新闻编辑模态框 */
         .news-edit-modal {
             display: none;
             position: fixed;
@@ -202,7 +198,6 @@
             max-height: 200px;
             margin-top: 10px;
         }
-        /* 添加新闻按钮 */
         .add-news-btn {
             display: block;
             margin: 20px auto;
@@ -216,7 +211,7 @@
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏（左上角无 Dr. 姓名） -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -227,16 +222,15 @@
         </ul>
     </nav>
 
-    <!-- 英雄区域 -->
+    <!-- 英雄区域（已删除 Dr. 姓名） -->
     <header>
-        <h1 class="editable" contenteditable="false">Boxlab</h1>
-        <p class="editable" contenteditable="false">Dr. 姓名 - 首席研究员 | 博士生导师 | 所属学院</p>
+        <h1 class="editable" contenteditable="false">Publications</h1>
     </header>
 
-    <!-- 团队新闻 -->
+    <!-- 主要内容（完全保留） -->
     <section>
         <div class="container">
-            <h2 class="editable" contenteditable="false">Selected News</h2>
+            <h2 class="editable" contenteditable="false">Selected Publications</h2>
             <div class="news-grid" id="newsGrid">
                 <!-- 新闻1 -->
                 <div class="news-item">
@@ -266,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加新闻</button>
+            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加成果</button>
         </div>
     </section>
 
@@ -302,10 +296,10 @@
     <!-- 新闻编辑模态框 -->
     <div class="news-edit-modal" id="newsEditModal">
         <div class="news-edit-content">
-            <h3>编辑新闻</h3>
+            <h3>编辑成果</h3>
             <input type="hidden" id="currentNewsIndex">
             <div class="form-group">
-                <label>新闻图片</label>
+                <label>图片</label>
                 <div class="image-upload" id="imageUpload">
                     <p>点击上传图片</p>
                     <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
@@ -314,7 +308,7 @@
             </div>
             <div class="form-group">
                 <label for="newsTitle">标题</label>
-                <input type="text" id="newsTitle" placeholder="新闻标题">
+                <input type="text" id="newsTitle" placeholder="论文/成果标题">
             </div>
             <div class="form-group">
                 <label for="newsDate">日期</label>
@@ -322,7 +316,7 @@
             </div>
             <div class="form-group">
                 <label for="newsContent">内容</label>
-                <textarea id="newsContent" placeholder="新闻内容"></textarea>
+                <textarea id="newsContent" placeholder="描述"></textarea>
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
@@ -333,34 +327,27 @@
     </div>
 
     <script>
-        // 全局变量
         let isEditMode = false;
         let currentEditingNews = -1;
         
-        // 页面加载时从本地存储加载数据
         document.addEventListener('DOMContentLoaded', function() {
             loadData();
             initEventListeners();
         });
         
-        // 初始化事件监听器
         function initEventListeners() {
-            // 编辑按钮点击事件
             document.getElementById('editBtn').addEventListener('click', function() {
                 document.getElementById('loginModal').style.display = 'block';
             });
             
-            // 登录取消按钮
             document.getElementById('cancelLogin').addEventListener('click', function() {
                 document.getElementById('loginModal').style.display = 'none';
             });
             
-            // 登录提交按钮
             document.getElementById('submitLogin').addEventListener('click', function() {
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
                 
-                // 简单的登录验证（实际应用中应该使用更安全的方法）
                 if (username === 'admin' && password === 'password') {
                     enterEditMode();
                     document.getElementById('loginModal').style.display = 'none';
@@ -369,26 +356,17 @@
                 }
             });
             
-            // 点击模态框外部关闭
             window.addEventListener('click', function(event) {
                 const loginModal = document.getElementById('loginModal');
                 const newsEditModal = document.getElementById('newsEditModal');
-                
-                if (event.target === loginModal) {
-                    loginModal.style.display = 'none';
-                }
-                
-                if (event.target === newsEditModal) {
-                    newsEditModal.style.display = 'none';
-                }
+                if (event.target === loginModal) loginModal.style.display = 'none';
+                if (event.target === newsEditModal) newsEditModal.style.display = 'none';
             });
             
-            // 图片上传点击事件
             document.getElementById('imageUpload').addEventListener('click', function() {
                 document.getElementById('newsImageInput').click();
             });
             
-            // 图片选择事件
             document.getElementById('newsImageInput').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -402,42 +380,31 @@
                 }
             });
             
-            // 新闻编辑取消按钮
             document.getElementById('cancelNewsEdit').addEventListener('click', function() {
                 document.getElementById('newsEditModal').style.display = 'none';
             });
             
-            // 新闻编辑保存按钮
             document.getElementById('saveNewsEdit').addEventListener('click', function() {
                 saveNewsEdit();
             });
             
-            // 新闻删除按钮
             document.getElementById('deleteNews').addEventListener('click', function() {
                 deleteNews();
             });
             
-            // 添加新闻按钮
             document.getElementById('addNewsBtn').addEventListener('click', function() {
-                openNewsEditModal(-1); // -1 表示添加新新闻
+                openNewsEditModal(-1);
             });
         }
         
-        // 进入编辑模式
         function enterEditMode() {
             isEditMode = true;
-            
-            // 显示添加新闻按钮
             document.getElementById('addNewsBtn').style.display = 'block';
-            
-            // 启用所有可编辑元素
             const editableElements = document.querySelectorAll('.editable');
             editableElements.forEach(element => {
                 element.contentEditable = 'true';
                 element.classList.add('active');
             });
-            
-            // 为新闻项添加点击事件
             const newsItems = document.querySelectorAll('.news-item');
             newsItems.forEach((item, index) => {
                 item.addEventListener('click', function() {
@@ -446,14 +413,12 @@
             });
         }
         
-        // 打开新闻编辑模态框
         function openNewsEditModal(index) {
             currentEditingNews = index;
             const modal = document.getElementById('newsEditModal');
             const newsItems = document.querySelectorAll('.news-item');
             
             if (index === -1) {
-                // 添加新新闻
                 document.getElementById('currentNewsIndex').value = -1;
                 document.getElementById('newsTitle').value = '';
                 document.getElementById('newsDate').value = '';
@@ -462,7 +427,6 @@
                 document.getElementById('newsImagePreview').style.display = 'none';
                 document.getElementById('deleteNews').style.display = 'none';
             } else {
-                // 编辑现有新闻
                 const newsItem = newsItems[index];
                 const image = newsItem.querySelector('img').src;
                 const title = newsItem.querySelector('h3').textContent;
@@ -477,11 +441,9 @@
                 document.getElementById('newsImagePreview').style.display = 'block';
                 document.getElementById('deleteNews').style.display = 'inline-block';
             }
-            
             modal.style.display = 'block';
         }
         
-        // 保存新闻编辑
         function saveNewsEdit() {
             const index = parseInt(document.getElementById('currentNewsIndex').value);
             const title = document.getElementById('newsTitle').value;
@@ -492,7 +454,6 @@
             const newsGrid = document.getElementById('newsGrid');
             
             if (index === -1) {
-                // 添加新新闻
                 const newNewsItem = document.createElement('div');
                 newNewsItem.className = 'news-item';
                 newNewsItem.innerHTML = `
@@ -503,52 +464,38 @@
                         <p class="editable" contenteditable="true">${content}</p>
                     </div>
                 `;
-                
-                // 添加点击事件
                 newNewsItem.addEventListener('click', function() {
                     const newIndex = Array.from(newsGrid.children).indexOf(newNewsItem);
                     openNewsEditModal(newIndex);
                 });
-                
                 newsGrid.appendChild(newNewsItem);
             } else {
-                // 更新现有新闻
                 const newsItem = newsGrid.children[index];
                 newsItem.querySelector('img').src = imageSrc;
                 newsItem.querySelector('h3').textContent = title;
                 newsItem.querySelector('p:nth-child(2)').textContent = date;
                 newsItem.querySelector('p:nth-child(3)').textContent = content;
             }
-            
-            // 保存到本地存储
             saveData();
-            
-            // 关闭模态框
             document.getElementById('newsEditModal').style.display = 'none';
         }
         
-        // 删除新闻
         function deleteNews() {
             const index = parseInt(document.getElementById('currentNewsIndex').value);
             const newsGrid = document.getElementById('newsGrid');
-            
-            if (index !== -1 && confirm('确定要删除这条新闻吗？')) {
+            if (index !== -1 && confirm('确定要删除这条成果吗？')) {
                 newsGrid.removeChild(newsGrid.children[index]);
                 saveData();
                 document.getElementById('newsEditModal').style.display = 'none';
             }
         }
         
-        // 保存数据到本地存储
         function saveData() {
             const data = {
                 title: document.querySelector('header h1').textContent,
-                subtitle: document.querySelector('header p').textContent,
                 footer: document.querySelector('footer p').textContent,
                 news: []
             };
-            
-            // 保存新闻数据
             const newsItems = document.querySelectorAll('.news-item');
             newsItems.forEach(item => {
                 data.news.push({
@@ -558,27 +505,19 @@
                     content: item.querySelector('p:nth-child(3)').textContent
                 });
             });
-            
-            localStorage.setItem('boxlabData', JSON.stringify(data));
+            localStorage.setItem('boxlabPublications', JSON.stringify(data));
         }
         
-        // 从本地存储加载数据
         function loadData() {
-            const savedData = localStorage.getItem('boxlabData');
+            const savedData = localStorage.getItem('boxlabPublications');
             if (savedData) {
                 const data = JSON.parse(savedData);
-                
-                // 加载标题和副标题
-                document.querySelector('header h1').textContent = data.title;
-                document.querySelector('header p').textContent = data.subtitle;
+                document.querySelector('header h1').textContent = data.title || 'Publications';
                 document.querySelector('footer p').textContent = data.footer;
-                
-                // 加载新闻数据
                 if (data.news && data.news.length > 0) {
                     const newsGrid = document.getElementById('newsGrid');
                     newsGrid.innerHTML = '';
-                    
-                    data.news.forEach((news, index) => {
+                    data.news.forEach((news) => {
                         const newsItem = document.createElement('div');
                         newsItem.className = 'news-item';
                         newsItem.innerHTML = `
@@ -595,7 +534,6 @@
             }
         }
         
-        // 监听可编辑元素的变化，自动保存
         document.addEventListener('input', function(e) {
             if (e.target.classList.contains('editable') && isEditMode) {
                 saveData();
