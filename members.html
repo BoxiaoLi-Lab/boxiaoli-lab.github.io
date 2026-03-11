@@ -312,12 +312,7 @@
             closeLoginModal.addEventListener('click', hideLoginModal);
             cancelLogin.addEventListener('click', hideLoginModal);
 
-            // 点击编辑按钮时显示登录对话框（如果未登录）
-            editButton.addEventListener('click', function() {
-                if (!isAuthenticated) {
-                    showLoginModal();
-                }
-            });
+
 
             // 本地存储功能
             function saveMembers() {
@@ -492,6 +487,17 @@
                     saveMembers();
                     console.log('Saved members data:', localStorage.getItem('boxlabMembers'));
                 }
+            });
+            
+            // 为英雄区域元素添加专门的自动保存功能
+            const heroElements = document.querySelectorAll('header .editable');
+            heroElements.forEach(element => {
+                element.addEventListener('input', function() {
+                    if (isEditing) {
+                        console.log('Auto-saving hero section data...');
+                        saveMembers();
+                    }
+                });
             });
             
             // 测试本地存储功能

@@ -296,12 +296,7 @@
             closeLoginModal.addEventListener('click', hideLoginModal);
             cancelLogin.addEventListener('click', hideLoginModal);
 
-            // 点击编辑按钮时显示登录对话框（如果未登录）
-            editButton.addEventListener('click', function() {
-                if (!isAuthenticated) {
-                    showLoginModal();
-                }
-            });
+
 
             // 本地存储功能
             function saveJoin() {
