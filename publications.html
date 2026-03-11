@@ -142,8 +142,11 @@
                         </a>
                     </div>
                 </div>
-                <!-- 查看更多按钮 -->
-                <div class="text-center mt-8">
+                <!-- 操作按钮 -->
+                <div class="flex justify-center space-x-4 mt-8">
+                    <button id="addPublicationBtn" class="inline-block bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-secondary transition-all-300">
+                        <i class="fa fa-plus mr-2"></i> 添加论文
+                    </button>
                     <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-secondary transition-all-300 editable" contenteditable="false">
                         查看更多论文
                     </a>
@@ -454,6 +457,21 @@
                 publicationEditModal.classList.add('hidden');
             });
             
+            // 添加新论文功能
+            const addPublicationBtn = document.getElementById('addPublicationBtn');
+            addPublicationBtn.addEventListener('click', function() {
+                // 清空表单
+                document.getElementById('currentPublicationIndex').value = '';
+                document.getElementById('publicationEditTitle').value = '';
+                document.getElementById('publicationEditAuthors').value = '';
+                document.getElementById('publicationEditJournal').value = '';
+                document.getElementById('publicationEditPdf').value = '';
+                document.getElementById('publicationEditLink').value = '';
+                
+                // 显示编辑对话框
+                publicationEditModal.classList.remove('hidden');
+            });
+            
             // 保存编辑内容
             publicationEditForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -462,31 +480,67 @@
                 const title = document.getElementById('publicationEditTitle').value;
                 const authors = document.getElementById('publicationEditAuthors').value;
                 const journal = document.getElementById('publicationEditJournal').value;
-                const pdfLink = document.getElementById('publicationEditPdf').value;
-                const journalLink = document.getElementById('publicationEditLink').value;
+                const pdfLink = document.getElementById('publicationEditPdf').value || '#';
+                const journalLink = document.getElementById('publicationEditLink').value || '#';
                 
+                const publicationContainer = document.querySelector('.max-w-4xl');
                 const publicationItems = document.querySelectorAll('.publication-item');
-                const publicationItem = publicationItems[index];
                 
-                if (publicationItem) {
-                    publicationItem.querySelector('.publication-title').textContent = title;
-                    publicationItem.querySelector('.publication-authors').textContent = authors;
-                    publicationItem.querySelector('.publication-journal').textContent = journal;
-                    publicationItem.querySelector('.publication-pdf').setAttribute('href', pdfLink);
-                    publicationItem.querySelector('.publication-link').setAttribute('href', journalLink);
+                if (index === '') {
+                    // 添加新论文
+                    const publicationItem = document.createElement('div');
+                    publicationItem.className = 'mb-8 pb-8 border-b border-gray-200 publication-item';
+                    publicationItem.innerHTML = `
+                        <h3 class="text-xl font-bold mb-2 publication-title editable" contenteditable="false">${title}</h3>
+                        <p class="text-gray-600 mb-2 publication-authors editable" contenteditable="false">${authors}</p>
+                        <p class="text-gray-600 mb-2 publication-journal editable" contenteditable="false">${journal}</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="${pdfLink}" class="text-accent hover:underline publication-pdf editable" contenteditable="false">
+                                <i class="fa fa-file-pdf-o mr-1"></i> PDF
+                            </a>
+                            <a href="${journalLink}" class="text-accent hover:underline publication-link editable" contenteditable="false">
+                                <i class="fa fa-external-link mr-1"></i> 期刊链接
+                            </a>
+                        </div>
+                    `;
+                    
+                    // 添加双击编辑事件
+                    publicationItem.addEventListener('dblclick', function() {
+                        const title = this.querySelector('.publication-title').textContent;
+                        const authors = this.querySelector('.publication-authors').textContent;
+                        const journal = this.querySelector('.publication-journal').textContent;
+                        const pdfLink = this.querySelector('.publication-pdf').getAttribute('href');
+                        const journalLink = this.querySelector('.publication-link').getAttribute('href');
+                        
+                        const currentIndex = Array.from(document.querySelectorAll('.publication-item')).indexOf(this);
+                        document.getElementById('currentPublicationIndex').value = currentIndex;
+                        document.getElementById('publicationEditTitle').value = title;
+                        document.getElementById('publicationEditAuthors').value = authors;
+                        document.getElementById('publicationEditJournal').value = journal;
+                        document.getElementById('publicationEditPdf').value = pdfLink;
+                        document.getElementById('publicationEditLink').value = journalLink;
+                        
+                        publicationEditModal.classList.remove('hidden');
+                    });
+                    
+                    publicationContainer.insertBefore(publicationItem, document.querySelector('.flex.justify-center.space-x-4.mt-8'));
+                } else {
+                    // 编辑现有论文
+                    const publicationItem = publicationItems[index];
+                    
+                    if (publicationItem) {
+                        publicationItem.querySelector('.publication-title').textContent = title;
+                        publicationItem.querySelector('.publication-authors').textContent = authors;
+                        publicationItem.querySelector('.publication-journal').textContent = journal;
+                        publicationItem.querySelector('.publication-pdf').setAttribute('href', pdfLink);
+                        publicationItem.querySelector('.publication-link').setAttribute('href', journalLink);
+                    }
                 }
                 
                 // 保存到本地存储
                 savePublications();
                 
                 publicationEditModal.classList.add('hidden');
-            });
-            
-            // 为可编辑元素添加自动保存功能
-            document.addEventListener('input', function(e) {
-                if (e.target.classList.contains('editable') && isEditing) {
-                    savePublications();
-                }
             });
             
             // 测试本地存储功能
