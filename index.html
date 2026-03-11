@@ -1,1 +1,311 @@
-﻿
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxlab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background: linear-gradient(to right, #334155, #475569);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #334155;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            padding: 40px 0;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .news-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 20px;
+        }
+        footer {
+            background-color: #334155;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .edit-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #334155;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .login-form {
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-form h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .form-actions button {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-actions .btn-primary {
+            background-color: #334155;
+            color: white;
+            border: none;
+        }
+        .editable {
+            border-bottom: 2px dashed #64748b;
+            cursor: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="researches.html">Researches</a></li>
+            <li><a href="join.html">Join Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header>
+        <h1 contenteditable="false" class="editable">Boxlab</h1>
+        <p contenteditable="false" class="editable">Dr. 姓名 - 首席研究员 | 博士生导师 | 所属学院</p>
+    </header>
+
+    <!-- 团队新闻 -->
+    <section>
+        <div class="container">
+            <h2 contenteditable="false" class="editable">Selected News</h2>
+            <div class="news-grid">
+                <!-- 新闻1 -->
+                <div class="news-item">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片">
+                    <div class="news-content">
+                        <h3 contenteditable="false" class="editable">团队成员在国际会议上发表重要研究成果</h3>
+                        <p contenteditable="false" class="editable">2026-03-10</p>
+                        <p contenteditable="false" class="editable">团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。</p>
+                    </div>
+                </div>
+                <!-- 新闻2 -->
+                <div class="news-item">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片">
+                    <div class="news-content">
+                        <h3 contenteditable="false" class="editable">团队获得国家自然科学基金项目资助</h3>
+                        <p contenteditable="false" class="editable">2026-03-05</p>
+                        <p contenteditable="false" class="editable">团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。</p>
+                    </div>
+                </div>
+                <!-- 新闻3 -->
+                <div class="news-item">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=new%20team%20member%20joining%2C%20office%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片">
+                    <div class="news-content">
+                        <h3 contenteditable="false" class="editable">团队新成员加入</h3>
+                        <p contenteditable="false" class="editable">2026-02-28</p>
+                        <p contenteditable="false" class="editable">欢迎新博士后研究员加入团队，将为团队带来新的研究视角和技术专长。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p contenteditable="false" class="editable">&copy; 2026 Boxlab. 保留所有权利.</p>
+    </footer>
+
+    <!-- 编辑按钮 -->
+    <div class="edit-button" id="editButton">
+        <i>✏️</i>
+    </div>
+
+    <!-- 登录对话框 -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-form">
+            <h3>管理员登录</h3>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="cancelLogin">取消</button>
+                <button type="button" class="btn-primary" id="submitLogin">登录</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 登录验证
+            const adminUsername = 'admin';
+            const adminPassword = 'password';
+            let isAuthenticated = false;
+            let isEditing = false;
+
+            // DOM 元素
+            const editButton = document.getElementById('editButton');
+            const loginModal = document.getElementById('loginModal');
+            const cancelLogin = document.getElementById('cancelLogin');
+            const submitLogin = document.getElementById('submitLogin');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const editableElements = document.querySelectorAll('.editable');
+
+            // 显示登录对话框
+            function showLoginModal() {
+                loginModal.style.display = 'flex';
+            }
+
+            // 隐藏登录对话框
+            function hideLoginModal() {
+                loginModal.style.display = 'none';
+                usernameInput.value = '';
+                passwordInput.value = '';
+            }
+
+            // 切换编辑模式
+            function toggleEditMode() {
+                isEditing = !isEditing;
+                editableElements.forEach(element => {
+                    element.contentEditable = isEditing;
+                    if (isEditing) {
+                        element.style.borderBottom = '2px dashed #64748b';
+                    } else {
+                        element.style.borderBottom = 'none';
+                    }
+                });
+                editButton.innerHTML = isEditing ? '✅' : '✏️';
+            }
+
+            // 编辑按钮点击事件
+            editButton.addEventListener('click', function() {
+                if (!isAuthenticated) {
+                    showLoginModal();
+                } else {
+                    toggleEditMode();
+                }
+            });
+
+            // 取消登录
+            cancelLogin.addEventListener('click', hideLoginModal);
+
+            // 提交登录
+            submitLogin.addEventListener('click', function() {
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+
+                if (username === adminUsername && password === adminPassword) {
+                    isAuthenticated = true;
+                    hideLoginModal();
+                    toggleEditMode();
+                } else {
+                    alert('用户名或密码错误');
+                }
+            });
+
+            // 点击模态框外部关闭
+            loginModal.addEventListener('click', function(e) {
+                if (e.target === loginModal) {
+                    hideLoginModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
