@@ -333,33 +333,38 @@
                     };
                     
                     // 保存当前成员
-                    const currentMembers = document.querySelectorAll('section > div > div:nth-of-type(3) .bg-white');
-                    currentMembers.forEach(member => {
-                        try {
-                            membersData.current.push({
-                                name: member.querySelector('h4').textContent,
-                                title: member.querySelector('p:nth-child(2)').textContent,
-                                research: member.querySelector('p:nth-child(3)').textContent,
-                                image: member.querySelector('img') ? member.querySelector('img').src : ''
-                            });
-                        } catch (e) {
-                            console.error('Error saving current member:', e);
-                        }
-                    });
+                    const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
+                    if (sections.length >= 3) {
+                        const currentMembers = sections[2].querySelectorAll('.bg-white');
+                        currentMembers.forEach(member => {
+                            try {
+                                membersData.current.push({
+                                    name: member.querySelector('h4').textContent,
+                                    title: member.querySelector('p:nth-child(2)').textContent,
+                                    research: member.querySelector('p:nth-child(3)').textContent,
+                                    image: member.querySelector('img') ? member.querySelector('img').src : ''
+                                });
+                            } catch (e) {
+                                console.error('Error saving current member:', e);
+                            }
+                        });
+                    }
                     
                     // 保存校友
-                    const alumniMembers = document.querySelectorAll('section > div > div:nth-of-type(4) .bg-white');
-                    alumniMembers.forEach(member => {
-                        try {
-                            membersData.alumni.push({
-                                name: member.querySelector('h4').textContent,
-                                degree: member.querySelector('p:nth-child(2)').textContent,
-                                position: member.querySelector('p:nth-child(3)').textContent
-                            });
-                        } catch (e) {
-                            console.error('Error saving alumni member:', e);
-                        }
-                    });
+                    if (sections.length >= 4) {
+                        const alumniMembers = sections[3].querySelectorAll('.bg-white');
+                        alumniMembers.forEach(member => {
+                            try {
+                                membersData.alumni.push({
+                                    name: member.querySelector('h4').textContent,
+                                    degree: member.querySelector('p:nth-child(2)').textContent,
+                                    position: member.querySelector('p:nth-child(3)').textContent
+                                });
+                            } catch (e) {
+                                console.error('Error saving alumni member:', e);
+                            }
+                        });
+                    }
                     
                     localStorage.setItem('boxlabMembers', JSON.stringify(membersData));
                     console.log('Members data saved successfully');
@@ -390,8 +395,9 @@
                         
                         // 加载当前成员
                         if (membersData.current && membersData.current.length > 0) {
-                            const currentContainer = document.querySelector('section > div > div:nth-of-type(3)');
-                            if (currentContainer) {
+                            const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
+                            if (sections.length >= 3) {
+                                const currentContainer = sections[2];
                                 currentContainer.innerHTML = '';
                                 
                                 membersData.current.forEach(member => {
@@ -416,8 +422,9 @@
                         
                         // 加载校友
                         if (membersData.alumni && membersData.alumni.length > 0) {
-                            const alumniContainer = document.querySelector('section > div > div:nth-of-type(4)');
-                            if (alumniContainer) {
+                            const sections = document.querySelectorAll('section.py-16.bg-white > div.container > div');
+                            if (sections.length >= 4) {
+                                const alumniContainer = sections[3];
                                 alumniContainer.innerHTML = '';
                                 
                                 membersData.alumni.forEach(member => {
