@@ -88,6 +88,111 @@ document.body.appendChild(saveButton);
                 box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
         }
+// 保存功能
+function saveChanges() {
+    try {
+        // 保存所有文本内容
+        const elements = document.querySelectorAll('h1, h2, h3, h4, p, a, span, li');
+        const data = {};
+        
+        elements.forEach((el, index) => {
+            if (!el.closest('nav') || (el.closest('nav') && el.tagName === 'A')) {
+                // 使用元素的文本内容作为键（简化版）
+                const key = 'element_' + index;
+                data[key] = {
+                    text: el.textContent,
+                    html: el.innerHTML,
+                    tag: el.tagName
+                };
+            }
+        });
+        
+        // 保存图片
+        const images = document.querySelectorAll('img');
+        const imageData = {};
+        images.forEach((img, index) => {
+            if (img.src.startsWith('data:')) {
+                imageData['image_' + index] = img.src;
+            }
+        });
+        
+        // 保存到localStorage
+        localStorage.setItem('boxlabTextData', JSON.stringify(data));
+        localStorage.setItem('boxlabImageData', JSON.stringify(imageData));
+        
+        alert('保存成功！刷新页面后修改会保持。');
+    } catch (error) {
+        console.error('保存失败:', error);
+        alert('保存失败，请检查浏览器控制台。');
+    }
+}
+
+// 加载功能
+function loadChanges() {
+    try {
+        // 加载文本内容
+        const data = JSON.parse(localStorage.getItem('boxlabTextData') || '{}');
+        const elements = document.querySelectorAll('h1, h2, h3, h4, p, a, span, li');
+        
+        elements.forEach((el, index) => {
+            const key = 'element_' + index;
+            if (data[key]) {
+                el.innerHTML = data[key].html;
+            }
+        });
+        
+        // 加载图片
+        const imageData = JSON.parse(localStorage.getItem('boxlabImageData') || '{}');
+        const images = document.querySelectorAll('img');
+        
+        images.forEach((img, index) => {
+            const key = 'image_' + index;
+            if (imageData[key]) {
+                img.src = imageData[key];
+            }
+        });
+    } catch (error) {
+        console.error('加载失败:', error);
+    }
+}
+
+// 导出功能
+function exportChanges() {
+    try {
+        const pageContent = document.documentElement.outerHTML;
+        const blob = new Blob([pageContent], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'boxlab-website.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('网站已导出为HTML文件！');
+    } catch (error) {
+        console.error('导出失败:', error);
+        alert('导出失败，请检查浏览器控制台。');
+    }
+}
+
+// 页面加载时加载保存的内容
+window.addEventListener('load', loadChanges);
+
+// 添加保存和导出按钮
+const saveButton = document.createElement('button');
+saveButton.innerHTML = '<i class="fa fa-save"></i>';
+saveButton.title = '保存修改';
+saveButton.className = 'fixed bottom-24 right-8 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg z-20 hover:bg-green-700 transition-all-300 flex items-center justify-center';
+saveButton.addEventListener('click', saveChanges);
+document.body.appendChild(saveButton);
+
+const exportButton = document.createElement('button');
+exportButton.innerHTML = '<i class="fa fa-download"></i>';
+exportButton.title = '导出网站';
+exportButton.className = 'fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg z-20 hover:bg-blue-700 transition-all-300 flex items-center justify-center';
+exportButton.addEventListener('click', exportChanges);
+document.body.appendChild(exportButton);
     </style>
 </head>
 <body class="bg-light font-sans text-dark">
