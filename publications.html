@@ -3,215 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications | Boxlab</title>
+    <title>Publications - Boxlab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+        /* 继承主页基础样式 */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; }
+        header { background: linear-gradient(to right, #334155, #475569); color: white; padding: 40px 20px; text-align: center; }
+        nav { background-color: #334155; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav ul li { margin: 0 20px; }
+        nav ul li a { color: white; text-decoration: none; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        /* 论文特有样式 */
+        .pub-year-section { margin-bottom: 40px; }
+        .year-title { border-bottom: 2px solid #334155; color: #334155; padding-bottom: 5px; margin-bottom: 20px; }
+        .pub-item { 
+            background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.3s; position: relative;
         }
-        header {
-            background: linear-gradient(to right, #334155, #475569);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #334155;
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            padding: 40px 0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .news-item {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .news-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        .news-content {
-            padding: 20px;
-        }
-        .news-content h3, .news-content p {
-            margin: 10px 0;
-        }
-        footer {
-            background-color: #334155;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .edit-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #334155;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .modal-content h3 {
-            margin-top: 0;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background-color: #334155;
-            color: white;
-        }
-        .btn-secondary {
-            background-color: #94a3b8;
-            color: white;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-        .editable {
-            border: 2px dashed transparent;
-            padding: 5px;
-        }
-        .editable:hover {
-            border-color: #334155;
-        }
-        .editable.active {
-            border-color: #334155;
-            background-color: #f0f9ff;
-        }
-        .news-edit-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .news-edit-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-        }
-        .news-edit-content h3 {
-            margin-top: 0;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
-        }
-        .image-upload {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .image-upload:hover {
-            border-color: #334155;
-        }
-        #newsImagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-        }
-        .add-news-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #334155;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+        .pub-item:hover { transform: translateX(5px); }
+        .pub-title { font-weight: bold; color: #1e293b; display: block; margin-bottom: 5px; }
+        .pub-authors { color: #64748b; font-size: 0.95em; }
+        .pub-journal { font-style: italic; color: #475569; }
+        .pub-link { color: #3b82f6; text-decoration: none; font-size: 0.9em; margin-top: 8px; display: inline-block; }
+
+        /* 编辑相关样式 */
+        .edit-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: #334155; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
+        .modal, .pub-edit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; }
+        .modal-content { background: white; margin: 10% auto; padding: 25px; border-radius: 8px; width: 450px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        .btn-group { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-primary { background-color: #334155; color: white; }
+        .btn-secondary { background-color: #94a3b8; color: white; }
+        .add-pub-btn { display: none; margin: 20px auto; background: #334155; color: white; padding: 10px 30px; border: none; border-radius: 4px; cursor: pointer; }
+        
+        /* 编辑模式高亮 */
+        .editable-active { border: 1px dashed #334155; cursor: pointer; }
+        footer { background-color: #334155; color: white; text-align: center; padding: 20px 0; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <!-- 导航栏（左上角无 Dr. 姓名） -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -222,323 +57,189 @@
         </ul>
     </nav>
 
-    <!-- 英雄区域（已删除 Dr. 姓名） -->
     <header>
-        <h1 class="editable" contenteditable="false">Publications</h1>
+        <h1>Publications</h1>
+        <p>Selected Research Papers and Patents</p>
     </header>
 
-    <!-- 主要内容（完全保留） -->
-    <section>
-        <div class="container">
-            <h2 class="editable" contenteditable="false">Selected Publications</h2>
-            <div class="news-grid" id="newsGrid">
-                <!-- 新闻1 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队成员在国际会议上发表重要研究成果</h3>
-                        <p class="editable" contenteditable="false">2026-03-10</p>
-                        <p class="editable" contenteditable="false">团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。</p>
-                    </div>
-                </div>
-                <!-- 新闻2 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队获得国家自然科学基金项目资助</h3>
-                        <p class="editable" contenteditable="false">2026-03-05</p>
-                        <p class="editable" contenteditable="false">团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。</p>
-                    </div>
-                </div>
-                <!-- 新闻3 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=new%20team%20member%20joining%2C%20office%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队新成员加入</h3>
-                        <p class="editable" contenteditable="false">2026-02-28</p>
-                        <p class="editable" contenteditable="false">欢迎新博士后研究员加入团队，将为团队带来新的研究视角和技术专长。</p>
-                    </div>
+    <div class="container">
+        <button class="add-pub-btn" id="addPubBtn">Add New Publication</button>
+        <div id="pubList">
+            <div class="pub-year-section" data-year="2026">
+                <h2 class="year-title">2026</h2>
+                <div class="pub-item" onclick="handleItemClick(this)">
+                    <span class="pub-title">Advanced Polymer Synthesis via Diels-Alder Reactions</span>
+                    <span class="pub-authors">Your Name*, Student A, Colleague B</span>
+                    <div class="pub-journal">Nature Materials, 2026, 15, 123-130</div>
+                    <a href="#" class="pub-link" target="_blank">DOI: 10.1038/s41563-026-xxxx</a>
                 </div>
             </div>
-            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加成果</button>
         </div>
-    </section>
+    </div>
 
-    <!-- 页脚 -->
     <footer>
-        <p class="editable" contenteditable="false">&copy; 2026 Boxlab. 保留所有权利.</p>
+        <p>&copy; 2026 Boxlab. All Rights Reserved.</p>
     </footer>
 
-    <!-- 编辑按钮 -->
-    <div class="edit-btn" id="editBtn">
-        <i class="fas fa-pencil-alt"></i>
-    </div>
+    <div class="edit-btn" id="editBtn"><i class="fas fa-pencil-alt"></i></div>
 
-    <!-- 登录模态框 -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <h3>登录</h3>
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" placeholder="请输入用户名">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入密码">
-            </div>
+            <h3>Admin Login</h3>
+            <div class="form-group"><label>Username</label><input type="text" id="username" value="admin"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="password" value="password"></div>
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelLogin">取消</button>
-                <button class="btn btn-primary" id="submitLogin">登录</button>
+                <button class="btn btn-secondary" onclick="closeModal('loginModal')">Cancel</button>
+                <button class="btn btn-primary" id="submitLogin">Login</button>
             </div>
         </div>
     </div>
 
-    <!-- 新闻编辑模态框 -->
-    <div class="news-edit-modal" id="newsEditModal">
-        <div class="news-edit-content">
-            <h3>编辑成果</h3>
-            <input type="hidden" id="currentNewsIndex">
-            <div class="form-group">
-                <label>图片</label>
-                <div class="image-upload" id="imageUpload">
-                    <p>点击上传图片</p>
-                    <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
-                    <img id="newsImagePreview" src="" alt="预览图片" style="display: none;">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="newsTitle">标题</label>
-                <input type="text" id="newsTitle" placeholder="论文/成果标题">
-            </div>
-            <div class="form-group">
-                <label for="newsDate">日期</label>
-                <input type="date" id="newsDate">
-            </div>
-            <div class="form-group">
-                <label for="newsContent">内容</label>
-                <textarea id="newsContent" placeholder="描述"></textarea>
-            </div>
+    <div class="pub-edit-modal" id="pubEditModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Edit Publication</h3>
+            <input type="hidden" id="editIndex">
+            <div class="form-group"><label>Year</label><input type="number" id="pubYear" placeholder="2026"></div>
+            <div class="form-group"><label>Title</label><input type="text" id="editPubTitle"></div>
+            <div class="form-group"><label>Authors</label><input type="text" id="editAuthors"></div>
+            <div class="form-group"><label>Journal/Info</label><input type="text" id="editJournal"></div>
+            <div class="form-group"><label>DOI Link</label><input type="text" id="editDoi"></div>
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
-                <button class="btn btn-primary" id="saveNewsEdit">保存</button>
-                <button class="btn btn-secondary" id="deleteNews" style="background-color: #ef4444;">删除</button>
+                <button class="btn btn-secondary" onclick="closeModal('pubEditModal')">Cancel</button>
+                <button class="btn" id="deletePub" style="background: #ef4444; color: white;">Delete</button>
+                <button class="btn btn-primary" id="savePub">Save</button>
             </div>
         </div>
     </div>
 
     <script>
         let isEditMode = false;
-        let currentEditingNews = -1;
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            initEventListeners();
+        let currentEditingElement = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPubs();
+            initLogin();
         });
-        
-        function initEventListeners() {
-            document.getElementById('editBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'block';
-            });
-            
-            document.getElementById('cancelLogin').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'none';
-            });
-            
-            document.getElementById('submitLogin').addEventListener('click', function() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                if (username === 'admin' && password === 'password') {
-                    enterEditMode();
+
+        function initLogin() {
+            document.getElementById('editBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('submitLogin').onclick = () => {
+                if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') {
+                    isEditMode = true;
                     document.getElementById('loginModal').style.display = 'none';
-                } else {
-                    alert('用户名或密码错误');
-                }
-            });
-            
-            window.addEventListener('click', function(event) {
-                const loginModal = document.getElementById('loginModal');
-                const newsEditModal = document.getElementById('newsEditModal');
-                if (event.target === loginModal) loginModal.style.display = 'none';
-                if (event.target === newsEditModal) newsEditModal.style.display = 'none';
-            });
-            
-            document.getElementById('imageUpload').addEventListener('click', function() {
-                document.getElementById('newsImageInput').click();
-            });
-            
-            document.getElementById('newsImageInput').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const preview = document.getElementById('newsImagePreview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            document.getElementById('cancelNewsEdit').addEventListener('click', function() {
-                document.getElementById('newsEditModal').style.display = 'none';
-            });
-            
-            document.getElementById('saveNewsEdit').addEventListener('click', function() {
-                saveNewsEdit();
-            });
-            
-            document.getElementById('deleteNews').addEventListener('click', function() {
-                deleteNews();
-            });
-            
-            document.getElementById('addNewsBtn').addEventListener('click', function() {
-                openNewsEditModal(-1);
-            });
+                    document.getElementById('addPubBtn').style.display = 'block';
+                    document.querySelectorAll('.pub-item').forEach(el => el.classList.add('editable-active'));
+                } else { alert('Wrong credentials'); }
+            };
         }
-        
-        function enterEditMode() {
-            isEditMode = true;
-            document.getElementById('addNewsBtn').style.display = 'block';
-            const editableElements = document.querySelectorAll('.editable');
-            editableElements.forEach(element => {
-                element.contentEditable = 'true';
-                element.classList.add('active');
-            });
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    openNewsEditModal(index);
-                });
-            });
-        }
-        
-        function openNewsEditModal(index) {
-            currentEditingNews = index;
-            const modal = document.getElementById('newsEditModal');
-            const newsItems = document.querySelectorAll('.news-item');
-            
-            if (index === -1) {
-                document.getElementById('currentNewsIndex').value = -1;
-                document.getElementById('newsTitle').value = '';
-                document.getElementById('newsDate').value = '';
-                document.getElementById('newsContent').value = '';
-                document.getElementById('newsImagePreview').src = '';
-                document.getElementById('newsImagePreview').style.display = 'none';
-                document.getElementById('deleteNews').style.display = 'none';
-            } else {
-                const newsItem = newsItems[index];
-                const image = newsItem.querySelector('img').src;
-                const title = newsItem.querySelector('h3').textContent;
-                const date = newsItem.querySelector('p:nth-child(2)').textContent;
-                const content = newsItem.querySelector('p:nth-child(3)').textContent;
-                
-                document.getElementById('currentNewsIndex').value = index;
-                document.getElementById('newsTitle').value = title;
-                document.getElementById('newsDate').value = date;
-                document.getElementById('newsContent').value = content;
-                document.getElementById('newsImagePreview').src = image;
-                document.getElementById('newsImagePreview').style.display = 'block';
-                document.getElementById('deleteNews').style.display = 'inline-block';
-            }
+
+        function handleItemClick(element) {
+            if(!isEditMode) return;
+            currentEditingElement = element;
+            const modal = document.getElementById('pubEditModal');
+            document.getElementById('modalTitle').innerText = "Edit Publication";
+            document.getElementById('pubYear').value = element.closest('.pub-year-section').dataset.year;
+            document.getElementById('editPubTitle').value = element.querySelector('.pub-title').innerText;
+            document.getElementById('editAuthors').value = element.querySelector('.pub-authors').innerText;
+            document.getElementById('editJournal').value = element.querySelector('.pub-journal').innerText;
+            document.getElementById('editDoi').value = element.querySelector('.pub-link').href;
             modal.style.display = 'block';
         }
-        
-        function saveNewsEdit() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const title = document.getElementById('newsTitle').value;
-            const date = document.getElementById('newsDate').value;
-            const content = document.getElementById('newsContent').value;
-            const imageSrc = document.getElementById('newsImagePreview').src;
-            
-            const newsGrid = document.getElementById('newsGrid');
-            
-            if (index === -1) {
-                const newNewsItem = document.createElement('div');
-                newNewsItem.className = 'news-item';
-                newNewsItem.innerHTML = `
-                    <img src="${imageSrc || 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3'}" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="true">${title}</h3>
-                        <p class="editable" contenteditable="true">${date}</p>
-                        <p class="editable" contenteditable="true">${content}</p>
-                    </div>
-                `;
-                newNewsItem.addEventListener('click', function() {
-                    const newIndex = Array.from(newsGrid.children).indexOf(newNewsItem);
-                    openNewsEditModal(newIndex);
-                });
-                newsGrid.appendChild(newNewsItem);
-            } else {
-                const newsItem = newsGrid.children[index];
-                newsItem.querySelector('img').src = imageSrc;
-                newsItem.querySelector('h3').textContent = title;
-                newsItem.querySelector('p:nth-child(2)').textContent = date;
-                newsItem.querySelector('p:nth-child(3)').textContent = content;
-            }
-            saveData();
-            document.getElementById('newsEditModal').style.display = 'none';
-        }
-        
-        function deleteNews() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const newsGrid = document.getElementById('newsGrid');
-            if (index !== -1 && confirm('确定要删除这条成果吗？')) {
-                newsGrid.removeChild(newsGrid.children[index]);
-                saveData();
-                document.getElementById('newsEditModal').style.display = 'none';
-            }
-        }
-        
-        function saveData() {
+
+        document.getElementById('addPubBtn').onclick = () => {
+            currentEditingElement = null;
+            document.getElementById('modalTitle').innerText = "Add New Publication";
+            document.getElementById('pubEditModal').style.display = 'block';
+            document.querySelectorAll('#pubEditModal input').forEach(i => i.value = '');
+        };
+
+        document.getElementById('savePub').onclick = () => {
             const data = {
-                title: document.querySelector('header h1').textContent,
-                footer: document.querySelector('footer p').textContent,
-                news: []
+                year: document.getElementById('pubYear').value,
+                title: document.getElementById('editPubTitle').value,
+                authors: document.getElementById('editAuthors').value,
+                journal: document.getElementById('editJournal').value,
+                doi: document.getElementById('editDoi').value
             };
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach(item => {
-                data.news.push({
-                    image: item.querySelector('img').src,
-                    title: item.querySelector('h3').textContent,
-                    date: item.querySelector('p:nth-child(2)').textContent,
-                    content: item.querySelector('p:nth-child(3)').textContent
+
+            if(currentEditingElement) {
+                // 更新逻辑
+                currentEditingElement.querySelector('.pub-title').innerText = data.title;
+                currentEditingElement.querySelector('.pub-authors').innerText = data.authors;
+                currentEditingElement.querySelector('.pub-journal').innerText = data.journal;
+                currentEditingElement.querySelector('.pub-link').href = data.doi;
+                // 如果年份变了，保存时会自动重新排列
+            } else {
+                // 新增逻辑：简单起见，重新渲染列表
+                addNewToUI(data);
+            }
+            savePubs();
+            closeModal('pubEditModal');
+            location.reload(); // 刷新以应用年份排序
+        };
+
+        document.getElementById('deletePub').onclick = () => {
+            if(confirm('Delete this entry?') && currentEditingElement) {
+                currentEditingElement.remove();
+                savePubs();
+                closeModal('pubEditModal');
+            }
+        };
+
+        function addNewToUI(data) {
+            let yearSection = document.querySelector(`.pub-year-section[data-year="${data.year}"]`);
+            if(!yearSection) {
+                const container = document.getElementById('pubList');
+                container.innerHTML += `<div class="pub-year-section" data-year="${data.year}"><h2 class="year-title">${data.year}</h2></div>`;
+                yearSection = document.querySelector(`.pub-year-section[data-year="${data.year}"]`);
+            }
+            // 实际保存逻辑在savePubs中处理
+        }
+
+        function savePubs() {
+            const sections = document.querySelectorAll('.pub-year-section');
+            const allData = [];
+            sections.forEach(sec => {
+                const year = sec.dataset.year;
+                sec.querySelectorAll('.pub-item').forEach(item => {
+                    allData.push({
+                        year: year,
+                        title: item.querySelector('.pub-title').innerText,
+                        authors: item.querySelector('.pub-authors').innerText,
+                        journal: item.querySelector('.pub-journal').innerText,
+                        doi: item.querySelector('.pub-link').href
+                    });
                 });
             });
-            localStorage.setItem('boxlabPublications', JSON.stringify(data));
+            localStorage.setItem('boxlabPubs', JSON.stringify(allData));
         }
-        
-        function loadData() {
-            const savedData = localStorage.getItem('boxlabPublications');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                document.querySelector('header h1').textContent = data.title || 'Publications';
-                document.querySelector('footer p').textContent = data.footer;
-                if (data.news && data.news.length > 0) {
-                    const newsGrid = document.getElementById('newsGrid');
-                    newsGrid.innerHTML = '';
-                    data.news.forEach((news) => {
-                        const newsItem = document.createElement('div');
-                        newsItem.className = 'news-item';
-                        newsItem.innerHTML = `
-                            <img src="${news.image}" alt="新闻图片" class="news-image">
-                            <div class="news-content">
-                                <h3 class="editable" contenteditable="false">${news.title}</h3>
-                                <p class="editable" contenteditable="false">${news.date}</p>
-                                <p class="editable" contenteditable="false">${news.content}</p>
-                            </div>
-                        `;
-                        newsGrid.appendChild(newsItem);
-                    });
+
+        function loadPubs() {
+            const saved = localStorage.getItem('boxlabPubs');
+            if(!saved) return;
+            const allData = JSON.parse(saved).sort((a,b) => b.year - a.year);
+            const container = document.getElementById('pubList');
+            container.innerHTML = '';
+            
+            let currentYear = "";
+            allData.forEach(item => {
+                if(item.year !== currentYear) {
+                    currentYear = item.year;
+                    container.innerHTML += `<div class="pub-year-section" data-year="${currentYear}"><h2 class="year-title">${currentYear}</h2></div>`;
                 }
-            }
+                const sec = container.querySelector(`.pub-year-section[data-year="${currentYear}"]`);
+                sec.innerHTML += `
+                    <div class="pub-item" onclick="handleItemClick(this)">
+                        <span class="pub-title">${item.title}</span>
+                        <span class="pub-authors">${item.authors}</span>
+                        <div class="pub-journal">${item.journal}</div>
+                        <a href="${item.doi}" class="pub-link" target="_blank">DOI Link</a>
+                    </div>
+                `;
+            });
         }
-        
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('editable') && isEditMode) {
-                saveData();
-            }
-        });
+
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
