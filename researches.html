@@ -3,604 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boxlab</title>
+    <title>Researches & Cooperation - Boxlab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+        /* 基础样式与色彩系统 */
+        :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
+        nav { background-color: var(--primary); color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        nav ul li a { color: white; text-decoration: none; padding: 8px 15px; border-radius: 6px; transition: background 0.3s; }
+        nav ul li a:hover { background-color: rgba(255,255,255,0.1); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        /* 管理员控制台 */
+        .admin-panel {
+            display: none; background: white; padding: 15px 20px; border-radius: 8px;
+            margin-bottom: 30px; border: 2px dashed var(--accent);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
-        header {
-            background: linear-gradient(to right, #334155, #475569);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .admin-panel.active { display: flex; }
+
+        /* 统一的区块标题 */
+        .section-title { border-bottom: 2px solid var(--primary); color: var(--primary); padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* --- 团队介绍板块 (Team Intro) --- */
+        .intro-box { 
+            display: flex; gap: 30px; background: white; border-radius: 12px; padding: 30px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; position: relative;
+            flex-wrap: wrap;
         }
-        nav {
-            background-color: #334155;
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .intro-img-container { flex: 1; min-width: 300px; position: relative; }
+        .intro-img { width: 100%; height: 100%; min-height: 250px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .intro-content { flex: 2; min-width: 300px; display: flex; flex-direction: column; }
+        .intro-content h2 { margin-top: 0; color: #0f172a; }
+        .intro-content p { color: #475569; line-height: 1.7; text-align: justify; }
+
+        /* --- 研究方向板块 (Researches) --- */
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        .research-card { 
+            background: white; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+            position: relative; transition: all 0.3s ease; display: flex; flex-direction: column;
         }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+        .research-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); }
+        .research-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--accent); }
+        .research-info { padding: 20px; flex: 1; }
+        .research-info h3 { margin: 0 0 10px; color: #0f172a; font-size: 1.25rem; }
+        .research-info p { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+        /* --- 合作团队板块 (Cooperation) --- */
+        .coop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .coop-card { 
+            background: white; border-radius: 10px; padding: 20px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;
+            position: relative; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;
         }
-        nav ul li {
-            margin: 0 20px;
+        .coop-card:hover { border-color: var(--accent); }
+        .coop-logo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #f1f5f9; }
+        .coop-info h3 { margin: 0 0 5px; color: #0f172a; font-size: 1.1rem; }
+        .coop-info h4 { margin: 0 0 10px; color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+        .coop-info p { color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+        /* 编辑按钮 */
+        .item-edit-btn { 
+            display: none; position: absolute; right: 10px; top: 10px; 
+            background: rgba(255,255,255,0.9); color: var(--primary); border: none; 
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;
         }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            padding: 40px 0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .news-item {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .news-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        .news-content {
-            padding: 20px;
-        }
-        .news-content h3, .news-content p {
-            margin: 10px 0;
-        }
-        footer {
-            background-color: #334155;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        /* 编辑按钮样式 */
-        .edit-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #334155;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-        /* 登录模态框 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .modal-content h3 {
-            margin-top: 0;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background-color: #334155;
-            color: white;
-        }
-        .btn-secondary {
-            background-color: #94a3b8;
-            color: white;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-        /* 编辑模式样式 */
-        .editable {
-            border: 2px dashed transparent;
-            padding: 5px;
-        }
-        .editable:hover {
-            border-color: #334155;
-        }
-        .editable.active {
-            border-color: #334155;
-            background-color: #f0f9ff;
-        }
-        /* 新闻编辑模态框 */
-        .news-edit-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .news-edit-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-        }
-        .news-edit-content h3 {
-            margin-top: 0;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
-        }
-        .image-upload {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .image-upload:hover {
-            border-color: #334155;
-        }
-        #newsImagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-        }
-        /* 添加新闻按钮 */
-        .add-news-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #334155;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+        .item-edit-btn:hover { background: var(--primary); color: white; }
+        .editable-active .item-edit-btn { display: block; }
+        
+        .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
+        .floating-login-btn:hover { transform: scale(1.1); }
+        
+        /* 模态框与表单 */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
+        .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); animation: slideDown 0.3s ease-out; max-height: 90vh; overflow-y: auto; }
+        .form-group { margin-bottom: 18px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; }
+        
+        .btn-group { display: flex; gap: 12px; justify-content: flex-end; margin-top: 25px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: #1e293b; }
+        .btn-success { background-color: #10b981; color: white; }
+        .btn-danger { background-color: #ef4444; color: white; }
+        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
+
+        /* 编辑模式下文字高亮 */
+        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; transition: 0.2s; cursor: text; }
+        [contenteditable="true"]:hover { outline-color: rgba(59, 130, 246, 0.5); background: rgba(255,255,255,0.05); }
+        [contenteditable="true"]:focus { outline: 2px solid var(--accent); background: rgba(255,255,255,0.1); }
+        .text-dark [contenteditable="true"] { outline-color: rgba(51, 65, 85, 0.2); }
+        .text-dark [contenteditable="true"]:hover { outline-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+        .text-dark [contenteditable="true"]:focus { outline-color: var(--accent); background: rgba(59, 130, 246, 0.1); }
+
+        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        #importFile { display: none; }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav>
-        <ul>
+        <ul id="mainNav">
             <li><a href="index.html">Home</a></li>
             <li><a href="publications.html">Publications</a></li>
             <li><a href="members.html">Members</a></li>
-            <li><a href="researches.html">Researches</a></li>
+            <li><a href="researches.html">Researches & Cooperation</a></li>
             <li><a href="join.html">Join Us</a></li>
         </ul>
     </nav>
 
-    <!-- 英雄区域 -->
     <header>
-        <h1 class="editable" contenteditable="false">Boxlab</h1>
-        <p class="editable" contenteditable="false">Dr. 姓名 - 首席研究员 | 博士生导师 | 所属学院</p>
+        <h1 id="pageTitle">Researches & Cooperation</h1>
+        <p id="pageSubtitle">Advancing Polymer Science through Innovation and Partnership</p>
     </header>
 
-    <!-- 团队新闻 -->
-    <section>
-        <div class="container">
-            <h2 class="editable" contenteditable="false">Selected News</h2>
-            <div class="news-grid" id="newsGrid">
-                <!-- 新闻1 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队成员在国际会议上发表重要研究成果</h3>
-                        <p class="editable" contenteditable="false">2026-03-10</p>
-                        <p class="editable" contenteditable="false">团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。</p>
-                    </div>
-                </div>
-                <!-- 新闻2 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队获得国家自然科学基金项目资助</h3>
-                        <p class="editable" contenteditable="false">2026-03-05</p>
-                        <p class="editable" contenteditable="false">团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。</p>
-                    </div>
-                </div>
-                <!-- 新闻3 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=new%20team%20member%20joining%2C%20office%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队新成员加入</h3>
-                        <p class="editable" contenteditable="false">2026-02-28</p>
-                        <p class="editable" contenteditable="false">欢迎新博士后研究员加入团队，将为团队带来新的研究视角和技术专长。</p>
-                    </div>
-                </div>
+    <div class="container text-dark">
+        <div class="admin-panel" id="adminPanel">
+            <div>
+                <span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span>
+                <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly. Use camera icons to change images.</span>
             </div>
-            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加新闻</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup Data</button>
+                <button class="btn" style="background: #e2e8f0; color: #333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
+                <input type="file" id="importFile" accept=".json">
+            </div>
         </div>
-    </section>
 
-    <!-- 页脚 -->
+        <div id="introContainer"></div>
+
+        <h2 class="section-title">
+            <span id="resTitle">Research Directions</span>
+            <button class="btn btn-primary btn-sm" id="addResBtn" style="display:none;"><i class="fas fa-plus"></i> Add Research</button>
+        </h2>
+        <div class="research-grid" id="researchesContainer"></div>
+
+        <h2 class="section-title">
+            <span id="coopTitle">Collaborating Teams & Partners</span>
+            <button class="btn btn-primary btn-sm" id="addCoopBtn" style="display:none;"><i class="fas fa-plus"></i> Add Partner</button>
+        </h2>
+        <div class="coop-grid" id="coopContainer"></div>
+    </div>
+
     <footer>
-        <p class="editable" contenteditable="false">&copy; 2026 Boxlab. 保留所有权利.</p>
+        <p id="footerText">&copy; 2026 Boxlab. All Rights Reserved.</p>
     </footer>
 
-    <!-- 编辑按钮 -->
-    <div class="edit-btn" id="editBtn">
-        <i class="fas fa-pencil-alt"></i>
-    </div>
+    <div class="floating-login-btn" id="loginTriggerBtn"><i class="fas fa-cog"></i></div>
 
-    <!-- 登录模态框 -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <h3>登录</h3>
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" placeholder="请输入用户名">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入密码">
-            </div>
+            <h3 style="margin-top:0; color: var(--primary);">Admin Login</h3>
+            <div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div>
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelLogin">取消</button>
-                <button class="btn btn-primary" id="submitLogin">登录</button>
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button>
+                <button class="btn btn-primary" id="submitLogin">Login</button>
             </div>
         </div>
     </div>
 
-    <!-- 新闻编辑模态框 -->
-    <div class="news-edit-modal" id="newsEditModal">
-        <div class="news-edit-content">
-            <h3>编辑新闻</h3>
-            <input type="hidden" id="currentNewsIndex">
-            <div class="form-group">
-                <label>新闻图片</label>
-                <div class="image-upload" id="imageUpload">
-                    <p>点击上传图片</p>
-                    <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
-                    <img id="newsImagePreview" src="" alt="预览图片" style="display: none;">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="newsTitle">标题</label>
-                <input type="text" id="newsTitle" placeholder="新闻标题">
-            </div>
-            <div class="form-group">
-                <label for="newsDate">日期</label>
-                <input type="date" id="newsDate">
-            </div>
-            <div class="form-group">
-                <label for="newsContent">内容</label>
-                <textarea id="newsContent" placeholder="新闻内容"></textarea>
-            </div>
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h3 id="modalTitle" style="margin-top:0; color: var(--primary);">Image & Settings</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-top: -10px; margin-bottom: 20px;">Texts can be edited directly on the page.</p>
+            
+            <input type="hidden" id="editItemId">
+            <input type="hidden" id="editItemType"> <div class="form-group"><label>Image / Logo URL</label><input type="url" id="itemImg" placeholder="https://..."></div>
+
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
-                <button class="btn btn-primary" id="saveNewsEdit">保存</button>
-                <button class="btn btn-secondary" id="deleteNews" style="background-color: #ef4444;">删除</button>
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn btn-danger" id="deleteItemBtn" style="display:none;">Delete Block</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">Save Image</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h3 id="addModalTitle" style="margin-top:0; color: var(--primary);">Add New</h3>
+            <input type="hidden" id="addItemType"> <div class="form-group" id="addNameGroup"><label id="addNameLabel">Title / Name</label><input type="text" id="addName"></div>
+            <div class="form-group" id="addInstGroup" style="display:none;"><label>Institution / Company</label><input type="text" id="addInst"></div>
+            <div class="form-group"><label>Description</label><textarea id="addDesc" rows="3"></textarea></div>
+            <div class="form-group"><label>Image URL</label><input type="url" id="addImg"></div>
+
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addModal')">Cancel</button>
+                <button class="btn btn-primary" id="saveNewBtn">Add</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 全局变量
         let isEditMode = false;
-        let currentEditingNews = -1;
-        
-        // 页面加载时从本地存储加载数据
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            initEventListeners();
+
+        // 默认数据，深入契合聚氨酯、自修复、气凝胶、变温红外、汽车软管等方向
+        const defaultData = {
+            intro: {
+                title: "About Our Research Group",
+                desc: "We are a dynamic research group focused on the synthesis and application of advanced polymer materials. Led by our Principal Investigator, our team specializes in the design of high-performance polyurethanes (PU), structurally controlled self-healing materials via Diels-Alder click chemistry, and the assembly of carbon nanotube/graphene aerogel composites. We are dedicated to translating fundamental polymer science into cutting-edge applications, ranging from highly sensitive flexible ionic sensors to industrial-grade automotive rubber hoses.",
+                img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20chemistry%20laboratory%2C%20clean%20benches%2C%20scientific%20equipment%2C%20high%20quality%20photo&image_size=landscape_4_3"
+            },
+            researches: [
+                { id: "r1", title: "Self-Healing Polyurethanes via Diels-Alder Reaction", desc: "Designing novel polyurethane architectures utilizing reversible Diels-Alder bonds to achieve intrinsic self-healing capabilities and structural control, enhancing material longevity and reliability.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=molecular%20structure%2C%20polymer%20chain%2C%20scientific%20illustration%2C%20blue%20tone&image_size=landscape_4_3" },
+                { id: "r2", title: "Aerogel Composites for Flexible Ionic Sensors", desc: "Supported by the NSFC, we assemble carbon nanotube (CNT) and graphene aerogels within polymer matrices to create highly sensitive, flexible compression sensors for advanced electronics.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=flexible%20electronic%20sensor%20on%20skin%2C%20high%20tech%2C%20glowing%20lines&image_size=landscape_4_3" },
+                { id: "r3", title: "High-Performance Automotive Rubber Materials", desc: "Through corporate partnerships, we research and optimize NBR (Nitrile Butadiene Rubber) and CSM (Chlorosulfonated Polyethylene) materials to improve the durability and chemical resistance of automotive rubber hoses.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=automotive%20engine%20parts%2C%20black%20rubber%20hoses%2C%20industrial%20setting&image_size=landscape_4_3" }
+            ],
+            coops: [
+                { id: "c1", name: "Advanced Spectroscopy Lab", inst: "University Partner", desc: "Collaborating on Variable-Temperature 2D-IR correlation spectroscopy analysis of Vitrimer polymers using Opus and Origin software.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=university%20logo%2C%20shield%2C%20academic%2C%20minimalist&image_size=square_1_1" },
+                { id: "c2", name: "AutoParts Manufacturing Co.", inst: "Corporate Partner", desc: "Joint R&D project focusing on technical guidance and formulation optimization for next-generation automotive rubber hoses.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=corporate%20logo%2C%20automotive%20industry%2C%20gear%20shape%2C%20blue%20and%20silver&image_size=square_1_1" },
+                { id: "c3", name: "Prof. Zhang's Research Team", inst: "National Institute of Materials", desc: "Collaborative research on novel aerogel capsule assembly techniques for energy storage applications.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20team%20logo%2C%20scientific%2C%20nodes%20and%20connections&image_size=square_1_1" }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllContent();
+            setupEventListeners();
         });
-        
-        // 初始化事件监听器
-        function initEventListeners() {
-            // 编辑按钮点击事件
-            document.getElementById('editBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'block';
-            });
+
+        function setupEventListeners() {
+            document.getElementById('loginTriggerBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('submitLogin').onclick = handleLogin;
+            window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+
+            // Modals
+            document.getElementById('saveSettingsBtn').onclick = saveImageSettings;
+            document.getElementById('deleteItemBtn').onclick = deleteItem;
+            document.getElementById('saveNewBtn').onclick = saveNewItem;
+
+            // Add Buttons
+            document.getElementById('addResBtn').onclick = () => openAddModal('research');
+            document.getElementById('addCoopBtn').onclick = () => openAddModal('coop');
             
-            // 登录取消按钮
-            document.getElementById('cancelLogin').addEventListener('click', function() {
+            // Backup
+            document.getElementById('exportBtn').onclick = exportData;
+            document.getElementById('importFile').addEventListener('change', importData);
+        }
+
+        function handleLogin() {
+            if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') {
+                enableEditMode();
                 document.getElementById('loginModal').style.display = 'none';
-            });
-            
-            // 登录提交按钮
-            document.getElementById('submitLogin').addEventListener('click', function() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                // 简单的登录验证（实际应用中应该使用更安全的方法）
-                if (username === 'admin' && password === 'password') {
-                    enterEditMode();
-                    document.getElementById('loginModal').style.display = 'none';
-                } else {
-                    alert('用户名或密码错误');
-                }
-            });
-            
-            // 点击模态框外部关闭
-            window.addEventListener('click', function(event) {
-                const loginModal = document.getElementById('loginModal');
-                const newsEditModal = document.getElementById('newsEditModal');
-                
-                if (event.target === loginModal) {
-                    loginModal.style.display = 'none';
-                }
-                
-                if (event.target === newsEditModal) {
-                    newsEditModal.style.display = 'none';
-                }
-            });
-            
-            // 图片上传点击事件
-            document.getElementById('imageUpload').addEventListener('click', function() {
-                document.getElementById('newsImageInput').click();
-            });
-            
-            // 图片选择事件
-            document.getElementById('newsImageInput').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const preview = document.getElementById('newsImagePreview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            // 新闻编辑取消按钮
-            document.getElementById('cancelNewsEdit').addEventListener('click', function() {
-                document.getElementById('newsEditModal').style.display = 'none';
-            });
-            
-            // 新闻编辑保存按钮
-            document.getElementById('saveNewsEdit').addEventListener('click', function() {
-                saveNewsEdit();
-            });
-            
-            // 新闻删除按钮
-            document.getElementById('deleteNews').addEventListener('click', function() {
-                deleteNews();
-            });
-            
-            // 添加新闻按钮
-            document.getElementById('addNewsBtn').addEventListener('click', function() {
-                openNewsEditModal(-1); // -1 表示添加新新闻
-            });
+            } else { alert('Invalid credentials.'); }
         }
-        
-        // 进入编辑模式
-        function enterEditMode() {
+
+        function enableEditMode() {
             isEditMode = true;
+            document.getElementById('loginTriggerBtn').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'flex';
+            document.getElementById('addResBtn').style.display = 'inline-block';
+            document.getElementById('addCoopBtn').style.display = 'inline-block';
             
-            // 显示添加新闻按钮
-            document.getElementById('addNewsBtn').style.display = 'block';
-            
-            // 启用所有可编辑元素
-            const editableElements = document.querySelectorAll('.editable');
-            editableElements.forEach(element => {
-                element.contentEditable = 'true';
-                element.classList.add('active');
+            ['pageTitle', 'pageSubtitle', 'footerText', 'resTitle', 'coopTitle'].forEach(id => {
+                const el = document.getElementById(id);
+                if(el) { el.contentEditable = true; el.addEventListener('blur', saveStaticContent); }
+            });
+            document.querySelectorAll('#mainNav a').forEach(a => {
+                a.contentEditable = true; a.addEventListener('blur', saveStaticContent);
             });
             
-            // 为新闻项添加点击事件
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    openNewsEditModal(index);
-                });
-            });
+            renderAll(getRCData());
         }
-        
-        // 打开新闻编辑模态框
-        function openNewsEditModal(index) {
-            currentEditingNews = index;
-            const modal = document.getElementById('newsEditModal');
-            const newsItems = document.querySelectorAll('.news-item');
+
+        // --- Live Edit Save Logic ---
+        function updateIntroText(field, element) {
+            const newValue = element.innerText.trim();
+            let data = getRCData();
+            if(data.intro[field] !== newValue) {
+                data.intro[field] = newValue;
+                localStorage.setItem('boxlabRCData', JSON.stringify(data));
+            }
+        }
+
+        function updateListText(type, id, field, element) {
+            const newValue = element.innerText.trim();
+            let data = getRCData();
+            let list = type === 'research' ? data.researches : data.coops;
+            let item = list.find(i => i.id === id);
+            if(item && item[field] !== newValue) {
+                item[field] = newValue;
+                localStorage.setItem('boxlabRCData', JSON.stringify(data));
+            }
+        }
+
+        // --- Modals Logic ---
+        function openImageSettings(type, id) {
+            if(!isEditMode) return;
+            const data = getRCData();
+            document.getElementById('editItemType').value = type;
+            document.getElementById('editItemId').value = id;
             
-            if (index === -1) {
-                // 添加新新闻
-                document.getElementById('currentNewsIndex').value = -1;
-                document.getElementById('newsTitle').value = '';
-                document.getElementById('newsDate').value = '';
-                document.getElementById('newsContent').value = '';
-                document.getElementById('newsImagePreview').src = '';
-                document.getElementById('newsImagePreview').style.display = 'none';
-                document.getElementById('deleteNews').style.display = 'none';
+            if(type === 'intro') {
+                document.getElementById('itemImg').value = data.intro.img;
+                document.getElementById('deleteItemBtn').style.display = 'none'; // Cannot delete intro block
             } else {
-                // 编辑现有新闻
-                const newsItem = newsItems[index];
-                const image = newsItem.querySelector('img').src;
-                const title = newsItem.querySelector('h3').textContent;
-                const date = newsItem.querySelector('p:nth-child(2)').textContent;
-                const content = newsItem.querySelector('p:nth-child(3)').textContent;
-                
-                document.getElementById('currentNewsIndex').value = index;
-                document.getElementById('newsTitle').value = title;
-                document.getElementById('newsDate').value = date;
-                document.getElementById('newsContent').value = content;
-                document.getElementById('newsImagePreview').src = image;
-                document.getElementById('newsImagePreview').style.display = 'block';
-                document.getElementById('deleteNews').style.display = 'inline-block';
+                let list = type === 'research' ? data.researches : data.coops;
+                let item = list.find(i => i.id === id);
+                document.getElementById('itemImg').value = item.img;
+                document.getElementById('deleteItemBtn').style.display = 'inline-block';
             }
-            
-            modal.style.display = 'block';
+            document.getElementById('settingsModal').style.display = 'block';
         }
-        
-        // 保存新闻编辑
-        function saveNewsEdit() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const title = document.getElementById('newsTitle').value;
-            const date = document.getElementById('newsDate').value;
-            const content = document.getElementById('newsContent').value;
-            const imageSrc = document.getElementById('newsImagePreview').src;
+
+        function saveImageSettings() {
+            const type = document.getElementById('editItemType').value;
+            const id = document.getElementById('editItemId').value;
+            const imgUrl = document.getElementById('itemImg').value.trim() || 'https://via.placeholder.com/400';
             
-            const newsGrid = document.getElementById('newsGrid');
-            
-            if (index === -1) {
-                // 添加新新闻
-                const newNewsItem = document.createElement('div');
-                newNewsItem.className = 'news-item';
-                newNewsItem.innerHTML = `
-                    <img src="${imageSrc || 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3'}" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="true">${title}</h3>
-                        <p class="editable" contenteditable="true">${date}</p>
-                        <p class="editable" contenteditable="true">${content}</p>
-                    </div>
-                `;
-                
-                // 添加点击事件
-                newNewsItem.addEventListener('click', function() {
-                    const newIndex = Array.from(newsGrid.children).indexOf(newNewsItem);
-                    openNewsEditModal(newIndex);
-                });
-                
-                newsGrid.appendChild(newNewsItem);
+            let data = getRCData();
+            if(type === 'intro') {
+                data.intro.img = imgUrl;
             } else {
-                // 更新现有新闻
-                const newsItem = newsGrid.children[index];
-                newsItem.querySelector('img').src = imageSrc;
-                newsItem.querySelector('h3').textContent = title;
-                newsItem.querySelector('p:nth-child(2)').textContent = date;
-                newsItem.querySelector('p:nth-child(3)').textContent = content;
+                let list = type === 'research' ? data.researches : data.coops;
+                let item = list.find(i => i.id === id);
+                if(item) item.img = imgUrl;
             }
             
-            // 保存到本地存储
-            saveData();
-            
-            // 关闭模态框
-            document.getElementById('newsEditModal').style.display = 'none';
+            localStorage.setItem('boxlabRCData', JSON.stringify(data));
+            closeModal('settingsModal');
+            renderAll(data);
         }
-        
-        // 删除新闻
-        function deleteNews() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const newsGrid = document.getElementById('newsGrid');
+
+        function deleteItem() {
+            if(!confirm('Are you sure you want to delete this block?')) return;
+            const type = document.getElementById('editItemType').value;
+            const id = document.getElementById('editItemId').value;
             
-            if (index !== -1 && confirm('确定要删除这条新闻吗？')) {
-                newsGrid.removeChild(newsGrid.children[index]);
-                saveData();
-                document.getElementById('newsEditModal').style.display = 'none';
+            let data = getRCData();
+            if(type === 'research') {
+                data.researches = data.researches.filter(i => i.id !== id);
+            } else if (type === 'coop') {
+                data.coops = data.coops.filter(i => i.id !== id);
             }
+            
+            localStorage.setItem('boxlabRCData', JSON.stringify(data));
+            closeModal('settingsModal');
+            renderAll(data);
         }
-        
-        // 保存数据到本地存储
-        function saveData() {
-            const data = {
-                title: document.querySelector('header h1').textContent,
-                subtitle: document.querySelector('header p').textContent,
-                footer: document.querySelector('footer p').textContent,
-                news: []
+
+        function openAddModal(type) {
+            document.getElementById('addItemType').value = type;
+            document.getElementById('addName').value = '';
+            document.getElementById('addInst').value = '';
+            document.getElementById('addDesc').value = '';
+            document.getElementById('addImg').value = '';
+            
+            if(type === 'research') {
+                document.getElementById('addModalTitle').innerText = "Add Research Direction";
+                document.getElementById('addNameLabel').innerText = "Project Title";
+                document.getElementById('addInstGroup').style.display = 'none';
+            } else {
+                document.getElementById('addModalTitle').innerText = "Add Partner / Team";
+                document.getElementById('addNameLabel').innerText = "Team / Partner Name";
+                document.getElementById('addInstGroup').style.display = 'block';
+            }
+            document.getElementById('addModal').style.display = 'block';
+        }
+
+        function saveNewItem() {
+            const type = document.getElementById('addItemType').value;
+            let data = getRCData();
+            
+            const newItem = {
+                id: Date.now().toString(),
+                img: document.getElementById('addImg').value.trim() || 'https://via.placeholder.com/400'
             };
             
-            // 保存新闻数据
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach(item => {
-                data.news.push({
-                    image: item.querySelector('img').src,
-                    title: item.querySelector('h3').textContent,
-                    date: item.querySelector('p:nth-child(2)').textContent,
-                    content: item.querySelector('p:nth-child(3)').textContent
-                });
-            });
+            if(type === 'research') {
+                newItem.title = document.getElementById('addName').value.trim() || "New Research";
+                newItem.desc = document.getElementById('addDesc').value.trim();
+                data.researches.push(newItem);
+            } else {
+                newItem.name = document.getElementById('addName').value.trim() || "New Partner";
+                newItem.inst = document.getElementById('addInst').value.trim();
+                newItem.desc = document.getElementById('addDesc').value.trim();
+                data.coops.push(newItem);
+            }
             
-            localStorage.setItem('boxlabData', JSON.stringify(data));
+            localStorage.setItem('boxlabRCData', JSON.stringify(data));
+            closeModal('addModal');
+            renderAll(data);
         }
-        
-        // 从本地存储加载数据
-        function loadData() {
-            const savedData = localStorage.getItem('boxlabData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                
-                // 加载标题和副标题
-                document.querySelector('header h1').textContent = data.title;
-                document.querySelector('header p').textContent = data.subtitle;
-                document.querySelector('footer p').textContent = data.footer;
-                
-                // 加载新闻数据
-                if (data.news && data.news.length > 0) {
-                    const newsGrid = document.getElementById('newsGrid');
-                    newsGrid.innerHTML = '';
-                    
-                    data.news.forEach((news, index) => {
-                        const newsItem = document.createElement('div');
-                        newsItem.className = 'news-item';
-                        newsItem.innerHTML = `
-                            <img src="${news.image}" alt="新闻图片" class="news-image">
-                            <div class="news-content">
-                                <h3 class="editable" contenteditable="false">${news.title}</h3>
-                                <p class="editable" contenteditable="false">${news.date}</p>
-                                <p class="editable" contenteditable="false">${news.content}</p>
-                            </div>
-                        `;
-                        newsGrid.appendChild(newsItem);
-                    });
+
+        // --- Data & Rendering Logic ---
+
+        function getRCData() {
+            return JSON.parse(localStorage.getItem('boxlabRCData')) || defaultData;
+        }
+
+        function renderAll(data) {
+            // Render Intro
+            const introContainer = document.getElementById('introContainer');
+            const introEdit = isEditMode ? 'contenteditable="true" title="Click to edit text"' : '';
+            const introClass = isEditMode ? 'intro-box editable-active' : 'intro-box';
+            
+            introContainer.innerHTML = `
+                <div class="${introClass}">
+                    <button class="item-edit-btn" onclick="openImageSettings('intro', '0')"><i class="fas fa-camera"></i></button>
+                    <div class="intro-content">
+                        <h2 ${introEdit} onblur="updateIntroText('title', this)">${data.intro.title}</h2>
+                        <p ${introEdit} onblur="updateIntroText('desc', this)">${data.intro.desc}</p>
+                    </div>
+                    <div class="intro-img-container">
+                        <img src="${data.intro.img}" class="intro-img" onerror="this.src='https://via.placeholder.com/600x400.png?text=Image+Error'">
+                    </div>
+                </div>
+            `;
+
+            // Render Researches
+            const resContainer = document.getElementById('researchesContainer');
+            resContainer.innerHTML = '';
+            data.researches.forEach(res => {
+                const cardClass = isEditMode ? 'research-card editable-active' : 'research-card';
+                resContainer.innerHTML += `
+                    <div class="${cardClass}">
+                        <button class="item-edit-btn" onclick="openImageSettings('research', '${res.id}')"><i class="fas fa-camera"></i></button>
+                        <img src="${res.img}" class="research-img" onerror="this.src='https://via.placeholder.com/400x300.png?text=Image+Error'">
+                        <div class="research-info">
+                            <h3 ${introEdit} onblur="updateListText('research', '${res.id}', 'title', this)">${res.title}</h3>
+                            <p ${introEdit} onblur="updateListText('research', '${res.id}', 'desc', this)">${res.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render Cooperations
+            const coopContainer = document.getElementById('coopContainer');
+            coopContainer.innerHTML = '';
+            data.coops.forEach(coop => {
+                const cardClass = isEditMode ? 'coop-card editable-active' : 'coop-card';
+                coopContainer.innerHTML += `
+                    <div class="${cardClass}">
+                        <button class="item-edit-btn" onclick="openImageSettings('coop', '${coop.id}')"><i class="fas fa-camera"></i></button>
+                        <img src="${coop.img}" class="coop-logo" onerror="this.src='https://via.placeholder.com/150.png?text=Logo'">
+                        <div class="coop-info">
+                            <h3 ${introEdit} onblur="updateListText('coop', '${coop.id}', 'name', this)">${coop.name}</h3>
+                            <h4 ${introEdit} onblur="updateListText('coop', '${coop.id}', 'inst', this)">${coop.inst}</h4>
+                            <p ${introEdit} onblur="updateListText('coop', '${coop.id}', 'desc', this)">${coop.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function loadAllContent() {
+            renderAll(getRCData());
+            const staticData = JSON.parse(localStorage.getItem('boxlabRCStatic') || '{}');
+            ['pageTitle', 'pageSubtitle', 'footerText', 'resTitle', 'coopTitle'].forEach(id => {
+                if(staticData[id] && document.getElementById(id)) {
+                    document.getElementById(id).innerText = staticData[id];
                 }
+            });
+            if(staticData.nav && staticData.nav.length > 0) {
+                document.querySelectorAll('#mainNav a').forEach((a, i) => { if(staticData.nav[i]) a.innerText = staticData.nav[i]; });
             }
         }
-        
-        // 监听可编辑元素的变化，自动保存
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('editable') && isEditMode) {
-                saveData();
-            }
-        });
+
+        function saveStaticContent() {
+            const staticData = {
+                pageTitle: document.getElementById('pageTitle').innerText,
+                pageSubtitle: document.getElementById('pageSubtitle').innerText,
+                footerText: document.getElementById('footerText').innerText,
+                resTitle: document.getElementById('resTitle').innerText,
+                coopTitle: document.getElementById('coopTitle').innerText,
+                nav: Array.from(document.querySelectorAll('#mainNav a')).map(a => a.innerText)
+            };
+            localStorage.setItem('boxlabRCStatic', JSON.stringify(staticData));
+        }
+
+        // --- Import / Export ---
+        function exportData() {
+            const data = localStorage.getItem('boxlabRCData') || JSON.stringify(defaultData);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `boxlab_research_coop_${new Date().toISOString().slice(0,10)}.json`;
+            a.click(); URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if(data.intro && data.researches && data.coops) {
+                        localStorage.setItem('boxlabRCData', JSON.stringify(data));
+                        renderAll(data);
+                        alert('Data imported successfully!');
+                    } else { alert('Invalid format.'); }
+                } catch { alert('Error reading file.'); }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; 
+        }
+
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
