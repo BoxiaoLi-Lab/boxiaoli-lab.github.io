@@ -3,604 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boxlab</title>
+    <title>Join Us - Boxlab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+        /* 基础样式与色彩系统 */
+        :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
+        nav { background-color: var(--primary); color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        nav ul li a { color: white; text-decoration: none; padding: 8px 15px; border-radius: 6px; transition: background 0.3s; }
+        nav ul li a:hover { background-color: rgba(255,255,255,0.1); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        /* 管理员控制台 */
+        .admin-panel {
+            display: none; background: white; padding: 15px 20px; border-radius: 8px;
+            margin-bottom: 30px; border: 2px dashed var(--accent);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
-        header {
-            background: linear-gradient(to right, #334155, #475569);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .admin-panel.active { display: flex; }
+
+        .section-title { border-bottom: 2px solid var(--primary); color: var(--primary); padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* --- 实验室寄语板块 --- */
+        .intro-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; border-left: 5px solid var(--accent); }
+        .intro-box p { color: #475569; line-height: 1.8; font-size: 1.05rem; margin: 0; }
+
+        /* --- 开放职位板块 (Positions) --- */
+        .positions-grid { display: flex; flex-direction: column; gap: 20px; }
+        .position-card { 
+            background: white; border-radius: 10px; padding: 25px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #e2e8f0;
+            position: relative; transition: all 0.3s ease;
         }
-        nav {
-            background-color: #334155;
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .position-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: #cbd5e1; }
+        .pos-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .pos-title { margin: 0; color: #0f172a; font-size: 1.3rem; }
+        .pos-badge { background: #eff6ff; color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .pos-desc { color: #475569; line-height: 1.6; margin-bottom: 15px; font-size: 0.95rem; }
+        .pos-reqs { background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px dashed #cbd5e1; }
+        .pos-reqs-title { font-weight: 600; color: var(--primary); margin-bottom: 5px; font-size: 0.95rem; }
+        .pos-reqs-content { color: #64748b; margin: 0; font-size: 0.9rem; line-height: 1.6; }
+
+        /* --- 联系方式板块 (Contact Info) --- */
+        .contact-box { background: var(--primary); color: white; border-radius: 12px; padding: 30px; display: flex; flex-wrap: wrap; gap: 30px; margin-top: 20px; }
+        .contact-item { display: flex; align-items: center; gap: 15px; flex: 1; min-width: 250px; }
+        .contact-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .contact-text h4 { margin: 0 0 5px; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; }
+        .contact-text p { margin: 0; font-size: 1.1rem; font-weight: 600; }
+
+        /* 编辑按钮 */
+        .item-edit-btn { 
+            display: none; position: absolute; right: 20px; top: 20px; 
+            background: #f1f5f9; color: #ef4444; border: none; 
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10;
         }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            padding: 40px 0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .news-item {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .news-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        .news-content {
-            padding: 20px;
-        }
-        .news-content h3, .news-content p {
-            margin: 10px 0;
-        }
-        footer {
-            background-color: #334155;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        /* 编辑按钮样式 */
-        .edit-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #334155;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-        /* 登录模态框 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .modal-content h3 {
-            margin-top: 0;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background-color: #334155;
-            color: white;
-        }
-        .btn-secondary {
-            background-color: #94a3b8;
-            color: white;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-        /* 编辑模式样式 */
-        .editable {
-            border: 2px dashed transparent;
-            padding: 5px;
-        }
-        .editable:hover {
-            border-color: #334155;
-        }
-        .editable.active {
-            border-color: #334155;
-            background-color: #f0f9ff;
-        }
-        /* 新闻编辑模态框 */
-        .news-edit-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .news-edit-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-        }
-        .news-edit-content h3 {
-            margin-top: 0;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
-        }
-        .image-upload {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .image-upload:hover {
-            border-color: #334155;
-        }
-        #newsImagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-        }
-        /* 添加新闻按钮 */
-        .add-news-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #334155;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+        .item-edit-btn:hover { background: #fee2e2; }
+        .editable-active .item-edit-btn { display: block; }
+        
+        .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
+        .floating-login-btn:hover { transform: scale(1.1); }
+        
+        /* 模态框与表单 */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
+        .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); animation: slideDown 0.3s ease-out; }
+        .form-group { margin-bottom: 18px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 0.9rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; }
+        
+        .btn-group { display: flex; gap: 12px; justify-content: flex-end; margin-top: 25px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: #1e293b; }
+        .btn-success { background-color: #10b981; color: white; }
+        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
+
+        /* 编辑模式下文字高亮 */
+        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; transition: 0.2s; cursor: text; }
+        [contenteditable="true"]:hover { outline-color: rgba(59, 130, 246, 0.5); background: rgba(255,255,255,0.05); }
+        [contenteditable="true"]:focus { outline: 2px solid var(--accent); background: rgba(255,255,255,0.1); }
+        .text-dark [contenteditable="true"] { outline-color: rgba(51, 65, 85, 0.2); }
+        .text-dark [contenteditable="true"]:hover { outline-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+        .text-dark [contenteditable="true"]:focus { outline-color: var(--accent); background: rgba(59, 130, 246, 0.1); }
+        
+        .contact-box [contenteditable="true"]:focus { background: rgba(0,0,0,0.2); outline-color: white; }
+
+        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        #importFile { display: none; }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav>
-        <ul>
+        <ul id="mainNav">
             <li><a href="index.html">Home</a></li>
             <li><a href="publications.html">Publications</a></li>
             <li><a href="members.html">Members</a></li>
-            <li><a href="researches.html">Researches</a></li>
+            <li><a href="researches.html">Researches & Cooperation</a></li>
             <li><a href="join.html">Join Us</a></li>
         </ul>
     </nav>
 
-    <!-- 英雄区域 -->
     <header>
-        <h1 class="editable" contenteditable="false">Boxlab</h1>
-        <p class="editable" contenteditable="false">Dr. 姓名 - 首席研究员 | 博士生导师 | 所属学院</p>
+        <h1 id="pageTitle">Join Boxlab</h1>
+        <p id="pageSubtitle">Building the future of functional polymers together</p>
     </header>
 
-    <!-- 团队新闻 -->
-    <section>
-        <div class="container">
-            <h2 class="editable" contenteditable="false">Selected News</h2>
-            <div class="news-grid" id="newsGrid">
-                <!-- 新闻1 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队成员在国际会议上发表重要研究成果</h3>
-                        <p class="editable" contenteditable="false">2026-03-10</p>
-                        <p class="editable" contenteditable="false">团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。</p>
-                    </div>
-                </div>
-                <!-- 新闻2 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队获得国家自然科学基金项目资助</h3>
-                        <p class="editable" contenteditable="false">2026-03-05</p>
-                        <p class="editable" contenteditable="false">团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。</p>
-                    </div>
-                </div>
-                <!-- 新闻3 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=new%20team%20member%20joining%2C%20office%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队新成员加入</h3>
-                        <p class="editable" contenteditable="false">2026-02-28</p>
-                        <p class="editable" contenteditable="false">欢迎新博士后研究员加入团队，将为团队带来新的研究视角和技术专长。</p>
-                    </div>
+    <div class="container text-dark">
+        <div class="admin-panel" id="adminPanel">
+            <div>
+                <span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span>
+                <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly. Click trash icon to remove positions.</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup Data</button>
+                <button class="btn" style="background: #e2e8f0; color: #333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
+                <input type="file" id="importFile" accept=".json">
+            </div>
+        </div>
+
+        <h2 class="section-title"><span id="introTitle">Why Choose Us</span></h2>
+        <div class="intro-box">
+            <p id="introDesc">We are highly motivated to push the boundaries of materials science. Our laboratory is strongly supported by the National Natural Science Foundation of China (NSFC) and major corporate projects in the automotive sector. We offer a highly collaborative environment, state-of-the-art facilities (including 2D-IR spectroscopy), and comprehensive mentorship. Whether you are passionate about fundamental polymer synthesis or industrial applications like flexible ionic sensors, you will find a platform to thrive here.</p>
+        </div>
+
+        <h2 class="section-title">
+            <span id="posTitle">Open Positions</span>
+            <button class="btn btn-primary btn-sm" id="addPosBtn" style="display:none;"><i class="fas fa-plus"></i> Add Position</button>
+        </h2>
+        <div class="positions-grid" id="positionsContainer"></div>
+
+        <h2 class="section-title"><span id="contactTitle">How to Apply</span></h2>
+        <div class="contact-box">
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-text">
+                    <h4>Email Applications To</h4>
+                    <p id="contactEmail">investigator@university.edu</p>
                 </div>
             </div>
-            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加新闻</button>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-text">
+                    <h4>Lab Location</h4>
+                    <p id="contactLocation">School of Materials Science, Main Campus</p>
+                </div>
+            </div>
+            <div style="flex: 100%; margin-top: 10px;">
+                <p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">Please include your CV, transcript, and a brief statement of your research interests (e.g., polyurethane synthesis, self-healing materials, aerogels) in your email. We look forward to hearing from you!</p>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 页脚 -->
     <footer>
-        <p class="editable" contenteditable="false">&copy; 2026 Boxlab. 保留所有权利.</p>
+        <p id="footerText">&copy; 2026 Boxlab. All Rights Reserved.</p>
     </footer>
 
-    <!-- 编辑按钮 -->
-    <div class="edit-btn" id="editBtn">
-        <i class="fas fa-pencil-alt"></i>
-    </div>
+    <div class="floating-login-btn" id="loginTriggerBtn"><i class="fas fa-cog"></i></div>
 
-    <!-- 登录模态框 -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <h3>登录</h3>
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" placeholder="请输入用户名">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入密码">
-            </div>
+            <h3 style="margin-top:0; color: var(--primary);">Admin Login</h3>
+            <div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div>
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelLogin">取消</button>
-                <button class="btn btn-primary" id="submitLogin">登录</button>
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button>
+                <button class="btn btn-primary" id="submitLogin">Login</button>
             </div>
         </div>
     </div>
 
-    <!-- 新闻编辑模态框 -->
-    <div class="news-edit-modal" id="newsEditModal">
-        <div class="news-edit-content">
-            <h3>编辑新闻</h3>
-            <input type="hidden" id="currentNewsIndex">
-            <div class="form-group">
-                <label>新闻图片</label>
-                <div class="image-upload" id="imageUpload">
-                    <p>点击上传图片</p>
-                    <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
-                    <img id="newsImagePreview" src="" alt="预览图片" style="display: none;">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="newsTitle">标题</label>
-                <input type="text" id="newsTitle" placeholder="新闻标题">
-            </div>
-            <div class="form-group">
-                <label for="newsDate">日期</label>
-                <input type="date" id="newsDate">
-            </div>
-            <div class="form-group">
-                <label for="newsContent">内容</label>
-                <textarea id="newsContent" placeholder="新闻内容"></textarea>
-            </div>
+    <div class="modal" id="addPosModal">
+        <div class="modal-content">
+            <h3 style="margin-top:0; color: var(--primary);">Add New Position</h3>
+            <div class="form-group"><label>Position Title</label><input type="text" id="addTitle" placeholder="e.g. Postdoctoral Fellow"></div>
+            <div class="form-group"><label>Badge / Tag</label><input type="text" id="addBadge" placeholder="e.g. Urgent, Multiple Openings" value="Multiple Openings"></div>
+            <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief role description..."></textarea></div>
+            <div class="form-group"><label>Requirements</label><textarea id="addReqs" rows="3" placeholder="Background in chemistry, experience with..."></textarea></div>
+
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
-                <button class="btn btn-primary" id="saveNewsEdit">保存</button>
-                <button class="btn btn-secondary" id="deleteNews" style="background-color: #ef4444;">删除</button>
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addPosModal')">Cancel</button>
+                <button class="btn btn-primary" id="savePosBtn">Add Position</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 全局变量
         let isEditMode = false;
-        let currentEditingNews = -1;
-        
-        // 页面加载时从本地存储加载数据
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            initEventListeners();
-        });
-        
-        // 初始化事件监听器
-        function initEventListeners() {
-            // 编辑按钮点击事件
-            document.getElementById('editBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'block';
-            });
-            
-            // 登录取消按钮
-            document.getElementById('cancelLogin').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'none';
-            });
-            
-            // 登录提交按钮
-            document.getElementById('submitLogin').addEventListener('click', function() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                // 简单的登录验证（实际应用中应该使用更安全的方法）
-                if (username === 'admin' && password === 'password') {
-                    enterEditMode();
-                    document.getElementById('loginModal').style.display = 'none';
-                } else {
-                    alert('用户名或密码错误');
-                }
-            });
-            
-            // 点击模态框外部关闭
-            window.addEventListener('click', function(event) {
-                const loginModal = document.getElementById('loginModal');
-                const newsEditModal = document.getElementById('newsEditModal');
-                
-                if (event.target === loginModal) {
-                    loginModal.style.display = 'none';
-                }
-                
-                if (event.target === newsEditModal) {
-                    newsEditModal.style.display = 'none';
-                }
-            });
-            
-            // 图片上传点击事件
-            document.getElementById('imageUpload').addEventListener('click', function() {
-                document.getElementById('newsImageInput').click();
-            });
-            
-            // 图片选择事件
-            document.getElementById('newsImageInput').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const preview = document.getElementById('newsImagePreview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            // 新闻编辑取消按钮
-            document.getElementById('cancelNewsEdit').addEventListener('click', function() {
-                document.getElementById('newsEditModal').style.display = 'none';
-            });
-            
-            // 新闻编辑保存按钮
-            document.getElementById('saveNewsEdit').addEventListener('click', function() {
-                saveNewsEdit();
-            });
-            
-            // 新闻删除按钮
-            document.getElementById('deleteNews').addEventListener('click', function() {
-                deleteNews();
-            });
-            
-            // 添加新闻按钮
-            document.getElementById('addNewsBtn').addEventListener('click', function() {
-                openNewsEditModal(-1); // -1 表示添加新新闻
-            });
-        }
-        
-        // 进入编辑模式
-        function enterEditMode() {
-            isEditMode = true;
-            
-            // 显示添加新闻按钮
-            document.getElementById('addNewsBtn').style.display = 'block';
-            
-            // 启用所有可编辑元素
-            const editableElements = document.querySelectorAll('.editable');
-            editableElements.forEach(element => {
-                element.contentEditable = 'true';
-                element.classList.add('active');
-            });
-            
-            // 为新闻项添加点击事件
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    openNewsEditModal(index);
-                });
-            });
-        }
-        
-        // 打开新闻编辑模态框
-        function openNewsEditModal(index) {
-            currentEditingNews = index;
-            const modal = document.getElementById('newsEditModal');
-            const newsItems = document.querySelectorAll('.news-item');
-            
-            if (index === -1) {
-                // 添加新新闻
-                document.getElementById('currentNewsIndex').value = -1;
-                document.getElementById('newsTitle').value = '';
-                document.getElementById('newsDate').value = '';
-                document.getElementById('newsContent').value = '';
-                document.getElementById('newsImagePreview').src = '';
-                document.getElementById('newsImagePreview').style.display = 'none';
-                document.getElementById('deleteNews').style.display = 'none';
-            } else {
-                // 编辑现有新闻
-                const newsItem = newsItems[index];
-                const image = newsItem.querySelector('img').src;
-                const title = newsItem.querySelector('h3').textContent;
-                const date = newsItem.querySelector('p:nth-child(2)').textContent;
-                const content = newsItem.querySelector('p:nth-child(3)').textContent;
-                
-                document.getElementById('currentNewsIndex').value = index;
-                document.getElementById('newsTitle').value = title;
-                document.getElementById('newsDate').value = date;
-                document.getElementById('newsContent').value = content;
-                document.getElementById('newsImagePreview').src = image;
-                document.getElementById('newsImagePreview').style.display = 'block';
-                document.getElementById('deleteNews').style.display = 'inline-block';
+
+        const defaultPositions = [
+            { 
+                id: "p1", title: "Postdoctoral Researcher (Polymer Synthesis)", badge: "Urgent", 
+                desc: "Seeking a highly motivated postdoc to lead projects on structurally controlled self-healing polyurethanes utilizing Diels-Alder click chemistry.", 
+                reqs: "Ph.D. in Polymer Chemistry, Materials Science, or related fields. Proven track record in polymer synthesis and structural characterization. Experience with Vitrimer polymers is a plus." 
+            },
+            { 
+                id: "p2", title: "Ph.D. / Master Students", badge: "Fully Funded", 
+                desc: "We have openings for graduate students interested in advanced composite materials. Projects include carbon nanotube/graphene aerogel assembly for flexible ionic sensors, supported by the NSFC.", 
+                reqs: "Strong academic background in Chemistry or Materials Engineering. Highly self-motivated and eager to explore multidisciplinary applications." 
+            },
+            { 
+                id: "p3", title: "Research Assistants / Undergraduates", badge: "Rolling Admission", 
+                desc: "Undergraduates are welcome to join our industry-collaborative projects focusing on the optimization of high-performance automotive rubber materials (NBR/CSM).", 
+                reqs: "Basic knowledge of chemistry lab operations. Willingness to learn variable-temperature infrared data analysis using Opus and Origin software." 
             }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllContent();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('loginTriggerBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('submitLogin').onclick = handleLogin;
+            window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+
+            document.getElementById('addPosBtn').onclick = () => {
+                document.getElementById('addTitle').value = '';
+                document.getElementById('addDesc').value = '';
+                document.getElementById('addReqs').value = '';
+                document.getElementById('addPosModal').style.display = 'block';
+            };
+            document.getElementById('savePosBtn').onclick = saveNewPosition;
             
-            modal.style.display = 'block';
+            document.getElementById('exportBtn').onclick = exportData;
+            document.getElementById('importFile').addEventListener('change', importData);
         }
-        
-        // 保存新闻编辑
-        function saveNewsEdit() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const title = document.getElementById('newsTitle').value;
-            const date = document.getElementById('newsDate').value;
-            const content = document.getElementById('newsContent').value;
-            const imageSrc = document.getElementById('newsImagePreview').src;
+
+        function handleLogin() {
+            if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') {
+                enableEditMode();
+                document.getElementById('loginModal').style.display = 'none';
+            } else { alert('Invalid credentials.'); }
+        }
+
+        function enableEditMode() {
+            isEditMode = true;
+            document.getElementById('loginTriggerBtn').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'flex';
+            document.getElementById('addPosBtn').style.display = 'inline-block';
             
-            const newsGrid = document.getElementById('newsGrid');
+            // 启用单点文本编辑
+            const textIds = [
+                'pageTitle', 'pageSubtitle', 'footerText', 
+                'introTitle', 'introDesc', 'posTitle', 
+                'contactTitle', 'contactEmail', 'contactLocation', 'contactNote'
+            ];
+            textIds.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) { el.contentEditable = true; el.addEventListener('blur', saveStaticContent); }
+            });
             
-            if (index === -1) {
-                // 添加新新闻
-                const newNewsItem = document.createElement('div');
-                newNewsItem.className = 'news-item';
-                newNewsItem.innerHTML = `
-                    <img src="${imageSrc || 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3'}" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="true">${title}</h3>
-                        <p class="editable" contenteditable="true">${date}</p>
-                        <p class="editable" contenteditable="true">${content}</p>
+            document.querySelectorAll('#mainNav a').forEach(a => {
+                a.contentEditable = true; a.addEventListener('blur', saveStaticContent);
+            });
+            
+            renderPositions(getPositionsData());
+        }
+
+        // --- 位置数组数据管理 ---
+        function getPositionsData() {
+            return JSON.parse(localStorage.getItem('boxlabPositions')) || defaultPositions;
+        }
+
+        function updatePositionText(id, field, element) {
+            const newValue = element.innerText.trim();
+            let posList = getPositionsData();
+            let item = posList.find(i => i.id === id);
+            if(item && item[field] !== newValue) {
+                item[field] = newValue;
+                localStorage.setItem('boxlabPositions', JSON.stringify(posList));
+            }
+        }
+
+        function deletePosition(id) {
+            if(!confirm('Are you sure you want to remove this position posting?')) return;
+            let posList = getPositionsData().filter(i => i.id !== id);
+            localStorage.setItem('boxlabPositions', JSON.stringify(posList));
+            renderPositions(posList);
+        }
+
+        function saveNewPosition() {
+            const title = document.getElementById('addTitle').value.trim();
+            if(!title) { alert('Title is required!'); return; }
+            
+            let posList = getPositionsData();
+            posList.push({
+                id: Date.now().toString(),
+                title: title,
+                badge: document.getElementById('addBadge').value.trim() || 'Open',
+                desc: document.getElementById('addDesc').value.trim(),
+                reqs: document.getElementById('addReqs').value.trim()
+            });
+            
+            localStorage.setItem('boxlabPositions', JSON.stringify(posList));
+            closeModal('addPosModal');
+            renderPositions(posList);
+        }
+
+        function renderPositions(positions) {
+            const container = document.getElementById('positionsContainer');
+            container.innerHTML = '';
+            
+            positions.forEach(pos => {
+                const cardClass = isEditMode ? 'position-card editable-active' : 'position-card';
+                const editAttr = isEditMode ? 'contenteditable="true" title="Click to edit"' : '';
+                
+                container.innerHTML += `
+                    <div class="${cardClass}">
+                        <button class="item-edit-btn" onclick="deletePosition('${pos.id}')" title="Remove Position"><i class="fas fa-trash-alt"></i></button>
+                        <div class="pos-header">
+                            <h3 class="pos-title" ${editAttr} onblur="updatePositionText('${pos.id}', 'title', this)">${pos.title}</h3>
+                            <span class="pos-badge" ${editAttr} onblur="updatePositionText('${pos.id}', 'badge', this)">${pos.badge}</span>
+                        </div>
+                        <div class="pos-desc" ${editAttr} onblur="updatePositionText('${pos.id}', 'desc', this)">${pos.desc}</div>
+                        <div class="pos-reqs">
+                            <div class="pos-reqs-title">Candidate Requirements:</div>
+                            <div class="pos-reqs-content" ${editAttr} onblur="updatePositionText('${pos.id}', 'reqs', this)">${pos.reqs}</div>
+                        </div>
                     </div>
                 `;
-                
-                // 添加点击事件
-                newNewsItem.addEventListener('click', function() {
-                    const newIndex = Array.from(newsGrid.children).indexOf(newNewsItem);
-                    openNewsEditModal(newIndex);
-                });
-                
-                newsGrid.appendChild(newNewsItem);
-            } else {
-                // 更新现有新闻
-                const newsItem = newsGrid.children[index];
-                newsItem.querySelector('img').src = imageSrc;
-                newsItem.querySelector('h3').textContent = title;
-                newsItem.querySelector('p:nth-child(2)').textContent = date;
-                newsItem.querySelector('p:nth-child(3)').textContent = content;
-            }
-            
-            // 保存到本地存储
-            saveData();
-            
-            // 关闭模态框
-            document.getElementById('newsEditModal').style.display = 'none';
+            });
         }
-        
-        // 删除新闻
-        function deleteNews() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const newsGrid = document.getElementById('newsGrid');
+
+        // --- 静态文本与整体加载 ---
+        function loadAllContent() {
+            renderPositions(getPositionsData());
+            const staticData = JSON.parse(localStorage.getItem('boxlabJoinStatic') || '{}');
             
-            if (index !== -1 && confirm('确定要删除这条新闻吗？')) {
-                newsGrid.removeChild(newsGrid.children[index]);
-                saveData();
-                document.getElementById('newsEditModal').style.display = 'none';
-            }
-        }
-        
-        // 保存数据到本地存储
-        function saveData() {
-            const data = {
-                title: document.querySelector('header h1').textContent,
-                subtitle: document.querySelector('header p').textContent,
-                footer: document.querySelector('footer p').textContent,
-                news: []
-            };
+            const textIds = [
+                'pageTitle', 'pageSubtitle', 'footerText', 
+                'introTitle', 'introDesc', 'posTitle', 
+                'contactTitle', 'contactEmail', 'contactLocation', 'contactNote'
+            ];
             
-            // 保存新闻数据
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach(item => {
-                data.news.push({
-                    image: item.querySelector('img').src,
-                    title: item.querySelector('h3').textContent,
-                    date: item.querySelector('p:nth-child(2)').textContent,
-                    content: item.querySelector('p:nth-child(3)').textContent
-                });
+            textIds.forEach(id => {
+                if(staticData[id] && document.getElementById(id)) {
+                    document.getElementById(id).innerText = staticData[id];
+                }
             });
             
-            localStorage.setItem('boxlabData', JSON.stringify(data));
-        }
-        
-        // 从本地存储加载数据
-        function loadData() {
-            const savedData = localStorage.getItem('boxlabData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                
-                // 加载标题和副标题
-                document.querySelector('header h1').textContent = data.title;
-                document.querySelector('header p').textContent = data.subtitle;
-                document.querySelector('footer p').textContent = data.footer;
-                
-                // 加载新闻数据
-                if (data.news && data.news.length > 0) {
-                    const newsGrid = document.getElementById('newsGrid');
-                    newsGrid.innerHTML = '';
-                    
-                    data.news.forEach((news, index) => {
-                        const newsItem = document.createElement('div');
-                        newsItem.className = 'news-item';
-                        newsItem.innerHTML = `
-                            <img src="${news.image}" alt="新闻图片" class="news-image">
-                            <div class="news-content">
-                                <h3 class="editable" contenteditable="false">${news.title}</h3>
-                                <p class="editable" contenteditable="false">${news.date}</p>
-                                <p class="editable" contenteditable="false">${news.content}</p>
-                            </div>
-                        `;
-                        newsGrid.appendChild(newsItem);
-                    });
-                }
+            if(staticData.nav && staticData.nav.length > 0) {
+                document.querySelectorAll('#mainNav a').forEach((a, i) => { if(staticData.nav[i]) a.innerText = staticData.nav[i]; });
             }
         }
-        
-        // 监听可编辑元素的变化，自动保存
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('editable') && isEditMode) {
-                saveData();
-            }
-        });
+
+        function saveStaticContent() {
+            const staticData = {
+                pageTitle: document.getElementById('pageTitle').innerText,
+                pageSubtitle: document.getElementById('pageSubtitle').innerText,
+                footerText: document.getElementById('footerText').innerText,
+                introTitle: document.getElementById('introTitle').innerText,
+                introDesc: document.getElementById('introDesc').innerText,
+                posTitle: document.getElementById('posTitle').innerText,
+                contactTitle: document.getElementById('contactTitle').innerText,
+                contactEmail: document.getElementById('contactEmail').innerText,
+                contactLocation: document.getElementById('contactLocation').innerText,
+                contactNote: document.getElementById('contactNote').innerText,
+                nav: Array.from(document.querySelectorAll('#mainNav a')).map(a => a.innerText)
+            };
+            localStorage.setItem('boxlabJoinStatic', JSON.stringify(staticData));
+        }
+
+        // --- Import / Export ---
+        function exportData() {
+            const staticData = localStorage.getItem('boxlabJoinStatic') || '{}';
+            const posData = localStorage.getItem('boxlabPositions') || JSON.stringify(defaultPositions);
+            const combinedData = { static: JSON.parse(staticData), positions: JSON.parse(posData) };
+            
+            const blob = new Blob([JSON.stringify(combinedData)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `boxlab_joinus_${new Date().toISOString().slice(0,10)}.json`;
+            a.click(); URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if(data.positions) {
+                        localStorage.setItem('boxlabPositions', JSON.stringify(data.positions));
+                        localStorage.setItem('boxlabJoinStatic', JSON.stringify(data.static || {}));
+                        loadAllContent(); // 重新加载页面内容
+                        alert('Data imported successfully!');
+                    } else { alert('Invalid format.'); }
+                } catch { alert('Error reading file.'); }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; 
+        }
+
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>
 </html>
