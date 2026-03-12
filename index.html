@@ -41,7 +41,7 @@
             padding: 0 20px;
         }
         
-        /* 青科大校徽与课题组名称融合 */
+        /* Logo 与课题组名称 */
         .nav-logo {
             display: flex;
             align-items: center;
@@ -171,14 +171,17 @@
         
         .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; transition: 0.3s; }
         .image-upload:hover { border-color: var(--accent); background: white; }
-        #newsImagePreview { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 4px; }
+        #newsImagePreview, #logoPreview { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 4px; }
+        
+        /* Logo 高亮特殊样式 */
+        #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="image_3c6abc.jpg" alt="QUST Logo" title="QUST Logo">
+                <img src="image_3c6abc.jpg" alt="Logo" title="Logo" id="navLogoImg">
                 <span class="nav-brand editable" contenteditable="false" id="navBrandText">Boxlab</span>
             </div>
             <ul>
@@ -227,6 +230,24 @@
             <div class="btn-group">
                 <button class="btn btn-secondary" id="cancelLogin">取消</button>
                 <button class="btn btn-primary" id="submitLogin">登录</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="logoEditModal">
+        <div class="modal-content">
+            <h3 style="margin-top:0;">更换 Logo</h3>
+            <div class="form-group">
+                <label>上传新 Logo</label>
+                <div class="image-upload" id="logoUploadArea">
+                    <p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p>
+                    <input type="file" id="logoFileInput" accept="image/*" style="display: none;">
+                    <img id="logoPreview" src="" alt="预览" style="display: none; max-height: 120px;">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="document.getElementById('logoEditModal').style.display='none'">取消</button>
+                <button class="btn btn-primary" id="saveLogoBtn">保存</button>
             </div>
         </div>
     </div>
@@ -295,14 +316,13 @@
         });
         
         function initEventListeners() {
+            // 登录
             document.getElementById('editBtn').addEventListener('click', function() {
                 document.getElementById('loginModal').style.display = 'block';
             });
-            
             document.getElementById('cancelLogin').addEventListener('click', function() {
                 document.getElementById('loginModal').style.display = 'none';
             });
-            
             document.getElementById('submitLogin').addEventListener('click', function() {
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
@@ -314,17 +334,20 @@
                 }
             });
             
+            // 点击外部关闭弹窗
             window.addEventListener('click', function(event) {
                 const loginModal = document.getElementById('loginModal');
                 const newsEditModal = document.getElementById('newsEditModal');
+                const logoEditModal = document.getElementById('logoEditModal');
                 if (event.target === loginModal) loginModal.style.display = 'none';
                 if (event.target === newsEditModal) newsEditModal.style.display = 'none';
+                if (event.target === logoEditModal) logoEditModal.style.display = 'none';
             });
             
+            // 新闻图片上传
             document.getElementById('imageUpload').addEventListener('click', function() {
                 document.getElementById('newsImageInput').click();
             });
-            
             document.getElementById('newsImageInput').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -338,18 +361,37 @@
                 }
             });
             
+            // Logo 上传
+            document.getElementById('logoUploadArea').addEventListener('click', function() {
+                document.getElementById('logoFileInput').click();
+            });
+            document.getElementById('logoFileInput').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const preview = document.getElementById('logoPreview');
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            document.getElementById('saveLogoBtn').addEventListener('click', function() {
+                const newSrc = document.getElementById('logoPreview').src;
+                if(newSrc) {
+                    document.getElementById('navLogoImg').src = newSrc;
+                    saveData();
+                }
+                document.getElementById('logoEditModal').style.display = 'none';
+            });
+
+            // 新闻表单操作
             document.getElementById('cancelNewsEdit').addEventListener('click', function() {
                 document.getElementById('newsEditModal').style.display = 'none';
             });
-            
-            document.getElementById('saveNewsEdit').addEventListener('click', function() {
-                saveNewsEdit();
-            });
-            
-            document.getElementById('deleteNews').addEventListener('click', function() {
-                deleteNews();
-            });
-            
+            document.getElementById('saveNewsEdit').addEventListener('click', saveNewsEdit);
+            document.getElementById('deleteNews').addEventListener('click', deleteNews);
             document.getElementById('addNewsBtn').addEventListener('click', function() {
                 openNewsEditModal(-1);
             });
@@ -360,12 +402,24 @@
             document.getElementById('editBtn').style.display = 'none'; 
             document.getElementById('addNewsBtn').style.display = 'block';
             
+            // 文本元素可编辑
             const editableElements = document.querySelectorAll('.editable');
             editableElements.forEach(element => {
                 element.contentEditable = 'true';
                 element.classList.add('active');
             });
             
+            // 修复3：为 Logo 添加点击事件，点击后打开修改弹窗
+            const navLogo = document.getElementById('navLogoImg');
+            navLogo.classList.add('editable', 'active');
+            navLogo.title = '点击修改 Logo';
+            navLogo.onclick = function() {
+                if (!isEditMode) return;
+                document.getElementById('logoPreview').src = this.src;
+                document.getElementById('logoPreview').style.display = 'block';
+                document.getElementById('logoEditModal').style.display = 'block';
+            };
+
             // 重新绑定新闻点击事件
             bindNewsClickEvents();
         }
@@ -461,9 +515,10 @@
             }
         }
         
-        // 核心修复部分：在 saveData 中增加了 navBrand 和 sectionTitle
+        // 保存数据
         function saveData() {
             const data = {
+                navLogoSrc: document.getElementById('navLogoImg').src, // 保存 Logo
                 navBrand: document.getElementById('navBrandText').textContent,
                 title: document.querySelector('header h1').textContent,
                 subtitle: document.querySelector('header p').textContent,
@@ -485,12 +540,14 @@
             localStorage.setItem('boxlabData', JSON.stringify(data));
         }
         
-        // 核心修复部分：在 loadData 中读取 navBrand 和 sectionTitle
+        // 加载数据
         function loadData() {
             const savedData = localStorage.getItem('boxlabData');
             let data = savedData ? JSON.parse(savedData) : null;
             
             if (data) {
+                // 加载 Logo 和文字
+                if(data.navLogoSrc) document.getElementById('navLogoImg').src = data.navLogoSrc;
                 if(data.navBrand) document.getElementById('navBrandText').textContent = data.navBrand;
                 if(data.sectionTitle) document.getElementById('newsSectionTitle').textContent = data.sectionTitle;
                 
