@@ -3,36 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Join Us | Box Lab</title>
-=======
-    <title>Join Us - Box Lab</title>
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
-<<<<<<< HEAD
-=======
-        
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         nav { background-color: var(--primary); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { display: flex; align-items: center; gap: 15px; }
-        .nav-logo img { height: 46px; width: 46px; border-radius: 50%; background-color: white; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.9); transition: transform 0.3s; }
+        .nav-logo img { height: 46px; width: 46px; border-radius: 50%; background-color: white; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.9); }
         .nav-brand { font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; color: white; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
         nav ul li a { color: #e2e8f0; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
         header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; box-sizing: border-box; }
-        .admin-panel { display: none; background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; border: 2px dashed var(--accent); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .admin-panel.active { display: flex; }
-        .section-title { border-bottom: 2px solid var(--primary); color: var(--primary); padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; flex: 1; }
+        .section-title { border-bottom: 2px solid var(--primary); color: var(--primary); padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8rem; }
         .intro-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; border-left: 5px solid var(--accent); }
         .intro-box p { color: #475569; line-height: 1.8; font-size: 1.05rem; margin: 0; }
         .positions-grid { display: flex; flex-direction: column; gap: 20px; }
-        .position-card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; position: relative; transition: all 0.3s ease; }
+        .position-card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; transition: 0.3s; }
         .position-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: #cbd5e1; }
         .pos-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
         .pos-title { margin: 0; color: #0f172a; font-size: 1.3rem; }
@@ -46,271 +36,61 @@
         .contact-icon { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
         .contact-text h4 { margin: 0 0 5px; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; }
         .contact-text p { margin: 0; font-size: 1.1rem; font-weight: 600; }
-        .item-edit-btn { display: none; position: absolute; right: 20px; top: 20px; background: #f1f5f9; color: #ef4444; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10; }
-        .editable-active .item-edit-btn { display: block; }
-        .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
-<<<<<<< HEAD
-=======
-        
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
-        .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; animation: slideDown 0.3s ease-out; }
-        .form-group { margin-bottom: 18px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 0.9rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; }
-        .btn-group { display: flex; gap: 12px; justify-content: flex-end; margin-top: 25px; }
-        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
-        .btn-primary { background-color: var(--primary); color: white; }
-        .btn-success { background-color: #10b981; color: white; }
-<<<<<<< HEAD
-        .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; }
-        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; }
-        .text-dark [contenteditable="true"] { outline-color: #cbd5e1; }
-        #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
-        .nav-brand.editable.active { border-color: rgba(255,255,255,0.6); background-color: rgba(255,255,255,0.1); }
-=======
-        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
-
-        .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; transition: 0.3s; }
-        #logoPreview { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 4px; }
-
-        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; transition: 0.2s; cursor: text; }
-        [contenteditable="true"]:focus { outline: 2px solid var(--accent); background: rgba(255,255,255,0.1); }
-        .text-dark [contenteditable="true"] { outline-color: rgba(51, 65, 85, 0.2); }
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        .contact-box [contenteditable="true"]:focus { background: rgba(0,0,0,0.2); outline-color: white; }
-        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; }
+        .loading-msg { text-align: center; color: #64748b; margin-top: 20px; }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="nav-logo">
-                <img src="logo.jpg" alt="Logo" title="Logo" id="navLogoImg" onerror="this.src='https://via.placeholder.com/46'">
-                <span class="nav-brand editable" contenteditable="false" id="navBrandText">Box Lab</span>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="publications.html">Publications</a></li>
-                <li><a href="members.html">Members</a></li>
-                <li><a href="researches.html">Researches & Cooperation</a></li>
-                <li><a href="join.html">Join Us</a></li>
-            </ul>
+            <div class="nav-logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/46'"><span class="nav-brand" id="navBrandText">Box Lab</span></div>
+            <ul><li><a href="index.html">Home</a></li><li><a href="publications.html">Publications</a></li><li><a href="members.html">Members</a></li><li><a href="researches.html">Researches & Cooperation</a></li><li><a href="join.html">Join Us</a></li></ul>
         </div>
     </nav>
     <header>
         <h1 id="pageTitle">Join Box Lab</h1>
-        <p id="pageSubtitle">Building the future of functional polymers together</p>
+        <p id="pageSubtitle">Building the future of functional polymers</p>
     </header>
-    <div class="container text-dark">
-        <div class="admin-panel" id="adminPanel">
-<<<<<<< HEAD
-            <div><span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span><span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly.</span></div>
-            <div style="display: flex; gap: 10px;"><button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup</button><button class="btn" style="background:#e2e8f0; color:#333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button><input type="file" id="importFile" accept=".json" style="display:none;"></div>
-=======
-            <div>
-                <span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span>
-                <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly. Click trash icon to remove positions.</span>
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup</button>
-                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
-                <input type="file" id="importFile" accept=".json" style="display:none;">
-            </div>
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        </div>
-        <h2 class="section-title"><span id="introTitle">Why Choose Us</span></h2>
-        <div class="intro-box"><p id="introDesc">We are highly motivated to push the boundaries of materials science. Our laboratory is strongly supported by the National Natural Science Foundation of China (NSFC) and major corporate projects in the automotive sector.</p></div>
-<<<<<<< HEAD
-        <h2 class="section-title"><span id="posTitle">Open Positions</span><button class="btn btn-primary btn-sm" id="addPosBtn" style="display:none;"><i class="fas fa-plus"></i> Add Position</button></h2>
-=======
+    <div class="container">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="intro-box"><p id="introDesc">We are highly motivated to push the boundaries of materials science.</p></div>
 
-        <h2 class="section-title">
-            <span id="posTitle">Open Positions</span>
-            <button class="btn btn-primary btn-sm" id="addPosBtn" style="display:none;"><i class="fas fa-plus"></i> Add Position</button>
-        </h2>
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        <div class="positions-grid" id="positionsContainer"></div>
-        <h2 class="section-title"><span id="contactTitle">How to Apply</span></h2>
+        <h2 class="section-title">Open Positions</h2>
+        <div class="positions-grid" id="positionsContainer"><p class="loading-msg">Loading from CMS...</p></div>
+
+        <h2 class="section-title">How to Apply</h2>
         <div class="contact-box">
-<<<<<<< HEAD
             <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email Applications To</h4><p id="contactEmail">investigator@university.edu</p></div></div>
             <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Lab Location</h4><p id="contactLocation">School of Materials Science, Main Campus</p></div></div>
-            <div style="flex: 100%; margin-top: 10px;"><p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">Please include your CV, transcript, and a brief statement of your research interests.</p></div>
+            <div style="flex: 100%; margin-top: 10px;"><p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">Please include your CV...</p></div>
         </div>
     </div>
-    <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
-
-    <div class="floating-login-btn" id="loginTriggerBtn" title="管理员登录"><i class="fas fa-magic"></i></div>
-
-    <div class="modal" id="loginModal"><div class="modal-content"><h3 style="margin-top:0;">管理员登录</h3><div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div><div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button><button class="btn btn-primary" id="submitLogin">Login</button></div></div></div>
-    <div class="modal" id="logoEditModal"><div class="modal-content"><h3 style="margin-top:0;">更换 Logo</h3><div class="form-group"><label>上传新 Logo</label><div class="image-upload" id="logoUploadArea"><p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p><input type="file" id="logoFileInput" accept="image/*" style="display: none;"><img id="logoPreview" src="" style="display: none; max-height:120px; margin-top:10px;"></div></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button><button class="btn btn-primary" id="saveLogoBtn">保存</button></div></div></div>
-    <div class="modal" id="addPosModal"><div class="modal-content"><h3 style="margin-top:0;">Add New Position</h3><div class="form-group"><label>Position Title</label><input type="text" id="addTitle"></div><div class="form-group"><label>Badge / Tag</label><input type="text" id="addBadge" value="Open"></div><div class="form-group"><label>Description</label><textarea id="addDesc" rows="2"></textarea></div><div class="form-group"><label>Requirements</label><textarea id="addReqs" rows="3"></textarea></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addPosModal')">Cancel</button><button class="btn btn-primary" id="savePosBtn">Add</button></div></div></div>
-=======
-            <div class="contact-item">
-                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                <div class="contact-text"><h4>Email Applications To</h4><p id="contactEmail">investigator@university.edu</p></div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="contact-text"><h4>Lab Location</h4><p id="contactLocation">School of Materials Science, Main Campus</p></div>
-            </div>
-            <div style="flex: 100%; margin-top: 10px;"><p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">Please include your CV, transcript, and a brief statement of your research interests.</p></div>
-        </div>
-    </div>
-
-    <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
-    <div class="floating-login-btn" id="loginTriggerBtn" title="管理员登录"><i class="fas fa-magic"></i></div>
-
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <h3 style="margin-top:0;">管理员登录</h3>
-            <div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div>
-            <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div>
-            <div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button><button class="btn btn-primary" id="submitLogin">Login</button></div>
-        </div>
-    </div>
-
-    <div class="modal" id="logoEditModal">
-        <div class="modal-content">
-            <h3 style="margin-top:0; color: var(--primary);">更换 Logo</h3>
-            <div class="form-group">
-                <label>上传新 Logo</label>
-                <div class="image-upload" id="logoUploadArea">
-                    <p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p>
-                    <input type="file" id="logoFileInput" accept="image/*" style="display: none;">
-                    <img id="logoPreview" src="" alt="预览" style="display: none; max-height:120px;">
-                </div>
-            </div>
-            <div class="btn-group">
-                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button>
-                <button class="btn btn-primary" id="saveLogoBtn">保存</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="addPosModal">
-        <div class="modal-content">
-            <h3 style="margin-top:0;">Add New Position</h3>
-            <div class="form-group"><label>Position Title</label><input type="text" id="addTitle"></div>
-            <div class="form-group"><label>Badge / Tag</label><input type="text" id="addBadge" value="Open"></div>
-            <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2"></textarea></div>
-            <div class="form-group"><label>Requirements</label><textarea id="addReqs" rows="3"></textarea></div>
-            <div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addPosModal')">Cancel</button><button class="btn btn-primary" id="savePosBtn">Add</button></div>
-        </div>
-    </div>
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
+    <footer><p id="footerText">&copy; 2026 Box Lab.</p></footer>
 
     <script>
-        let isEditMode = false;
-        const defaultPositions = [{ id: "p1", title: "Postdoctoral Researcher", badge: "Urgent", desc: "Seeking a motivated postdoc to lead projects on self-healing polyurethanes.", reqs: "Ph.D. in Polymer Chemistry." }];
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('data/global.json').then(res => res.json()).then(data => {
+                if(data.nav_brand) document.getElementById('navBrandText').textContent = data.nav_brand;
+                if(data.footer_text) document.getElementById('footerText').textContent = data.footer_text;
+                if(data.join) {
+                    if(data.join.title) document.getElementById('pageTitle').textContent = data.join.title;
+                    if(data.join.subtitle) document.getElementById('pageSubtitle').textContent = data.join.subtitle;
+                    if(data.join.intro_desc) document.getElementById('introDesc').textContent = data.join.intro_desc;
+                    if(data.join.email) document.getElementById('contactEmail').textContent = data.join.email;
+                    if(data.join.location) document.getElementById('contactLocation').textContent = data.join.location;
+                    if(data.join.note) document.getElementById('contactNote').textContent = data.join.note;
+                }
+            }).catch(() => console.log("No global settings found."));
 
-        document.addEventListener('DOMContentLoaded', () => { loadAllContent(); setupEventListeners(); });
-
-        function setupEventListeners() {
-            document.getElementById('loginTriggerBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
-            document.getElementById('submitLogin').onclick = handleLogin;
-            window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
-<<<<<<< HEAD
-            document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
-            document.getElementById('logoFileInput').addEventListener('change', function(e) { if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); } });
-            document.getElementById('saveLogoBtn').addEventListener('click', function() { if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); } closeModal('logoEditModal'); });
-=======
-
-            document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
-            document.getElementById('logoFileInput').addEventListener('change', function(e) {
-                if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); }
-            });
-            document.getElementById('saveLogoBtn').addEventListener('click', function() {
-                if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); }
-                closeModal('logoEditModal');
-            });
-
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-            document.getElementById('addPosBtn').onclick = () => { ['addTitle', 'addDesc', 'addReqs'].forEach(id => document.getElementById(id).value = ''); document.getElementById('addPosModal').style.display = 'block'; };
-            document.getElementById('savePosBtn').onclick = saveNewPosition;
-            document.getElementById('exportBtn').onclick = exportData; document.getElementById('importFile').addEventListener('change', importData);
-        }
-
-<<<<<<< HEAD
-        function handleLogin() { if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); } }
-=======
-        function handleLogin() {
-            if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); }
-        }
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-
-        function enableEditMode() {
-            isEditMode = true; document.getElementById('loginTriggerBtn').style.display = 'none'; document.getElementById('adminPanel').style.display = 'flex'; document.getElementById('addPosBtn').style.display = 'inline-block';
-            ['pageTitle', 'pageSubtitle', 'footerText', 'introTitle', 'introDesc', 'posTitle', 'contactTitle', 'contactEmail', 'contactLocation', 'contactNote'].forEach(id => { const el = document.getElementById(id); if(el){ el.contentEditable = true; el.addEventListener('blur', saveStaticContent); } });
-<<<<<<< HEAD
-            const navBrand = document.getElementById('navBrandText'); if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
-            const navLogo = document.getElementById('navLogoImg'); if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
-            renderPositions(getPositionsData());
-        }
-
-        function loadGlobalNav() { const data = JSON.parse(localStorage.getItem('boxlabData') || '{}'); if(data.navLogoSrc) document.getElementById('navLogoImg').src = data.navLogoSrc; if(data.navBrand) document.getElementById('navBrandText').textContent = data.navBrand; }
-        function saveGlobalNav() { let data = JSON.parse(localStorage.getItem('boxlabData') || '{}'); data.navLogoSrc = document.getElementById('navLogoImg').src; data.navBrand = document.getElementById('navBrandText').textContent; localStorage.setItem('boxlabData', JSON.stringify(data)); }
-
-        function getPositionsData() { return JSON.parse(localStorage.getItem('boxlabPositions')) || defaultPositions; }
-        function updatePositionText(id, field, element) { const newValue = element.innerText.trim(); let posList = getPositionsData(); let item = posList.find(i => i.id === id); if(item && item[field] !== newValue) { item[field] = newValue; localStorage.setItem('boxlabPositions', JSON.stringify(posList)); } }
-        function deletePosition(id) { if(!confirm('Delete?')) return; let posList = getPositionsData().filter(i => i.id !== id); localStorage.setItem('boxlabPositions', JSON.stringify(posList)); renderPositions(posList); }
-        function saveNewPosition() { if(!document.getElementById('addTitle').value.trim()) return; let posList = getPositionsData(); posList.push({ id: Date.now().toString(), title: document.getElementById('addTitle').value.trim(), badge: document.getElementById('addBadge').value.trim(), desc: document.getElementById('addDesc').value.trim(), reqs: document.getElementById('addReqs').value.trim() }); localStorage.setItem('boxlabPositions', JSON.stringify(posList)); closeModal('addPosModal'); renderPositions(posList); }
-
-        function renderPositions(positions) {
-            const container = document.getElementById('positionsContainer'); container.innerHTML = '';
-            positions.forEach(pos => { container.innerHTML += `<div class="${isEditMode ? 'position-card editable-active' : 'position-card'}"><button class="item-edit-btn" onclick="deletePosition('${pos.id}')"><i class="fas fa-trash-alt"></i></button><div class="pos-header"><h3 class="pos-title" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'title', this)">${pos.title}</h3><span class="pos-badge" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'badge', this)">${pos.badge}</span></div><div class="pos-desc" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'desc', this)">${pos.desc}</div><div class="pos-reqs"><div class="pos-reqs-title">Candidate Requirements:</div><div class="pos-reqs-content" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'reqs', this)">${pos.reqs}</div></div></div>`; });
-=======
-            
-            const navBrand = document.getElementById('navBrandText');
-            if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
-            const navLogo = document.getElementById('navLogoImg');
-            if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
-            
-            renderPositions(getPositionsData());
-        }
-
-        function loadGlobalNav() {
-            const data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
-            if(data.navLogoSrc) document.getElementById('navLogoImg').src = data.navLogoSrc;
-            if(data.navBrand) document.getElementById('navBrandText').textContent = data.navBrand;
-        }
-        function saveGlobalNav() {
-            let data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
-            data.navLogoSrc = document.getElementById('navLogoImg').src; data.navBrand = document.getElementById('navBrandText').textContent;
-            localStorage.setItem('boxlabData', JSON.stringify(data));
-        }
-
-        function getPositionsData() { return JSON.parse(localStorage.getItem('boxlabPositions')) || defaultPositions; }
-        function updatePositionText(id, field, element) {
-            const newValue = element.innerText.trim(); let posList = getPositionsData(); let item = posList.find(i => i.id === id);
-            if(item && item[field] !== newValue) { item[field] = newValue; localStorage.setItem('boxlabPositions', JSON.stringify(posList)); }
-        }
-        function deletePosition(id) { if(!confirm('Delete?')) return; let posList = getPositionsData().filter(i => i.id !== id); localStorage.setItem('boxlabPositions', JSON.stringify(posList)); renderPositions(posList); }
-        function saveNewPosition() {
-            if(!document.getElementById('addTitle').value.trim()) return; let posList = getPositionsData();
-            posList.push({ id: Date.now().toString(), title: document.getElementById('addTitle').value.trim(), badge: document.getElementById('addBadge').value.trim(), desc: document.getElementById('addDesc').value.trim(), reqs: document.getElementById('addReqs').value.trim() });
-            localStorage.setItem('boxlabPositions', JSON.stringify(posList)); closeModal('addPosModal'); renderPositions(posList);
-        }
-
-        function renderPositions(positions) {
-            const container = document.getElementById('positionsContainer'); container.innerHTML = '';
-            positions.forEach(pos => {
-                container.innerHTML += `<div class="${isEditMode ? 'position-card editable-active' : 'position-card'}"><button class="item-edit-btn" onclick="deletePosition('${pos.id}')"><i class="fas fa-trash-alt"></i></button><div class="pos-header"><h3 class="pos-title" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'title', this)">${pos.title}</h3><span class="pos-badge" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'badge', this)">${pos.badge}</span></div><div class="pos-desc" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'desc', this)">${pos.desc}</div><div class="pos-reqs"><div class="pos-reqs-title">Candidate Requirements:</div><div class="pos-reqs-content" ${isEditMode ? 'contenteditable="true"' : ''} onblur="updatePositionText('${pos.id}', 'reqs', this)">${pos.reqs}</div></div></div>`;
-            });
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        }
-
-        function loadAllContent() { loadGlobalNav(); renderPositions(getPositionsData()); const s = JSON.parse(localStorage.getItem('boxlabJoinStatic') || '{}'); ['pageTitle', 'pageSubtitle', 'footerText', 'introTitle', 'introDesc', 'posTitle', 'contactTitle', 'contactEmail', 'contactLocation', 'contactNote'].forEach(id => { if(s[id] && document.getElementById(id)) document.getElementById(id).innerText = s[id]; }); }
-        function saveStaticContent() { const s = {}; ['pageTitle', 'pageSubtitle', 'footerText', 'introTitle', 'introDesc', 'posTitle', 'contactTitle', 'contactEmail', 'contactLocation', 'contactNote'].forEach(id => { if(document.getElementById(id)) s[id] = document.getElementById(id).innerText; }); localStorage.setItem('boxlabJoinStatic', JSON.stringify(s)); }
-        function exportData() { const blob = new Blob([JSON.stringify({ static: JSON.parse(localStorage.getItem('boxlabJoinStatic') || '{}'), positions: getPositionsData() })], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'boxlab_join.json'; a.click(); }
-<<<<<<< HEAD
-        function importData(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const data = JSON.parse(e.target.result); if(data.positions) { localStorage.setItem('boxlabPositions', JSON.stringify(data.positions)); localStorage.setItem('boxlabJoinStatic', JSON.stringify(data.static || {})); loadAllContent(); alert('Success!'); } } catch { alert('Error.'); } }; reader.readAsText(file); event.target.value = ''; }
-=======
-        function importData(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const data = JSON.parse(e.target.result); if(data.positions) { localStorage.setItem('boxlabPositions', JSON.stringify(data.positions)); localStorage.setItem('boxlabJoinStatic', JSON.stringify(data.static || {})); loadAllContent(); alert('Data imported successfully!'); } } catch { alert('Error.'); } }; reader.readAsText(file); event.target.value = ''; }
->>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+            fetch('data/positions.json').then(res => res.json()).then(data => {
+                const container = document.getElementById('positionsContainer'); container.innerHTML = '';
+                if(data.items && data.items.length > 0) {
+                    data.items.forEach(pos => {
+                        container.innerHTML += `<div class="position-card"><div class="pos-header"><h3 class="pos-title">${pos.title}</h3><span class="pos-badge">${pos.badge || 'Open'}</span></div><div class="pos-desc">${pos.desc}</div>${pos.reqs ? `<div class="pos-reqs"><div class="pos-reqs-title">Candidate Requirements:</div><div class="pos-reqs-content">${pos.reqs}</div></div>` : ''}</div>`;
+                    });
+                } else { container.innerHTML = '<p class="loading-msg">No positions posted.</p>'; }
+            }).catch(() => document.getElementById('positionsContainer').innerHTML = '<p class="loading-msg">Please publish job postings in CMS.</p>');
+        });
     </script>
 </body>
 </html>
