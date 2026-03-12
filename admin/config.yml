@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: liboxia19890504-glitch/Boxlab   # ← 你的仓库
+  branch: master                       # ← 关键！改成 master
+
+media_folder: assets/uploads           # 图片上传到这里
+public_folder: /uploads
+
+collections:
+  - name: pages
+    label: 页面内容
+    folder: content/pages              # 新内容保存在这里（推荐）
+    create: true
+    fields:
+      - { label: 标题, name: title, widget: string, required: true }
+      - { label: 发布日期, name: date, widget: datetime }
+      - { label: 正文, name: body, widget: markdown }
+      - { label: 封面图片, name: image, widget: image }
