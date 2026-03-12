@@ -2,16 +2,17 @@
 
 backend:
   name: github
-  repo: liboxia19890504-glitch/Boxlab   # ← 你的仓库
-  branch: master                       # ← 关键！改成 master
+  repo: liboxia19890504-glitch/Boxlab
+  branch: master
+  base_url: https://sveltia-cms-auth.liboxia19890504.workers.dev   # ← 这行最重要！
 
-media_folder: assets/uploads           # 图片上传到这里
+media_folder: assets/uploads
 public_folder: /uploads
 
 collections:
   - name: pages
     label: 页面内容
-    folder: content/pages              # 新内容保存在这里（推荐）
+    folder: content/pages
     create: true
     fields:
       - { label: 标题, name: title, widget: string, required: true }
