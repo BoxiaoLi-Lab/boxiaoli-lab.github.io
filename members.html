@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Members | Box Lab</title>
+=======
+    <title>Members - Box Lab</title>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         nav { background-color: var(--primary); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { display: flex; align-items: center; gap: 15px; }
@@ -16,6 +24,10 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
         nav ul li a { color: #e2e8f0; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
         .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; box-sizing: border-box; }
         .admin-panel { display: none; background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; border: 2px dashed var(--accent); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -33,16 +45,26 @@
         .item-edit-btn { display: none; position: absolute; right: 10px; top: 10px; background: rgba(255,255,255,0.9); color: var(--primary); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         .member-card.editable-active .item-edit-btn { display: block; }
         .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
+<<<<<<< HEAD
+=======
+        .floating-login-btn:hover { transform: scale(1.1); background-color: #1e293b; }
+        
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
         .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
         .form-group { margin-bottom: 18px; text-align: left; }
         .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 0.9rem; }
+<<<<<<< HEAD
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; }
+=======
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; transition: border 0.3s; }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .btn-group { display: flex; gap: 12px; justify-content: flex-end; margin-top: 25px; }
         .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .btn-primary { background-color: var(--primary); color: white; }
         .btn-success { background-color: #10b981; color: white; }
         .btn-danger { background-color: #ef4444; color: white; }
+<<<<<<< HEAD
         [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; }
         .text-dark [contenteditable="true"] { outline-color: #cbd5e1; }
         #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
@@ -50,6 +72,19 @@
         .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; cursor: pointer; border-radius: 8px; background: #f8fafc; }
         footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+=======
+
+        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; transition: 0.2s; cursor: text; }
+        [contenteditable="true"]:focus { outline: 2px solid var(--accent); background: rgba(255,255,255,0.1); }
+        .text-dark [contenteditable="true"] { outline-color: #cbd5e1; }
+        .text-dark [contenteditable="true"]:focus { outline-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+        #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
+        .nav-brand.editable.active { border-color: rgba(255,255,255,0.6); background-color: rgba(255,255,255,0.1); }
+        .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; transition: 0.3s; }
+        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </style>
 </head>
 <body>
@@ -79,35 +114,101 @@
                 <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click ANY text to type and edit directly.</span>
             </div>
             <div style="display: flex; gap: 10px;">
+<<<<<<< HEAD
                 <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup</button>
                 <button class="btn" style="background:#e2e8f0; color:#333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
+=======
+                <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup Data</button>
+                <button class="btn" style="background: #e2e8f0; color: #333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
                 <input type="file" id="importFile" accept=".json" style="display:none;">
                 <button class="btn btn-primary" id="addMemberBtn"><i class="fas fa-plus"></i> Add Member</button>
             </div>
         </div>
         <div id="membersContainer"></div>
     </div>
+<<<<<<< HEAD
     <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
 
+=======
+
+    <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <div class="floating-login-btn" id="loginTriggerBtn" title="管理员登录"><i class="fas fa-magic"></i></div>
 
     <div class="modal" id="loginModal">
         <div class="modal-content"><h3 style="margin-top:0;">管理员登录</h3><div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div><div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button><button class="btn btn-primary" id="submitLogin">Login</button></div></div>
     </div>
     <div class="modal" id="logoEditModal">
+<<<<<<< HEAD
         <div class="modal-content"><h3 style="margin-top:0;">更换 Logo</h3><div class="form-group"><label>上传新 Logo</label><div class="image-upload" id="logoUploadArea"><p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p><input type="file" id="logoFileInput" accept="image/*" style="display: none;"><img id="logoPreview" src="" style="display: none; max-height:120px; margin-top:10px;"></div></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button><button class="btn btn-primary" id="saveLogoBtn">保存</button></div></div>
+=======
+        <div class="modal-content">
+            <h3 style="margin-top:0; color: var(--primary);">更换 Logo</h3>
+            <div class="form-group">
+                <label>上传新 Logo</label>
+                <div class="image-upload" id="logoUploadArea">
+                    <p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p>
+                    <input type="file" id="logoFileInput" accept="image/*" style="display: none;">
+                    <img id="logoPreview" src="" alt="预览" style="display: none; max-height:120px;">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button>
+                <button class="btn btn-primary" id="saveLogoBtn">保存</button>
+            </div>
+        </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </div>
     <div class="modal" id="memberSettingsModal">
+<<<<<<< HEAD
         <div class="modal-content"><h3 id="modalTitle" style="margin-top:0;">Member Settings</h3><input type="hidden" id="editMemberId"><div class="form-group"><label>Category</label><input type="text" id="mCategory" list="categoryHints"><datalist id="categoryHints"><option value="Principal Investigator"><option value="Ph.D. Students"></datalist></div><div class="form-group"><label>Photo URL</label><input type="url" id="mPhoto"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('memberSettingsModal')">Cancel</button><button class="btn btn-danger" id="deleteMember" style="display:none;">Delete</button><button class="btn btn-primary" id="saveMemberSettings">Save Settings</button></div></div>
+=======
+        <div class="modal-content">
+            <h3 id="modalTitle" style="margin-top:0; color: var(--primary);">Member Settings</h3>
+            <input type="hidden" id="editMemberId">
+            <div class="form-group">
+                <label>Category (Group)</label>
+                <input type="text" id="mCategory" list="categoryHints">
+                <datalist id="categoryHints"><option value="Principal Investigator"><option value="Ph.D. Students"></datalist>
+            </div>
+            <div class="form-group"><label>Photo URL</label><input type="url" id="mPhoto"></div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('memberSettingsModal')">Cancel</button>
+                <button class="btn btn-danger" id="deleteMember" style="display:none;">Delete</button>
+                <button class="btn btn-primary" id="saveMemberSettings">Save Settings</button>
+            </div>
+        </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </div>
     <div class="modal" id="addMemberModal">
+<<<<<<< HEAD
         <div class="modal-content"><h3 style="margin-top:0;">Add New Member</h3><div class="form-group"><label>Category</label><input type="text" id="newCategory" value="Ph.D. Students"></div><div class="form-group"><label>Name</label><input type="text" id="newName"></div><div class="form-group"><label>Role / Title</label><input type="text" id="newRole"></div><div class="form-group"><label>Details</label><textarea id="newDetail" rows="2"></textarea></div><div class="form-group"><label>Photo URL</label><input type="url" id="newPhoto"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addMemberModal')">Cancel</button><button class="btn btn-primary" id="saveNewMember">Add</button></div></div>
+=======
+        <div class="modal-content">
+            <h3 style="margin-top:0; color: var(--primary);">Add New Member</h3>
+            <div class="form-group"><label>Category</label><input type="text" id="newCategory" value="Ph.D. Students"></div>
+            <div class="form-group"><label>Name</label><input type="text" id="newName"></div>
+            <div class="form-group"><label>Role / Title</label><input type="text" id="newRole"></div>
+            <div class="form-group"><label>Details</label><textarea id="newDetail" rows="2"></textarea></div>
+            <div class="form-group"><label>Photo URL</label><input type="url" id="newPhoto"></div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addMemberModal')">Cancel</button>
+                <button class="btn btn-primary" id="saveNewMember">Add</button>
+            </div>
+        </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </div>
 
     <script>
         let isEditMode = false;
         const defaultMembers = [
+<<<<<<< HEAD
             { id: "1", category: "Principal Investigator", name: "Boxiao Li", role: "Junior PI", detail: "Research Focus: Polyurethane Synthesis, Self-Healing Polymers.", img: "https://via.placeholder.com/300x400.png?text=PI" }
+=======
+            { id: "1", category: "Principal Investigator", name: "Boxiao Li", role: "Junior PI", detail: "Research Focus: Polyurethane Synthesis, Self-Healing Polymers.", img: "https://via.placeholder.com/300x400.png?text=PI" },
+            { id: "2", category: "Ph.D. Students", name: "Student Name", role: "Ph.D. Candidate", detail: "Research Focus: Carbon Nanotube Aerogels.", img: "https://via.placeholder.com/300x400.png?text=Student" }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         ];
         const baseCategoryOrder = ["Principal Investigator", "Ph.D. Students", "Master Students", "Alumni"];
 
@@ -117,20 +218,44 @@
             document.getElementById('loginTriggerBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
             document.getElementById('submitLogin').onclick = handleLogin;
             window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+<<<<<<< HEAD
             document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
             document.getElementById('logoFileInput').addEventListener('change', function(e) { if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); } });
             document.getElementById('saveLogoBtn').addEventListener('click', function() { if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); } closeModal('logoEditModal'); });
             document.getElementById('addMemberBtn').onclick = () => document.getElementById('addMemberModal').style.display = 'block';
             document.getElementById('saveNewMember').onclick = addNewMember; document.getElementById('saveMemberSettings').onclick = saveMemberSettings; document.getElementById('deleteMember').onclick = deleteMemberEntry;
+=======
+
+            document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
+            document.getElementById('logoFileInput').addEventListener('change', function(e) {
+                if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); }
+            });
+            document.getElementById('saveLogoBtn').addEventListener('click', function() {
+                if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); }
+                closeModal('logoEditModal');
+            });
+
+            document.getElementById('addMemberBtn').onclick = () => document.getElementById('addMemberModal').style.display = 'block';
+            document.getElementById('saveNewMember').onclick = addNewMember;
+            document.getElementById('saveMemberSettings').onclick = saveMemberSettings;
+            document.getElementById('deleteMember').onclick = deleteMemberEntry;
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             document.getElementById('exportBtn').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(getMembersData())], {type: 'application/json'})); a.download = 'boxlab_members.json'; a.click(); };
             document.getElementById('importFile').addEventListener('change', importData);
         }
 
+<<<<<<< HEAD
         function handleLogin() { if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); } }
+=======
+        function handleLogin() {
+            if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); }
+        }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
 
         function enableEditMode() {
             isEditMode = true; document.getElementById('loginTriggerBtn').style.display = 'none'; document.getElementById('adminPanel').style.display = 'flex';
             ['pageTitle', 'pageSubtitle', 'footerText'].forEach(id => { const el = document.getElementById(id); if(el){ el.contentEditable = true; el.addEventListener('blur', saveStaticContent); } });
+<<<<<<< HEAD
             const navBrand = document.getElementById('navBrandText'); if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
             const navLogo = document.getElementById('navLogoImg'); if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
             renderMembers(getMembersData());
@@ -153,6 +278,65 @@
             [...new Set([...baseCategoryOrder, ...Object.keys(grouped)])].forEach(category => {
                 if(grouped[category] && grouped[category].length > 0) {
                     const section = document.createElement('div'); section.className = 'member-section'; section.innerHTML = `<h2 class="section-title" ${isEditMode ? `contenteditable="true" onblur="updateCategoryTitle('${category}', this)"` : ''}>${category}</h2>`;
+=======
+            
+            const navBrand = document.getElementById('navBrandText');
+            if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
+            const navLogo = document.getElementById('navLogoImg');
+            if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
+            renderMembers(getMembersData());
+        }
+
+        function loadGlobalNav() {
+            const data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+            if(data.navLogoSrc) document.getElementById('navLogoImg').src = data.navLogoSrc;
+            if(data.navBrand) document.getElementById('navBrandText').textContent = data.navBrand;
+        }
+        function saveGlobalNav() {
+            let data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+            data.navLogoSrc = document.getElementById('navLogoImg').src; data.navBrand = document.getElementById('navBrandText').textContent;
+            localStorage.setItem('boxlabData', JSON.stringify(data));
+        }
+
+        function updateInlineText(id, field, element) {
+            const newValue = element.innerText.trim(); let allMembers = getMembersData(); let member = allMembers.find(m => m.id === id);
+            if(member && member[field] !== newValue) { member[field] = newValue; localStorage.setItem('boxlabMembersV2', JSON.stringify(allMembers)); }
+        }
+        function updateCategoryTitle(oldCategory, element) {
+            const newCategory = element.innerText.trim(); if(!newCategory || newCategory === oldCategory) return;
+            let allMembers = getMembersData(); allMembers.forEach(m => { if(m.category === oldCategory) m.category = newCategory; });
+            localStorage.setItem('boxlabMembersV2', JSON.stringify(allMembers)); renderMembers(allMembers);
+        }
+
+        function addNewMember() {
+            if (!document.getElementById('newName').value.trim()) return;
+            let allMembers = getMembersData();
+            allMembers.push({ id: Date.now().toString(), category: document.getElementById('newCategory').value.trim() || "Uncategorized", name: document.getElementById('newName').value.trim(), role: document.getElementById('newRole').value.trim(), detail: document.getElementById('newDetail').value.trim(), img: document.getElementById('newPhoto').value.trim() || 'https://via.placeholder.com/300x400.png?text=No+Photo' });
+            localStorage.setItem('boxlabMembersV2', JSON.stringify(allMembers)); closeModal('addMemberModal'); renderMembers(allMembers);
+        }
+        function openSettingsModal(id) {
+            if(!isEditMode) return; const member = getMembersData().find(m => m.id === id); if(!member) return;
+            document.getElementById('editMemberId').value = member.id; document.getElementById('mCategory').value = member.category; document.getElementById('mPhoto').value = member.img;
+            document.getElementById('deleteMember').style.display = 'block'; document.getElementById('memberSettingsModal').style.display = 'block';
+        }
+        function saveMemberSettings() {
+            const id = document.getElementById('editMemberId').value; let allMembers = getMembersData(); let index = allMembers.findIndex(m => m.id === id);
+            if(index > -1) { allMembers[index].category = document.getElementById('mCategory').value.trim(); allMembers[index].img = document.getElementById('mPhoto').value.trim(); localStorage.setItem('boxlabMembersV2', JSON.stringify(allMembers)); closeModal('memberSettingsModal'); renderMembers(allMembers); }
+        }
+        function deleteMemberEntry() {
+            let allMembers = getMembersData().filter(m => m.id !== document.getElementById('editMemberId').value);
+            localStorage.setItem('boxlabMembersV2', JSON.stringify(allMembers)); closeModal('memberSettingsModal'); renderMembers(allMembers);
+        }
+
+        function getMembersData() { return JSON.parse(localStorage.getItem('boxlabMembersV2')) || defaultMembers; }
+        function renderMembers(members) {
+            const container = document.getElementById('membersContainer'); container.innerHTML = '';
+            const grouped = {}; members.forEach(m => { if(!grouped[m.category]) grouped[m.category] = []; grouped[m.category].push(m); });
+            [...new Set([...baseCategoryOrder, ...Object.keys(grouped)])].forEach(category => {
+                if(grouped[category] && grouped[category].length > 0) {
+                    const section = document.createElement('div'); section.className = 'member-section';
+                    section.innerHTML = `<h2 class="section-title" ${isEditMode ? `contenteditable="true" onblur="updateCategoryTitle('${category}', this)"` : ''}>${category}</h2>`;
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
                     const grid = document.createElement('div'); grid.className = 'member-grid';
                     grouped[category].forEach(member => {
                         const card = document.createElement('div'); card.className = `member-card ${isEditMode ? 'editable-active' : ''}`;
@@ -162,9 +346,24 @@
                 }
             });
         }
+<<<<<<< HEAD
         function loadAllContent() { loadGlobalNav(); renderMembers(getMembersData()); const s = JSON.parse(localStorage.getItem('boxlabMembersStatic') || '{}'); if(s.title) document.getElementById('pageTitle').innerText = s.title; if(s.subtitle) document.getElementById('pageSubtitle').innerText = s.subtitle; }
         function saveStaticContent() { localStorage.setItem('boxlabMembersStatic', JSON.stringify({ title: document.getElementById('pageTitle').innerText, subtitle: document.getElementById('pageSubtitle').innerText })); }
         function importData(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const data = JSON.parse(e.target.result); if(Array.isArray(data)) { localStorage.setItem('boxlabMembersV2', JSON.stringify(data)); renderMembers(data); } } catch (e) {} }; reader.readAsText(file); event.target.value = ''; }
+=======
+
+        function loadAllContent() {
+            loadGlobalNav(); renderMembers(getMembersData());
+            const staticData = JSON.parse(localStorage.getItem('boxlabMembersStatic') || '{}');
+            if(staticData.title) document.getElementById('pageTitle').innerText = staticData.title;
+            if(staticData.subtitle) document.getElementById('pageSubtitle').innerText = staticData.subtitle;
+        }
+        function saveStaticContent() { localStorage.setItem('boxlabMembersStatic', JSON.stringify({ title: document.getElementById('pageTitle').innerText, subtitle: document.getElementById('pageSubtitle').innerText })); }
+        function importData(event) {
+            const file = event.target.files[0]; if (!file) return;
+            const reader = new FileReader(); reader.onload = function(e) { try { const data = JSON.parse(e.target.result); if(Array.isArray(data)) { localStorage.setItem('boxlabMembersV2', JSON.stringify(data)); renderMembers(data); } } catch (e) {} }; reader.readAsText(file); event.target.value = '';
+        }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     </script>
 </body>

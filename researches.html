@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Researches & Cooperation | Box Lab</title>
+=======
+    <title>Researches - Box Lab</title>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         nav { background-color: var(--primary); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { display: flex; align-items: center; gap: 15px; }
@@ -16,6 +24,10 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
         nav ul li a { color: #e2e8f0; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
         .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; flex: 1; width: 100%; box-sizing: border-box; }
         .admin-panel { display: none; background: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; border: 2px dashed var(--accent); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -37,11 +49,22 @@
         .coop-card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; position: relative; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .coop-logo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #f1f5f9; }
         .coop-info h3 { margin: 0 0 5px; color: #0f172a; font-size: 1.1rem; }
+<<<<<<< HEAD
         .item-edit-btn { display: none; position: absolute; right: 10px; top: 10px; background: rgba(255,255,255,0.9); color: var(--primary); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         .editable-active .item-edit-btn { display: block; }
         .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
         .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+=======
+        .coop-info h4 { margin: 0 0 10px; color: var(--accent); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+
+        .item-edit-btn { display: none; position: absolute; right: 10px; top: 10px; background: rgba(255,255,255,0.9); color: var(--primary); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
+        .editable-active .item-edit-btn { display: block; }
+        .floating-login-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 1.2rem; transition: 0.3s; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
+        .modal-content { background: white; margin: 5vh auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); animation: slideDown 0.3s ease-out; }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .form-group { margin-bottom: 18px; text-align: left; }
         .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 0.9rem; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #cbd5e1; border-radius: 6px; }
@@ -50,12 +73,29 @@
         .btn-primary { background-color: var(--primary); color: white; }
         .btn-danger { background-color: #ef4444; color: white; }
         .btn-success { background-color: #10b981; color: white; }
+<<<<<<< HEAD
         .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; transition: 0.3s; }
         [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; }
         .text-dark [contenteditable="true"] { outline-color: #cbd5e1; }
         #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
         .nav-brand.editable.active { border-color: rgba(255,255,255,0.6); background-color: rgba(255,255,255,0.1); }
         footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
+=======
+        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
+
+        .image-upload { border: 2px dashed #cbd5e1; padding: 20px; text-align: center; margin-bottom: 15px; cursor: pointer; border-radius: 8px; background: #f8fafc; transition: 0.3s; }
+        #logoPreview { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 4px; }
+
+        [contenteditable="true"] { outline: 2px dashed rgba(255,255,255,0.3); padding: 2px 5px; border-radius: 4px; transition: 0.2s; cursor: text; }
+        [contenteditable="true"]:focus { outline: 2px solid var(--accent); background: rgba(255,255,255,0.1); }
+        .text-dark [contenteditable="true"] { outline-color: #cbd5e1; }
+        .text-dark [contenteditable="true"]:focus { outline-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
+        #navLogoImg.editable.active { cursor: pointer; border: 2px dashed rgba(255,255,255,0.8); }
+        .nav-brand.editable.active { border-color: rgba(255,255,255,0.6); background-color: rgba(255,255,255,0.1); }
+
+        footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: auto; width: 100%; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </style>
 </head>
 <body>
@@ -65,7 +105,7 @@
                 <img src="logo.jpg" alt="Logo" title="Logo" id="navLogoImg" onerror="this.src='https://via.placeholder.com/46'">
                 <span class="nav-brand editable" contenteditable="false" id="navBrandText">Box Lab</span>
             </div>
-            <ul id="mainNav">
+            <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="publications.html">Publications</a></li>
                 <li><a href="members.html">Members</a></li>
@@ -80,8 +120,20 @@
     </header>
     <div class="container text-dark">
         <div class="admin-panel" id="adminPanel">
+<<<<<<< HEAD
             <div><span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span><span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly. Use camera icons to change images.</span></div>
             <div style="display: flex; gap: 10px;"><button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup</button><button class="btn" style="background:#e2e8f0; color:#333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button><input type="file" id="importFile" accept=".json" style="display:none;"></div>
+=======
+            <div>
+                <span style="font-weight: 600; color: var(--primary);"><i class="fas fa-magic"></i> Live Edit Active</span>
+                <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Click texts to edit directly. Use camera icons to change images.</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> Backup</button>
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload"></i> Restore</button>
+                <input type="file" id="importFile" accept=".json" style="display:none;">
+            </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         </div>
         <div id="introContainer"></div>
         <h2 class="section-title"><span id="resTitle">Research Directions</span><button class="btn btn-primary btn-sm" id="addResBtn" style="display:none;"><i class="fas fa-plus"></i> Add Research</button></h2>
@@ -89,21 +141,88 @@
         <h2 class="section-title"><span id="coopTitle">Collaborating Teams & Partners</span><button class="btn btn-primary btn-sm" id="addCoopBtn" style="display:none;"><i class="fas fa-plus"></i> Add Partner</button></h2>
         <div class="coop-grid" id="coopContainer"></div>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
 
     <div class="floating-login-btn" id="loginTriggerBtn" title="管理员登录"><i class="fas fa-magic"></i></div>
 
+<<<<<<< HEAD
     <div class="modal" id="loginModal"><div class="modal-content"><h3 style="margin-top:0;">管理员登录</h3><div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div><div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button><button class="btn btn-primary" id="submitLogin">Login</button></div></div></div>
     <div class="modal" id="logoEditModal"><div class="modal-content"><h3 style="margin-top:0;">更换 Logo</h3><div class="form-group"><label>上传新 Logo</label><div class="image-upload" id="logoUploadArea"><p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p><input type="file" id="logoFileInput" accept="image/*" style="display: none;"><img id="logoPreview" src="" style="display: none; max-height:120px; margin-top:10px;"></div></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button><button class="btn btn-primary" id="saveLogoBtn">保存</button></div></div></div>
     <div class="modal" id="settingsModal"><div class="modal-content"><h3 id="modalTitle" style="margin-top:0;">Image & Settings</h3><input type="hidden" id="editItemId"><input type="hidden" id="editItemType"> <div class="form-group"><label>Image / Logo URL</label><input type="url" id="itemImg"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('settingsModal')">Cancel</button><button class="btn btn-danger" id="deleteItemBtn" style="display:none;">Delete</button><button class="btn btn-primary" id="saveSettingsBtn">Save Image</button></div></div></div>
     <div class="modal" id="addModal"><div class="modal-content"><h3 id="addModalTitle" style="margin-top:0;">Add New</h3><input type="hidden" id="addItemType"><div class="form-group" id="addNameGroup"><label id="addNameLabel">Title / Name</label><input type="text" id="addName"></div><div class="form-group" id="addInstGroup" style="display:none;"><label>Institution</label><input type="text" id="addInst"></div><div class="form-group"><label>Description</label><textarea id="addDesc" rows="3"></textarea></div><div class="form-group"><label>Image URL</label><input type="url" id="addImg"></div><div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addModal')">Cancel</button><button class="btn btn-primary" id="saveNewBtn">Add</button></div></div></div>
+=======
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h3 style="margin-top:0;">管理员登录</h3>
+            <div class="form-group"><label>Username</label><input type="text" id="username" placeholder="admin"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="password"></div>
+            <div class="btn-group"><button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('loginModal')">Cancel</button><button class="btn btn-primary" id="submitLogin">Login</button></div>
+        </div>
+    </div>
+
+    <div class="modal" id="logoEditModal">
+        <div class="modal-content">
+            <h3 style="margin-top:0; color: var(--primary);">更换 Logo</h3>
+            <div class="form-group">
+                <label>上传新 Logo</label>
+                <div class="image-upload" id="logoUploadArea">
+                    <p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p>
+                    <input type="file" id="logoFileInput" accept="image/*" style="display: none;">
+                    <img id="logoPreview" src="" alt="预览" style="display: none; max-height:120px;">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('logoEditModal')">取消</button>
+                <button class="btn btn-primary" id="saveLogoBtn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h3 id="modalTitle" style="margin-top:0;">Image & Settings</h3>
+            <input type="hidden" id="editItemId"><input type="hidden" id="editItemType"> 
+            <div class="form-group"><label>Image / Logo URL</label><input type="url" id="itemImg"></div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn btn-danger" id="deleteItemBtn" style="display:none;">Delete</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">Save Image</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h3 id="addModalTitle" style="margin-top:0;">Add New</h3>
+            <input type="hidden" id="addItemType"> 
+            <div class="form-group" id="addNameGroup"><label id="addNameLabel">Title / Name</label><input type="text" id="addName"></div>
+            <div class="form-group" id="addInstGroup" style="display:none;"><label>Institution</label><input type="text" id="addInst"></div>
+            <div class="form-group"><label>Description</label><textarea id="addDesc" rows="3"></textarea></div>
+            <div class="form-group"><label>Image URL</label><input type="url" id="addImg"></div>
+            <div class="btn-group">
+                <button class="btn" style="background:#e2e8f0; color:#333;" onclick="closeModal('addModal')">Cancel</button>
+                <button class="btn btn-primary" id="saveNewBtn">Add</button>
+            </div>
+        </div>
+    </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
 
     <script>
         let isEditMode = false;
         const defaultData = {
+<<<<<<< HEAD
             intro: { title: "About Our Research Group", desc: "We focus on the synthesis and application of advanced polymer materials. Led by our Principal Investigator, our team specializes in high-performance polyurethanes.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20chemistry%20laboratory%2C%20clean%20benches&image_size=landscape_4_3" },
             researches: [{ id: "r1", title: "Self-Healing Polyurethanes", desc: "Designing novel polyurethane architectures utilizing reversible Diels-Alder bonds.", img: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=molecular%20structure%2C%20polymer%20chain&image_size=landscape_4_3" }],
             coops: [{ id: "c1", name: "Partner University", inst: "Academic", desc: "Collaborating on Variable-Temperature 2D-IR spectroscopy.", img: "https://via.placeholder.com/150.png?text=Logo" }]
+=======
+            intro: { title: "About Our Research Group", desc: "We focus on the synthesis and application of advanced polymer materials.", img: "https://via.placeholder.com/600x400.png?text=Lab" },
+            researches: [{ id: "r1", title: "Self-Healing Polyurethanes", desc: "Designing novel polyurethane architectures.", img: "https://via.placeholder.com/400x300.png?text=Research+1" }],
+            coops: [{ id: "c1", name: "Partner University", inst: "Academic", desc: "Collaborating on spectroscopy.", img: "https://via.placeholder.com/150.png?text=Logo" }]
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         };
 
         document.addEventListener('DOMContentLoaded', () => { loadAllContent(); setupEventListeners(); });
@@ -112,6 +231,7 @@
             document.getElementById('loginTriggerBtn').onclick = () => document.getElementById('loginModal').style.display = 'block';
             document.getElementById('submitLogin').onclick = handleLogin;
             window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+<<<<<<< HEAD
             document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
             document.getElementById('logoFileInput').addEventListener('change', function(e) { if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); } });
             document.getElementById('saveLogoBtn').addEventListener('click', function() { if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); } closeModal('logoEditModal'); });
@@ -121,10 +241,35 @@
         }
 
         function handleLogin() { if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); } }
+=======
+
+            document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
+            document.getElementById('logoFileInput').addEventListener('change', function(e) {
+                if (e.target.files[0]) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); }
+            });
+            document.getElementById('saveLogoBtn').addEventListener('click', function() {
+                if(document.getElementById('logoPreview').src) { document.getElementById('navLogoImg').src = document.getElementById('logoPreview').src; saveGlobalNav(); }
+                closeModal('logoEditModal');
+            });
+
+            document.getElementById('saveSettingsBtn').onclick = saveImageSettings;
+            document.getElementById('deleteItemBtn').onclick = deleteItem;
+            document.getElementById('saveNewBtn').onclick = saveNewItem;
+            document.getElementById('addResBtn').onclick = () => openAddModal('research');
+            document.getElementById('addCoopBtn').onclick = () => openAddModal('coop');
+            document.getElementById('exportBtn').onclick = exportData;
+            document.getElementById('importFile').addEventListener('change', importData);
+        }
+
+        function handleLogin() {
+            if(document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enableEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('Error.'); }
+        }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
 
         function enableEditMode() {
             isEditMode = true; document.getElementById('loginTriggerBtn').style.display = 'none'; document.getElementById('adminPanel').style.display = 'flex';
             document.getElementById('addResBtn').style.display = 'inline-block'; document.getElementById('addCoopBtn').style.display = 'inline-block';
+<<<<<<< HEAD
             ['pageTitle', 'pageSubtitle', 'footerText', 'resTitle', 'coopTitle'].forEach(id => { const el = document.getElementById(id); if(el){ el.contentEditable = true; el.addEventListener('blur', saveStaticContent); } });
             const navBrand = document.getElementById('navBrandText'); if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
             const navLogo = document.getElementById('navLogoImg'); if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
@@ -142,6 +287,68 @@
         function deleteItem() { if(!confirm('Delete?')) return; const type = document.getElementById('editItemType').value; const id = document.getElementById('editItemId').value; let data = getRCData(); if(type === 'research') { data.researches = data.researches.filter(i => i.id !== id); } else { data.coops = data.coops.filter(i => i.id !== id); } localStorage.setItem('boxlabRCData', JSON.stringify(data)); closeModal('settingsModal'); renderAll(data); }
         function openAddModal(type) { document.getElementById('addItemType').value = type; ['addName', 'addInst', 'addDesc', 'addImg'].forEach(id => document.getElementById(id).value = ''); if(type === 'research') { document.getElementById('addModalTitle').innerText = "Add Research"; document.getElementById('addInstGroup').style.display = 'none'; } else { document.getElementById('addModalTitle').innerText = "Add Partner"; document.getElementById('addInstGroup').style.display = 'block'; } document.getElementById('addModal').style.display = 'block'; }
         function saveNewItem() { const type = document.getElementById('addItemType').value; let data = getRCData(); const newItem = { id: Date.now().toString(), img: document.getElementById('addImg').value.trim() }; if(type === 'research') { newItem.title = document.getElementById('addName').value.trim(); newItem.desc = document.getElementById('addDesc').value.trim(); data.researches.push(newItem); } else { newItem.name = document.getElementById('addName').value.trim(); newItem.inst = document.getElementById('addInst').value.trim(); newItem.desc = document.getElementById('addDesc').value.trim(); data.coops.push(newItem); } localStorage.setItem('boxlabRCData', JSON.stringify(data)); closeModal('addModal'); renderAll(data); }
+=======
+            
+            ['pageTitle', 'pageSubtitle', 'footerText', 'resTitle', 'coopTitle'].forEach(id => { const el = document.getElementById(id); if(el){ el.contentEditable = true; el.addEventListener('blur', saveStaticContent); } });
+            
+            const navBrand = document.getElementById('navBrandText');
+            if(navBrand) { navBrand.contentEditable = true; navBrand.classList.add('active'); navBrand.addEventListener('blur', saveGlobalNav); }
+            const navLogo = document.getElementById('navLogoImg');
+            if(navLogo) { navLogo.classList.add('editable', 'active'); navLogo.title = 'Edit Logo'; navLogo.onclick = function() { if(isEditMode){ document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; } }; }
+            
+            renderAll(getRCData());
+        }
+
+        function loadGlobalNav() {
+            const data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+            if(data.navLogoSrc) document.getElementById('navLogoImg').src = data.navLogoSrc;
+            if(data.navBrand) document.getElementById('navBrandText').textContent = data.navBrand;
+        }
+        function saveGlobalNav() {
+            let data = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+            data.navLogoSrc = document.getElementById('navLogoImg').src; data.navBrand = document.getElementById('navBrandText').textContent;
+            localStorage.setItem('boxlabData', JSON.stringify(data));
+        }
+
+        function updateIntroText(field, element) {
+            const newValue = element.innerText.trim(); let data = getRCData();
+            if(data.intro[field] !== newValue) { data.intro[field] = newValue; localStorage.setItem('boxlabRCData', JSON.stringify(data)); }
+        }
+        function updateListText(type, id, field, element) {
+            const newValue = element.innerText.trim(); let data = getRCData();
+            let list = type === 'research' ? data.researches : data.coops; let item = list.find(i => i.id === id);
+            if(item && item[field] !== newValue) { item[field] = newValue; localStorage.setItem('boxlabRCData', JSON.stringify(data)); }
+        }
+
+        function openImageSettings(type, id) {
+            if(!isEditMode) return; const data = getRCData(); document.getElementById('editItemType').value = type; document.getElementById('editItemId').value = id;
+            if(type === 'intro') { document.getElementById('itemImg').value = data.intro.img; document.getElementById('deleteItemBtn').style.display = 'none'; } 
+            else { let list = type === 'research' ? data.researches : data.coops; let item = list.find(i => i.id === id); document.getElementById('itemImg').value = item.img; document.getElementById('deleteItemBtn').style.display = 'inline-block'; }
+            document.getElementById('settingsModal').style.display = 'block';
+        }
+        function saveImageSettings() {
+            const type = document.getElementById('editItemType').value; const id = document.getElementById('editItemId').value; const imgUrl = document.getElementById('itemImg').value.trim() || 'https://via.placeholder.com/400';
+            let data = getRCData(); if(type === 'intro') { data.intro.img = imgUrl; } else { let list = type === 'research' ? data.researches : data.coops; let item = list.find(i => i.id === id); if(item) item.img = imgUrl; }
+            localStorage.setItem('boxlabRCData', JSON.stringify(data)); closeModal('settingsModal'); renderAll(data);
+        }
+        function deleteItem() {
+            if(!confirm('Delete?')) return; const type = document.getElementById('editItemType').value; const id = document.getElementById('editItemId').value; let data = getRCData();
+            if(type === 'research') { data.researches = data.researches.filter(i => i.id !== id); } else { data.coops = data.coops.filter(i => i.id !== id); }
+            localStorage.setItem('boxlabRCData', JSON.stringify(data)); closeModal('settingsModal'); renderAll(data);
+        }
+        function openAddModal(type) {
+            document.getElementById('addItemType').value = type; ['addName', 'addInst', 'addDesc', 'addImg'].forEach(id => document.getElementById(id).value = '');
+            if(type === 'research') { document.getElementById('addModalTitle').innerText = "Add Research"; document.getElementById('addInstGroup').style.display = 'none'; } 
+            else { document.getElementById('addModalTitle').innerText = "Add Partner"; document.getElementById('addInstGroup').style.display = 'block'; }
+            document.getElementById('addModal').style.display = 'block';
+        }
+        function saveNewItem() {
+            const type = document.getElementById('addItemType').value; let data = getRCData(); const newItem = { id: Date.now().toString(), img: document.getElementById('addImg').value.trim() || 'https://via.placeholder.com/400' };
+            if(type === 'research') { newItem.title = document.getElementById('addName').value.trim(); newItem.desc = document.getElementById('addDesc').value.trim(); data.researches.push(newItem); } 
+            else { newItem.name = document.getElementById('addName').value.trim(); newItem.inst = document.getElementById('addInst').value.trim(); newItem.desc = document.getElementById('addDesc').value.trim(); data.coops.push(newItem); }
+            localStorage.setItem('boxlabRCData', JSON.stringify(data)); closeModal('addModal'); renderAll(data);
+        }
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
 
         function getRCData() { return JSON.parse(localStorage.getItem('boxlabRCData')) || defaultData; }
         function renderAll(data) {

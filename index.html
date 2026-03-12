@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Home | Box Lab</title>
+=======
+    <title>Box Lab | Dr. Boxiao Li</title>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         nav { background-color: var(--primary); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo { display: flex; align-items: center; gap: 15px; }
@@ -17,12 +25,20 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
         nav ul li a { color: #e2e8f0; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 70px 20px; text-align: center; }
         header h1 { margin-top: 0; font-size: 2.5rem; letter-spacing: 2px; }
         header p { font-size: 1.15rem; color: #cbd5e1; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         section { padding: 50px 0; }
         section h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 8px; display: inline-block; margin-bottom: 30px; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .news-item { background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #e2e8f0; }
         .news-item:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); }
@@ -32,8 +48,15 @@
         .news-content p:nth-child(2) { color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; }
         .news-content p:nth-child(3) { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0; }
         footer { background-color: var(--primary); color: white; text-align: center; padding: 25px 0; margin-top: 40px; }
+<<<<<<< HEAD
         .edit-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 1000; font-size: 1.2rem; transition: 0.3s; }
         .edit-btn:hover { transform: scale(1.1); background-color: #1e293b; }
+=======
+
+        .edit-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 1000; font-size: 1.2rem; transition: 0.3s; }
+        .edit-btn:hover { transform: scale(1.1); background-color: #1e293b; }
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .modal, .news-edit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.6); z-index: 2000; backdrop-filter: blur(4px); }
         .modal-content, .news-edit-content { background-color: white; margin: 10% auto; padding: 30px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
         .modal-content { width: 350px; }
@@ -47,6 +70,10 @@
         .btn-primary { background-color: var(--primary); color: white; }
         .btn-secondary { background-color: #e2e8f0; color: #333; }
         .btn-group { display: flex; gap: 10px; justify-content: flex-end; margin-top: 25px; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         .add-news-btn { display: none; margin: 30px auto 0; padding: 12px 30px; background-color: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
         .editable { border: 2px dashed transparent; padding: 2px 5px; border-radius: 4px; transition: 0.2s; }
         .editable.active { border-color: var(--accent); background-color: rgba(59, 130, 246, 0.05); }
@@ -86,7 +113,13 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <footer><p class="editable" contenteditable="false" id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
+=======
+    <footer>
+        <p class="editable" contenteditable="false" id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p>
+    </footer>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
 
     <div class="edit-btn" id="editBtn" title="管理员登录"><i class="fas fa-magic"></i></div>
 
@@ -111,17 +144,41 @@
         <div class="news-edit-content">
             <h3 style="margin-top:0;">编辑新闻</h3>
             <input type="hidden" id="currentNewsIndex">
+<<<<<<< HEAD
             <div class="form-group"><label>新闻图片</label><div class="image-upload" id="imageUpload"><p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p><input type="file" id="newsImageInput" accept="image/*" style="display: none;"><img id="newsImagePreview" src="" style="display: none;"></div></div>
             <div class="form-group"><label>标题</label><input type="text" id="newsTitle"></div>
             <div class="form-group"><label>日期</label><input type="date" id="newsDate"></div>
             <div class="form-group"><label>内容</label><textarea id="newsContent"></textarea></div>
             <div class="btn-group"><button class="btn btn-secondary" id="cancelNewsEdit">取消</button><button class="btn btn-primary" id="saveNewsEdit">保存</button><button class="btn" id="deleteNews" style="background-color: #ef4444; color: white;">删除</button></div>
+=======
+            <div class="form-group">
+                <label>新闻图片</label>
+                <div class="image-upload" id="imageUpload">
+                    <p><i class="fas fa-cloud-upload-alt"></i> 点击上传图片</p>
+                    <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
+                    <img id="newsImagePreview" src="" alt="预览图片" style="display: none;">
+                </div>
+            </div>
+            <div class="form-group"><label>标题</label><input type="text" id="newsTitle"></div>
+            <div class="form-group"><label>日期</label><input type="date" id="newsDate"></div>
+            <div class="form-group"><label>内容</label><textarea id="newsContent"></textarea></div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
+                <button class="btn btn-primary" id="saveNewsEdit">保存</button>
+                <button class="btn" id="deleteNews" style="background-color: #ef4444; color: white;">删除</button>
+            </div>
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         </div>
     </div>
 
     <script>
         let isEditMode = false;
         let currentEditingNews = -1;
+<<<<<<< HEAD
+=======
+        
+        // 此处的默认新闻已经硬编码，清理缓存也不会丢失
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         const defaultNews = [
             { image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3", title: "团队成员在国际会议上发表重要研究成果", date: "2026-03-10", content: "团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。" },
             { image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3", title: "团队获得国家自然科学基金项目资助", date: "2026-03-05", content: "团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。" },
@@ -133,6 +190,7 @@
         function initEventListeners() {
             document.getElementById('editBtn').addEventListener('click', () => document.getElementById('loginModal').style.display = 'block');
             document.getElementById('cancelLogin').addEventListener('click', () => document.getElementById('loginModal').style.display = 'none');
+<<<<<<< HEAD
             document.getElementById('submitLogin').addEventListener('click', () => {
                 if (document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') { enterEditMode(); document.getElementById('loginModal').style.display = 'none'; } else { alert('用户名或密码错误'); }
             });
@@ -146,6 +204,43 @@
             document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
             document.getElementById('logoFileInput').addEventListener('change', (e) => { if (e.target.files[0]) { const reader = new FileReader(); reader.onload = (e) => { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; }; reader.readAsDataURL(e.target.files[0]); } });
             document.getElementById('saveLogoBtn').addEventListener('click', () => { const newSrc = document.getElementById('logoPreview').src; if(newSrc) { document.getElementById('navLogoImg').src = newSrc; saveData(); } document.getElementById('logoEditModal').style.display = 'none'; });
+=======
+            document.getElementById('submitLogin').addEventListener('click', function() {
+                if (document.getElementById('username').value === 'admin' && document.getElementById('password').value === 'password') {
+                    enterEditMode(); document.getElementById('loginModal').style.display = 'none';
+                } else { alert('用户名或密码错误'); }
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('loginModal')) document.getElementById('loginModal').style.display = 'none';
+                if (event.target === document.getElementById('newsEditModal')) document.getElementById('newsEditModal').style.display = 'none';
+                if (event.target === document.getElementById('logoEditModal')) document.getElementById('logoEditModal').style.display = 'none';
+            });
+            
+            document.getElementById('imageUpload').addEventListener('click', () => document.getElementById('newsImageInput').click());
+            document.getElementById('newsImageInput').addEventListener('change', function(e) {
+                if (e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) { document.getElementById('newsImagePreview').src = e.target.result; document.getElementById('newsImagePreview').style.display = 'block'; };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            document.getElementById('logoUploadArea').addEventListener('click', () => document.getElementById('logoFileInput').click());
+            document.getElementById('logoFileInput').addEventListener('change', function(e) {
+                if (e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) { document.getElementById('logoPreview').src = e.target.result; document.getElementById('logoPreview').style.display = 'block'; };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            document.getElementById('saveLogoBtn').addEventListener('click', function() {
+                const newSrc = document.getElementById('logoPreview').src;
+                if(newSrc) { document.getElementById('navLogoImg').src = newSrc; saveData(); }
+                document.getElementById('logoEditModal').style.display = 'none';
+            });
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             document.getElementById('cancelNewsEdit').addEventListener('click', () => document.getElementById('newsEditModal').style.display = 'none');
             document.getElementById('saveNewsEdit').addEventListener('click', saveNewsEdit);
             document.getElementById('deleteNews').addEventListener('click', deleteNews);
@@ -153,22 +248,50 @@
         }
         
         function enterEditMode() {
+<<<<<<< HEAD
             isEditMode = true; document.getElementById('editBtn').style.display = 'none'; document.getElementById('addNewsBtn').style.display = 'block';
             document.querySelectorAll('.editable').forEach(element => { element.contentEditable = 'true'; element.classList.add('active'); });
             const navLogo = document.getElementById('navLogoImg');
             navLogo.classList.add('editable', 'active'); navLogo.title = '点击修改 Logo';
             navLogo.onclick = function() { if (!isEditMode) return; document.getElementById('logoPreview').src = this.src; document.getElementById('logoPreview').style.display = 'block'; document.getElementById('logoEditModal').style.display = 'block'; };
+=======
+            isEditMode = true;
+            document.getElementById('editBtn').style.display = 'none'; 
+            document.getElementById('addNewsBtn').style.display = 'block';
+            
+            document.querySelectorAll('.editable').forEach(element => {
+                element.contentEditable = 'true'; element.classList.add('active');
+            });
+            
+            const navLogo = document.getElementById('navLogoImg');
+            navLogo.classList.add('editable', 'active');
+            navLogo.title = '点击修改 Logo';
+            navLogo.onclick = function() {
+                if (!isEditMode) return;
+                document.getElementById('logoPreview').src = this.src;
+                document.getElementById('logoPreview').style.display = 'block';
+                document.getElementById('logoEditModal').style.display = 'block';
+            };
+
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             bindNewsClickEvents();
         }
 
         function bindNewsClickEvents() {
             document.querySelectorAll('.news-item').forEach((item, index) => {
+<<<<<<< HEAD
                 const newItem = item.cloneNode(true); item.parentNode.replaceChild(newItem, item);
                 newItem.addEventListener('click', () => { if(isEditMode) openNewsEditModal(index); });
+=======
+                const newItem = item.cloneNode(true);
+                item.parentNode.replaceChild(newItem, item);
+                newItem.addEventListener('click', function() { if(isEditMode) openNewsEditModal(index); });
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             });
         }
         
         function openNewsEditModal(index) {
+<<<<<<< HEAD
             currentEditingNews = index; const modal = document.getElementById('newsEditModal');
             if (index === -1) {
                 document.getElementById('currentNewsIndex').value = -1; ['newsTitle', 'newsDate', 'newsContent'].forEach(id => document.getElementById(id).value = '');
@@ -178,6 +301,24 @@
                 document.getElementById('currentNewsIndex').value = index; document.getElementById('newsTitle').value = newsItem.querySelector('h3').textContent;
                 document.getElementById('newsDate').value = newsItem.querySelector('p:nth-child(2)').textContent; document.getElementById('newsContent').value = newsItem.querySelector('p:nth-child(3)').textContent;
                 document.getElementById('newsImagePreview').src = newsItem.querySelector('img').src; document.getElementById('newsImagePreview').style.display = 'block'; document.getElementById('deleteNews').style.display = 'inline-block';
+=======
+            currentEditingNews = index;
+            const modal = document.getElementById('newsEditModal');
+            if (index === -1) {
+                document.getElementById('currentNewsIndex').value = -1;
+                ['newsTitle', 'newsDate', 'newsContent'].forEach(id => document.getElementById(id).value = '');
+                document.getElementById('newsImagePreview').style.display = 'none';
+                document.getElementById('deleteNews').style.display = 'none';
+            } else {
+                const newsItem = document.querySelectorAll('.news-item')[index];
+                document.getElementById('currentNewsIndex').value = index;
+                document.getElementById('newsTitle').value = newsItem.querySelector('h3').textContent;
+                document.getElementById('newsDate').value = newsItem.querySelector('p:nth-child(2)').textContent;
+                document.getElementById('newsContent').value = newsItem.querySelector('p:nth-child(3)').textContent;
+                document.getElementById('newsImagePreview').src = newsItem.querySelector('img').src;
+                document.getElementById('newsImagePreview').style.display = 'block';
+                document.getElementById('deleteNews').style.display = 'inline-block';
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             }
             modal.style.display = 'block';
         }
@@ -185,25 +326,62 @@
         function saveNewsEdit() {
             const index = parseInt(document.getElementById('currentNewsIndex').value);
             const imageSrc = document.getElementById('newsImagePreview').src || 'https://via.placeholder.com/400x300';
+<<<<<<< HEAD
             const newsData = { image: imageSrc, title: document.getElementById('newsTitle').value, date: document.getElementById('newsDate').value, content: document.getElementById('newsContent').value };
             let savedData = JSON.parse(localStorage.getItem('boxlabData') || '{}'); if(!savedData.news) savedData.news = [...defaultNews];
             if (index === -1) savedData.news.push(newsData); else savedData.news[index] = newsData;
             localStorage.setItem('boxlabData', JSON.stringify(savedData)); loadData(); document.getElementById('newsEditModal').style.display = 'none';
+=======
+            const newsData = {
+                image: imageSrc,
+                title: document.getElementById('newsTitle').value,
+                date: document.getElementById('newsDate').value,
+                content: document.getElementById('newsContent').value
+            };
+            
+            let savedData = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+            if(!savedData.news) savedData.news = [...defaultNews];
+            
+            if (index === -1) savedData.news.push(newsData);
+            else savedData.news[index] = newsData;
+            
+            localStorage.setItem('boxlabData', JSON.stringify(savedData));
+            loadData(); // 重新加载渲染
+            document.getElementById('newsEditModal').style.display = 'none';
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
         }
         
         function deleteNews() {
             const index = parseInt(document.getElementById('currentNewsIndex').value);
             if (index !== -1 && confirm('确定要删除这条新闻吗？')) {
+<<<<<<< HEAD
                 let savedData = JSON.parse(localStorage.getItem('boxlabData') || '{}'); if(!savedData.news) savedData.news = [...defaultNews];
                 savedData.news.splice(index, 1); localStorage.setItem('boxlabData', JSON.stringify(savedData)); loadData(); document.getElementById('newsEditModal').style.display = 'none';
+=======
+                let savedData = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+                if(!savedData.news) savedData.news = [...defaultNews];
+                savedData.news.splice(index, 1);
+                localStorage.setItem('boxlabData', JSON.stringify(savedData));
+                loadData();
+                document.getElementById('newsEditModal').style.display = 'none';
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             }
         }
         
         function saveData() {
             let savedData = JSON.parse(localStorage.getItem('boxlabData') || '{}');
+<<<<<<< HEAD
             savedData.navLogoSrc = document.getElementById('navLogoImg').src; savedData.navBrand = document.getElementById('navBrandText').textContent;
             savedData.title = document.querySelector('header h1').textContent; savedData.subtitle = document.querySelector('header p').textContent;
             savedData.sectionTitle = document.getElementById('newsSectionTitle').textContent; savedData.footer = document.querySelector('footer p').textContent;
+=======
+            savedData.navLogoSrc = document.getElementById('navLogoImg').src;
+            savedData.navBrand = document.getElementById('navBrandText').textContent;
+            savedData.title = document.querySelector('header h1').textContent;
+            savedData.subtitle = document.querySelector('header p').textContent;
+            savedData.sectionTitle = document.getElementById('newsSectionTitle').textContent;
+            savedData.footer = document.querySelector('footer p').textContent;
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             localStorage.setItem('boxlabData', JSON.stringify(savedData));
         }
         
@@ -215,19 +393,43 @@
             if(data.subtitle) document.querySelector('header p').textContent = data.subtitle;
             if(data.sectionTitle) document.getElementById('newsSectionTitle').textContent = data.sectionTitle;
             if(data.footer) document.querySelector('footer p').textContent = data.footer;
+<<<<<<< HEAD
+=======
+            
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             renderNews(data.news && data.news.length > 0 ? data.news : defaultNews);
         }
 
         function renderNews(newsArray) {
+<<<<<<< HEAD
             const newsGrid = document.getElementById('newsGrid'); newsGrid.innerHTML = '';
             newsArray.forEach((news) => {
                 const editAttrs = isEditMode ? 'contenteditable="true" class="editable active"' : 'contenteditable="false" class="editable"';
                 newsGrid.innerHTML += `<div class="news-item"><img src="${news.image}" alt="新闻图片" class="news-image"><div class="news-content"><h3 ${editAttrs}>${news.title}</h3><p ${editAttrs}>${news.date}</p><p ${editAttrs}>${news.content}</p></div></div>`;
+=======
+            const newsGrid = document.getElementById('newsGrid');
+            newsGrid.innerHTML = '';
+            newsArray.forEach((news) => {
+                const editAttrs = isEditMode ? 'contenteditable="true" class="editable active"' : 'contenteditable="false" class="editable"';
+                newsGrid.innerHTML += `
+                    <div class="news-item">
+                        <img src="${news.image}" alt="新闻图片" class="news-image">
+                        <div class="news-content">
+                            <h3 ${editAttrs}>${news.title}</h3>
+                            <p ${editAttrs}>${news.date}</p>
+                            <p ${editAttrs}>${news.content}</p>
+                        </div>
+                    </div>`;
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
             });
             if(isEditMode) bindNewsClickEvents();
         }
         
+<<<<<<< HEAD
         document.addEventListener('input', (e) => { if (e.target.classList.contains('editable') && isEditMode) saveData(); });
+=======
+        document.addEventListener('input', function(e) { if (e.target.classList.contains('editable') && isEditMode) saveData(); });
+>>>>>>> cd992aa4a1c7d2926c16d5d3618036c0fdb33cc1
     </script>
 </body>
 </html>
