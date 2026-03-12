@@ -3,220 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boxlab</title>
+    <title>Members - Boxlab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; }
+        header { background: linear-gradient(to right, #334155, #475569); color: white; padding: 40px 20px; text-align: center; }
+        nav { background-color: #334155; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav ul li { margin: 0 20px; }
+        nav ul li a { color: white; text-decoration: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* 成员卡片网格 */
+        .member-section { margin-bottom: 50px; }
+        .section-title { border-bottom: 2px solid #334155; color: #334155; padding-bottom: 5px; margin-bottom: 30px; }
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        
+        .member-card { 
+            background: white; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; 
+            padding-bottom: 20px; transition: 0.3s; position: relative;
         }
-        header {
-            background: linear-gradient(to right, #334155, #475569);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #334155;
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            padding: 40px 0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .news-item {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .news-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        .news-content {
-            padding: 20px;
-        }
-        .news-content h3, .news-content p {
-            margin: 10px 0;
-        }
-        footer {
-            background-color: #334155;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        /* 编辑按钮样式 */
-        .edit-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #334155;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-        /* 登录模态框 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .modal-content h3 {
-            margin-top: 0;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background-color: #334155;
-            color: white;
-        }
-        .btn-secondary {
-            background-color: #94a3b8;
-            color: white;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-        /* 编辑模式样式 */
-        .editable {
-            border: 2px dashed transparent;
-            padding: 5px;
-        }
-        .editable:hover {
-            border-color: #334155;
-        }
-        .editable.active {
-            border-color: #334155;
-            background-color: #f0f9ff;
-        }
-        /* 新闻编辑模态框 */
-        .news-edit-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-        }
-        .news-edit-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-        }
-        .news-edit-content h3 {
-            margin-top: 0;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
-        }
-        .image-upload {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .image-upload:hover {
-            border-color: #334155;
-        }
-        #newsImagePreview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-        }
-        /* 添加新闻按钮 */
-        .add-news-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #334155;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+        .member-card:hover { transform: translateY(-5px); }
+        .member-photo { width: 100%; height: 240px; object-fit: cover; background-color: #e2e8f0; }
+        .member-info h3 { margin: 15px 0 5px; color: #1e293b; }
+        .member-info p { margin: 5px 0; color: #64748b; font-size: 0.9em; padding: 0 10px; }
+        
+        /* 编辑功能相关 */
+        .edit-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background-color: #334155; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; }
+        .modal-content { background: white; margin: 5% auto; padding: 25px; border-radius: 8px; width: 450px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .btn-group { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .add-member-btn { display: none; margin: 0 auto 20px; background: #334155; color: white; padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; }
+        
+        .editable-active { border: 2px dashed #334155 !important; cursor: pointer; }
+        footer { background-color: #334155; color: white; text-align: center; padding: 20px 0; }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -227,380 +55,169 @@
         </ul>
     </nav>
 
-    <!-- 英雄区域 -->
     <header>
-        <h1 class="editable" contenteditable="false">Boxlab</h1>
-        <p class="editable" contenteditable="false">Dr. 姓名 - 首席研究员 | 博士生导师 | 所属学院</p>
+        <h1>Group Members</h1>
+        <p>Innovation through collaboration and dedication</p>
     </header>
 
-    <!-- 团队新闻 -->
-    <section>
-        <div class="container">
-            <h2 class="editable" contenteditable="false">Selected News</h2>
-            <div class="news-grid" id="newsGrid">
-                <!-- 新闻1 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%20meeting%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队成员在国际会议上发表重要研究成果</h3>
-                        <p class="editable" contenteditable="false">2026-03-10</p>
-                        <p class="editable" contenteditable="false">团队成员在最近的国际会议上展示了最新研究成果，获得了同行的高度评价。</p>
-                    </div>
-                </div>
-                <!-- 新闻2 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=research%20team%20receiving%20award%2C%20ceremony%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队获得国家自然科学基金项目资助</h3>
-                        <p class="editable" contenteditable="false">2026-03-05</p>
-                        <p class="editable" contenteditable="false">团队成功获得国家自然科学基金重点项目资助，将开展为期三年的深入研究。</p>
-                    </div>
-                </div>
-                <!-- 新闻3 -->
-                <div class="news-item">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=new%20team%20member%20joining%2C%20office%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="false">团队新成员加入</h3>
-                        <p class="editable" contenteditable="false">2026-02-28</p>
-                        <p class="editable" contenteditable="false">欢迎新博士后研究员加入团队，将为团队带来新的研究视角和技术专长。</p>
+    <div class="container">
+        <button class="add-member-btn" id="addMemberBtn">Add New Member</button>
+
+        <div class="member-section">
+            <h2 class="section-title">Principal Investigator</h2>
+            <div class="member-grid" id="pi-grid">
+                <div class="member-card" onclick="openEdit(this, 'PI')">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20academic%20portrait%2C%20male%2C%20lab%20background&image_size=portrait_3_4" class="member-photo">
+                    <div class="member-info">
+                        <h3>Dr. Name</h3>
+                        <p>Principal Investigator</p>
+                        <p>Email: investigator@university.edu</p>
                     </div>
                 </div>
             </div>
-            <button class="add-news-btn" id="addNewsBtn" style="display: none;">添加新闻</button>
         </div>
-    </section>
 
-    <!-- 页脚 -->
-    <footer>
-        <p class="editable" contenteditable="false">&copy; 2026 Boxlab. 保留所有权利.</p>
-    </footer>
-
-    <!-- 编辑按钮 -->
-    <div class="edit-btn" id="editBtn">
-        <i class="fas fa-pencil-alt"></i>
+        <div class="member-section">
+            <h2 class="section-title">Research Team</h2>
+            <div class="member-grid" id="team-grid">
+                <div class="member-card" onclick="openEdit(this, 'Student')">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=student%20portrait%2C%20smiling%2C%20academic%20setting&image_size=portrait_3_4" class="member-photo">
+                    <div class="member-info">
+                        <h3>Sample Student</h3>
+                        <p>PhD Candidate</p>
+                        <p>Research: Polymer Synthesis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 登录模态框 -->
+    <footer><p>&copy; 2026 Boxlab. All Rights Reserved.</p></footer>
+
+    <div class="edit-btn" id="editBtn"><i class="fas fa-pencil-alt"></i></div>
+
     <div class="modal" id="loginModal">
         <div class="modal-content">
-            <h3>登录</h3>
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" placeholder="请输入用户名">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入密码">
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelLogin">取消</button>
-                <button class="btn btn-primary" id="submitLogin">登录</button>
-            </div>
+            <h3>Admin Login</h3>
+            <div class="form-group"><input type="text" id="username" placeholder="Username"></div>
+            <div class="form-group"><input type="password" id="password" placeholder="Password"></div>
+            <button class="btn" style="background:#334155; color:white; width:100%" id="submitLogin">Login</button>
         </div>
     </div>
 
-    <!-- 新闻编辑模态框 -->
-    <div class="news-edit-modal" id="newsEditModal">
-        <div class="news-edit-content">
-            <h3>编辑新闻</h3>
-            <input type="hidden" id="currentNewsIndex">
+    <div class="modal" id="memberEditModal">
+        <div class="modal-content">
+            <h3>Edit Member Information</h3>
+            <div class="form-group"><label>Photo URL</label><input type="text" id="mPhoto"></div>
+            <div class="form-group"><label>Name</label><input type="text" id="mName"></div>
+            <div class="form-group"><label>Role/Year</label><input type="text" id="mRole"></div>
+            <div class="form-group"><label>Research/Email</label><input type="text" id="mDetail"></div>
             <div class="form-group">
-                <label>新闻图片</label>
-                <div class="image-upload" id="imageUpload">
-                    <p>点击上传图片</p>
-                    <input type="file" id="newsImageInput" accept="image/*" style="display: none;">
-                    <img id="newsImagePreview" src="" alt="预览图片" style="display: none;">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="newsTitle">标题</label>
-                <input type="text" id="newsTitle" placeholder="新闻标题">
-            </div>
-            <div class="form-group">
-                <label for="newsDate">日期</label>
-                <input type="date" id="newsDate">
-            </div>
-            <div class="form-group">
-                <label for="newsContent">内容</label>
-                <textarea id="newsContent" placeholder="新闻内容"></textarea>
+                <label>Category</label>
+                <select id="mCat">
+                    <option value="pi-grid">PI</option>
+                    <option value="team-grid">Research Team</option>
+                </select>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" id="cancelNewsEdit">取消</button>
-                <button class="btn btn-primary" id="saveNewsEdit">保存</button>
-                <button class="btn btn-secondary" id="deleteNews" style="background-color: #ef4444;">删除</button>
+                <button class="btn" onclick="closeModal()" style="background:#94a3b8; color:white">Cancel</button>
+                <button class="btn" id="deleteMember" style="background:#ef4444; color:white">Delete</button>
+                <button class="btn" id="saveMember" style="background:#334155; color:white">Save</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 全局变量
         let isEditMode = false;
-        let currentEditingNews = -1;
-        
-        // 页面加载时从本地存储加载数据
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            initEventListeners();
-        });
-        
-        // 初始化事件监听器
-        function initEventListeners() {
-            // 编辑按钮点击事件
-            document.getElementById('editBtn').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'block';
-            });
-            
-            // 登录取消按钮
-            document.getElementById('cancelLogin').addEventListener('click', function() {
-                document.getElementById('loginModal').style.display = 'none';
-            });
-            
-            // 登录提交按钮
-            document.getElementById('submitLogin').addEventListener('click', function() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                // 简单的登录验证（实际应用中应该使用更安全的方法）
-                if (username === 'admin' && password === 'password') {
-                    enterEditMode();
-                    document.getElementById('loginModal').style.display = 'none';
-                } else {
-                    alert('用户名或密码错误');
-                }
-            });
-            
-            // 点击模态框外部关闭
-            window.addEventListener('click', function(event) {
-                const loginModal = document.getElementById('loginModal');
-                const newsEditModal = document.getElementById('newsEditModal');
-                
-                if (event.target === loginModal) {
-                    loginModal.style.display = 'none';
-                }
-                
-                if (event.target === newsEditModal) {
-                    newsEditModal.style.display = 'none';
-                }
-            });
-            
-            // 图片上传点击事件
-            document.getElementById('imageUpload').addEventListener('click', function() {
-                document.getElementById('newsImageInput').click();
-            });
-            
-            // 图片选择事件
-            document.getElementById('newsImageInput').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const preview = document.getElementById('newsImagePreview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            // 新闻编辑取消按钮
-            document.getElementById('cancelNewsEdit').addEventListener('click', function() {
-                document.getElementById('newsEditModal').style.display = 'none';
-            });
-            
-            // 新闻编辑保存按钮
-            document.getElementById('saveNewsEdit').addEventListener('click', function() {
-                saveNewsEdit();
-            });
-            
-            // 新闻删除按钮
-            document.getElementById('deleteNews').addEventListener('click', function() {
-                deleteNews();
-            });
-            
-            // 添加新闻按钮
-            document.getElementById('addNewsBtn').addEventListener('click', function() {
-                openNewsEditModal(-1); // -1 表示添加新新闻
-            });
-        }
-        
-        // 进入编辑模式
-        function enterEditMode() {
-            isEditMode = true;
-            
-            // 显示添加新闻按钮
-            document.getElementById('addNewsBtn').style.display = 'block';
-            
-            // 启用所有可编辑元素
-            const editableElements = document.querySelectorAll('.editable');
-            editableElements.forEach(element => {
-                element.contentEditable = 'true';
-                element.classList.add('active');
-            });
-            
-            // 为新闻项添加点击事件
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    openNewsEditModal(index);
-                });
-            });
-        }
-        
-        // 打开新闻编辑模态框
-        function openNewsEditModal(index) {
-            currentEditingNews = index;
-            const modal = document.getElementById('newsEditModal');
-            const newsItems = document.querySelectorAll('.news-item');
-            
-            if (index === -1) {
-                // 添加新新闻
-                document.getElementById('currentNewsIndex').value = -1;
-                document.getElementById('newsTitle').value = '';
-                document.getElementById('newsDate').value = '';
-                document.getElementById('newsContent').value = '';
-                document.getElementById('newsImagePreview').src = '';
-                document.getElementById('newsImagePreview').style.display = 'none';
-                document.getElementById('deleteNews').style.display = 'none';
-            } else {
-                // 编辑现有新闻
-                const newsItem = newsItems[index];
-                const image = newsItem.querySelector('img').src;
-                const title = newsItem.querySelector('h3').textContent;
-                const date = newsItem.querySelector('p:nth-child(2)').textContent;
-                const content = newsItem.querySelector('p:nth-child(3)').textContent;
-                
-                document.getElementById('currentNewsIndex').value = index;
-                document.getElementById('newsTitle').value = title;
-                document.getElementById('newsDate').value = date;
-                document.getElementById('newsContent').value = content;
-                document.getElementById('newsImagePreview').src = image;
-                document.getElementById('newsImagePreview').style.display = 'block';
-                document.getElementById('deleteNews').style.display = 'inline-block';
+        let currentTarget = null;
+
+        // 登录逻辑
+        document.getElementById('editBtn').onclick = () => document.getElementById('loginModal').style.display='block';
+        document.getElementById('submitLogin').onclick = () => {
+            if(document.getElementById('username').value==='admin' && document.getElementById('password').value==='password'){
+                isEditMode = true;
+                document.getElementById('loginModal').style.display='none';
+                document.getElementById('addMemberBtn').style.display='block';
+                document.querySelectorAll('.member-card').forEach(c => c.classList.add('editable-active'));
             }
-            
-            modal.style.display = 'block';
+        };
+
+        function openEdit(el, type) {
+            if(!isEditMode) return;
+            currentTarget = el;
+            document.getElementById('mPhoto').value = el.querySelector('img').src;
+            document.getElementById('mName').value = el.querySelector('h3').innerText;
+            document.getElementById('mRole').value = el.querySelectorAll('p')[0].innerText;
+            document.getElementById('mDetail').value = el.querySelectorAll('p')[1].innerText;
+            document.getElementById('memberEditModal').style.display='block';
         }
-        
-        // 保存新闻编辑
-        function saveNewsEdit() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const title = document.getElementById('newsTitle').value;
-            const date = document.getElementById('newsDate').value;
-            const content = document.getElementById('newsContent').value;
-            const imageSrc = document.getElementById('newsImagePreview').src;
-            
-            const newsGrid = document.getElementById('newsGrid');
-            
-            if (index === -1) {
-                // 添加新新闻
-                const newNewsItem = document.createElement('div');
-                newNewsItem.className = 'news-item';
-                newNewsItem.innerHTML = `
-                    <img src="${imageSrc || 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20research%20team%2C%20professional%20setting%2C%20high%20quality%20photo&image_size=landscape_4_3'}" alt="新闻图片" class="news-image">
-                    <div class="news-content">
-                        <h3 class="editable" contenteditable="true">${title}</h3>
-                        <p class="editable" contenteditable="true">${date}</p>
-                        <p class="editable" contenteditable="true">${content}</p>
+
+        document.getElementById('addMemberBtn').onclick = () => {
+            currentTarget = null;
+            document.querySelectorAll('#memberEditModal input').forEach(i => i.value='');
+            document.getElementById('memberEditModal').style.display='block';
+        };
+
+        document.getElementById('saveMember').onclick = () => {
+            const data = {
+                img: document.getElementById('mPhoto').value || 'https://via.placeholder.com/300x400',
+                name: document.getElementById('mName').value,
+                role: document.getElementById('mRole').value,
+                detail: document.getElementById('mDetail').value,
+                cat: document.getElementById('mCat').value
+            };
+
+            if(currentTarget) {
+                currentTarget.querySelector('img').src = data.img;
+                currentTarget.querySelector('h3').innerText = data.name;
+                currentTarget.querySelectorAll('p')[0].innerText = data.role;
+                currentTarget.querySelectorAll('p')[1].innerText = data.detail;
+            } else {
+                const grid = document.getElementById(data.cat);
+                const newCard = document.createElement('div');
+                newCard.className = 'member-card editable-active';
+                newCard.onclick = function() { openEdit(this); };
+                newCard.innerHTML = `
+                    <img src="${data.img}" class="member-photo">
+                    <div class="member-info">
+                        <h3>${data.name}</h3>
+                        <p>${data.role}</p>
+                        <p>${data.detail}</p>
                     </div>
                 `;
-                
-                // 添加点击事件
-                newNewsItem.addEventListener('click', function() {
-                    const newIndex = Array.from(newsGrid.children).indexOf(newNewsItem);
-                    openNewsEditModal(newIndex);
-                });
-                
-                newsGrid.appendChild(newNewsItem);
-            } else {
-                // 更新现有新闻
-                const newsItem = newsGrid.children[index];
-                newsItem.querySelector('img').src = imageSrc;
-                newsItem.querySelector('h3').textContent = title;
-                newsItem.querySelector('p:nth-child(2)').textContent = date;
-                newsItem.querySelector('p:nth-child(3)').textContent = content;
+                grid.appendChild(newCard);
             }
-            
-            // 保存到本地存储
-            saveData();
-            
-            // 关闭模态框
-            document.getElementById('newsEditModal').style.display = 'none';
-        }
-        
-        // 删除新闻
-        function deleteNews() {
-            const index = parseInt(document.getElementById('currentNewsIndex').value);
-            const newsGrid = document.getElementById('newsGrid');
-            
-            if (index !== -1 && confirm('确定要删除这条新闻吗？')) {
-                newsGrid.removeChild(newsGrid.children[index]);
-                saveData();
-                document.getElementById('newsEditModal').style.display = 'none';
+            saveAll();
+            closeModal();
+        };
+
+        document.getElementById('deleteMember').onclick = () => {
+            if(currentTarget && confirm('Delete this member?')) {
+                currentTarget.remove();
+                saveAll();
+                closeModal();
             }
-        }
-        
-        // 保存数据到本地存储
-        function saveData() {
+        };
+
+        function saveAll() {
             const data = {
-                title: document.querySelector('header h1').textContent,
-                subtitle: document.querySelector('header p').textContent,
-                footer: document.querySelector('footer p').textContent,
-                news: []
+                pi: document.getElementById('pi-grid').innerHTML,
+                team: document.getElementById('team-grid').innerHTML
             };
-            
-            // 保存新闻数据
-            const newsItems = document.querySelectorAll('.news-item');
-            newsItems.forEach(item => {
-                data.news.push({
-                    image: item.querySelector('img').src,
-                    title: item.querySelector('h3').textContent,
-                    date: item.querySelector('p:nth-child(2)').textContent,
-                    content: item.querySelector('p:nth-child(3)').textContent
-                });
-            });
-            
-            localStorage.setItem('boxlabData', JSON.stringify(data));
+            localStorage.setItem('boxlabMembers', JSON.stringify(data));
         }
-        
-        // 从本地存储加载数据
-        function loadData() {
-            const savedData = localStorage.getItem('boxlabData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                
-                // 加载标题和副标题
-                document.querySelector('header h1').textContent = data.title;
-                document.querySelector('header p').textContent = data.subtitle;
-                document.querySelector('footer p').textContent = data.footer;
-                
-                // 加载新闻数据
-                if (data.news && data.news.length > 0) {
-                    const newsGrid = document.getElementById('newsGrid');
-                    newsGrid.innerHTML = '';
-                    
-                    data.news.forEach((news, index) => {
-                        const newsItem = document.createElement('div');
-                        newsItem.className = 'news-item';
-                        newsItem.innerHTML = `
-                            <img src="${news.image}" alt="新闻图片" class="news-image">
-                            <div class="news-content">
-                                <h3 class="editable" contenteditable="false">${news.title}</h3>
-                                <p class="editable" contenteditable="false">${news.date}</p>
-                                <p class="editable" contenteditable="false">${news.content}</p>
-                            </div>
-                        `;
-                        newsGrid.appendChild(newsItem);
-                    });
-                }
+
+        function loadAll() {
+            const saved = localStorage.getItem('boxlabMembers');
+            if(saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('pi-grid').innerHTML = data.pi;
+                document.getElementById('team-grid').innerHTML = data.team;
             }
         }
-        
-        // 监听可编辑元素的变化，自动保存
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('editable') && isEditMode) {
-                saveData();
-            }
-        });
+
+        function closeModal() { document.getElementById('memberEditModal').style.display='none'; }
+        window.onload = loadAll;
     </script>
 </body>
 </html>
