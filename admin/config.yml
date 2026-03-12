@@ -1,21 +1,87 @@
-# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
-
 backend:
   name: github
-  repo: liboxiao19890504-glitch/Boxlab          # ← 你仓库地址里的用户名（有 o + -glitch）
+  repo: liboxiao19890504-glitch/Boxlab
   branch: master
-  base_url: https://sveltia-cms-auth.liboxiao19890504.workers.dev   # ← 你 Cloudflare 截图里的 Worker URL（少 o，保持不变）
+  # 保留了您至关重要的登录认证配置！
+  base_url: https://sveltia-cms-auth.liboxiao19890504.workers.dev
 
-media_folder: assets/uploads
-public_folder: /uploads
+media_folder: "images" # 您在后台上传的图片会自动存到仓库的 images 文件夹
+public_folder: "images" # 网页读取图片的路径
 
 collections:
-  - name: pages
-    label: 页面内容
-    folder: content/pages
-    create: true
-    fields:
-      - { label: 标题, name: title, widget: string, required: true }
-      - { label: 发布日期, name: date, widget: datetime }
-      - { label: 正文, name: body, widget: markdown }
-      - { label: 封面图片, name: image, widget: image }
+  - name: "site_data"
+    label: "网站数据管理"
+    files:
+      - file: "data/news.json"
+        label: "1. 主页新闻 (News)"
+        name: "news"
+        fields:
+          - name: "items"
+            label: "新闻列表"
+            widget: "list"
+            fields:
+              - {label: "新闻标题", name: "title", widget: "string"}
+              - {label: "发布日期", name: "date", widget: "date", format: "YYYY-MM-DD"}
+              - {label: "正文内容", name: "content", widget: "text"}
+              - {label: "新闻配图", name: "image", widget: "image", required: false}
+              
+      - file: "data/publications.json"
+        label: "2. 发表论文 (Publications)"
+        name: "publications"
+        fields:
+          - name: "items"
+            label: "论文列表"
+            widget: "list"
+            fields:
+              - {label: "发表年份", name: "year", widget: "string", default: "2026"}
+              - {label: "论文标题", name: "title", widget: "string"}
+              - {label: "作者列表", name: "authors", widget: "string"}
+              - {label: "期刊信息", name: "journal", widget: "string"}
+              - {label: "DOI链接", name: "doi", widget: "string", required: false}
+              
+      - file: "data/members.json"
+        label: "3. 团队成员 (Members)"
+        name: "members"
+        fields:
+          - name: "items"
+            label: "成员列表"
+            widget: "list"
+            fields:
+              - {label: "分类", name: "category", widget: "string", hint: "例如：Principal Investigator 或 Ph.D. Students"}
+              - {label: "姓名", name: "name", widget: "string"}
+              - {label: "头衔/角色", name: "role", widget: "string"}
+              - {label: "研究方向/简介", name: "detail", widget: "text"}
+              - {label: "照片", name: "img", widget: "image", required: false}
+              
+      - file: "data/researches.json"
+        label: "4. 研究与合作 (Researches)"
+        name: "researches"
+        fields:
+          - name: "items"
+            label: "研究方向列表"
+            widget: "list"
+            fields:
+              - {label: "项目名称", name: "title", widget: "string"}
+              - {label: "项目简介", name: "desc", widget: "text"}
+              - {label: "配图", name: "img", widget: "image", required: false}
+          - name: "coops"
+            label: "合作团队列表"
+            widget: "list"
+            fields:
+              - {label: "机构/公司名", name: "name", widget: "string"}
+              - {label: "机构类型", name: "inst", widget: "string"}
+              - {label: "合作详情", name: "desc", widget: "text"}
+              - {label: "Logo配图", name: "img", widget: "image", required: false}
+              
+      - file: "data/positions.json"
+        label: "5. 招聘信息 (Join Us)"
+        name: "positions"
+        fields:
+          - name: "items"
+            label: "职位列表"
+            widget: "list"
+            fields:
+              - {label: "职位名称", name: "title", widget: "string"}
+              - {label: "标签", name: "badge", widget: "string", hint: "例如：Urgent 或 Fully Funded"}
+              - {label: "职位描述", name: "desc", widget: "text"}
+              - {label: "职位要求", name: "reqs", widget: "text"}
