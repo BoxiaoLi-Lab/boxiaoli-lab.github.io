@@ -47,7 +47,6 @@
         <div id="membersContainer"><p class="loading-msg">Loading members from CMS...</p></div>
     </div>
     <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             fetch('data/global.json').then(res => res.json()).then(data => {
@@ -59,9 +58,23 @@
                 }
             }).catch(() => console.log("No global settings found."));
 
+            // 使用后台上传的真实照片路径（已修改）
             fetch('data/members.json').then(res => res.json()).then(data => {
-                const container = document.getElementById('membersContainer'); container.innerHTML = '';
-                if(!data.items || data.items.length === 0) return container.innerHTML = '<p class="loading-msg">No members yet.</p>';
+                const container = document.getElementById('membersContainer'); 
+                container.innerHTML = '';
+                if(!data.items || data.items.length === 0) {
+                    return container.innerHTML = `<div class="member-section"><h2 class="section-title">Junior Principle Investigator</h2><div class="member-grid">
+                        <div class="member-card">
+                            <img src="/images/IMG_3436.JPG" class="member-photo">
+                            <div class="member-info">
+                                <h3>Boxiao Li</h3>
+                                <div class="role">Associate Professor</div>
+                                <p class="detail">Interfacial Engineering</p>
+                            </div>
+                        </div>
+                    </div></div>`;
+                }
+                // 如果以后后台有多个成员，这里会自动显示
                 const grouped = {}; data.items.forEach(m => { const cat = m.category || "Other"; if(!grouped[cat]) grouped[cat] = []; grouped[cat].push(m); });
                 const displayOrder = [...new Set(["Principal Investigator", "Postdoctoral Researchers", "Ph.D. Students", "Master Students", "Alumni", ...Object.keys(grouped)])];
                 displayOrder.forEach(category => {
@@ -70,12 +83,28 @@
                         section.innerHTML = `<h2 class="section-title">${category}</h2><div class="member-grid"></div>`;
                         const grid = section.querySelector('.member-grid');
                         grouped[category].forEach(member => {
-                            grid.innerHTML += `<div class="member-card"><img src="${member.img || 'https://via.placeholder.com/300x400.png?text=Photo'}" class="member-photo"><div class="member-info"><h3>${member.name}</h3><div class="role">${member.role || ''}</div><p class="detail">${member.detail || ''}</p></div></div>`;
+                            grid.innerHTML += `<div class="member-card"><img src="${member.img || '/images/IMG_3436.JPG'}" class="member-photo"><div class="member-info"><h3>${member.name}</h3><div class="role">${member.role || ''}</div><p class="detail">${member.detail || ''}</p></div></div>`;
                         });
                         container.appendChild(section);
                     }
                 });
-            }).catch(() => document.getElementById('membersContainer').innerHTML = '<p class="loading-msg">Please publish team members in CMS.</p>');
+            }).catch(() => {
+                // 兜底显示当前照片
+                document.getElementById('membersContainer').innerHTML = `
+                    <div class="member-section">
+                        <h2 class="section-title">Junior Principle Investigator</h2>
+                        <div class="member-grid">
+                            <div class="member-card">
+                                <img src="/images/IMG_3436.JPG" class="member-photo" alt="Boxiao Li">
+                                <div class="member-info">
+                                    <h3>Boxiao Li</h3>
+                                    <div class="role">Associate Professor</div>
+                                    <p class="detail">Interfacial Engineering</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            });
         });
     </script>
 </body>
