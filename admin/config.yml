@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: liboxiao19890504-glitch/Boxlab
+  repo: BoxiaoLi-Lab/Boxlab
   branch: master
   base_url: https://sveltia-cms-auth.liboxiao19890504.workers.dev
 
