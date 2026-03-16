@@ -2,17 +2,17 @@
   "items": [
     {
       "category": "Principle Investigator",
-      "name": "Jianming Zhang",
-      "role": "Ph.D., Professor, Senior PI",
-      "detail": "Bio-Nanomaterials, Functional Elastomers, Polymer Physics",
-      "img": "/images/Zhang JM.png"
-    },
-    {
-      "category": "Principle Investigator",
       "name": "Boxiao Li",
       "role": "Ph. D., Associate Professor, Junior PI",
       "detail": "Interfacial Engineering",
       "img": "/images/IMG_3436.JPG"
+    },
+    {
+      "category": "Principle Investigator",
+      "name": "Jianming Zhang",
+      "role": "Ph.D., Professor, Senior PI",
+      "detail": "Bio-Nanomaterials, Functional Elastomers, Polymer Physics",
+      "img": "/images/Zhang JM.png"
     }
   ]
 }
