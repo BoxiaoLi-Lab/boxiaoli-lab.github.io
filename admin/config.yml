@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: repo: BoxiaoLi-Lab/boxiaoli-lab.github.io
+  repo: BoxiaoLi-Lab/boxiaoli-lab.github.io
   branch: master
   base_url: https://sveltia-cms-auth.liboxiao19890504.workers.dev
 
