@@ -13,6 +13,13 @@
       "role": "Ph.D., Professor, Senior PI",
       "detail": "Bio-Nanomaterials, Functional Elastomers, Polymer Physics",
       "img": "/images/Zhang JM.png"
+    },
+    {
+      "category": "PhD Student",
+      "name": "ASD",
+      "role": "ASD",
+      "detail": "ASD",
+      "img": ""
     }
   ]
 }
