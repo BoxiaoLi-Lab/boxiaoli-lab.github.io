@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Us | Box Lab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
         :root { --primary: #334155; --secondary: #475569; --accent: #3b82f6; --bg: #f8fafc; }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
@@ -16,7 +17,48 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
         nav ul li a { color: #e2e8f0; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: 0.3s; font-weight: 500; }
         nav ul li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
-        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 50px 20px; text-align: center; }
+        
+        /* === 修改后的 Header (滚动照片墙) 样式 === */
+        header.hero-section { 
+            position: relative; 
+            height: 350px; /* 照片墙高度 */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+        }
+        .hero-swiper {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .hero-swiper .swiper-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover; /* 保证图片铺满不变形 */
+        }
+        /* 深色半透明遮罩，保证文字清晰 */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(51, 65, 85, 0.7); /* 使用 --primary 颜色作为底色，透明度70% */
+            z-index: 2;
+        }
+        /* 悬浮在图片上方的文字层 */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-content h1 { margin: 0 0 10px 0; font-size: 2.2rem; }
+        .hero-content p { margin: 0; font-size: 1.1rem; color: #e2e8f0; }
+        
+        /* Swiper 分页器 (小圆点) 颜色覆盖 */
+        .swiper-pagination-bullet { background: #cbd5e1; opacity: 0.5; }
+        .swiper-pagination-bullet-active { background: white; opacity: 1; }
+        /* ================================== */
+
         .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; flex: 1; }
         .section-title { border-bottom: 2px solid var(--primary); color: var(--primary); padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8rem; }
         .intro-box { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; border-left: 5px solid var(--accent); }
@@ -47,28 +89,77 @@
             <ul><li><a href="index.html">Home</a></li><li><a href="publications.html">Publications</a></li><li><a href="members.html">Members</a></li><li><a href="researches.html">Researches & Cooperation</a></li><li><a href="join.html">Join Us</a></li></ul>
         </div>
     </nav>
-    <header>
-        <h1 id="pageTitle">Join Box Lab</h1>
-        <p id="pageSubtitle">Building the future of functional polymers</p>
+
+    <header class="hero-section">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper" id="galleryContainer">
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80" alt="Lab Activity"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80" alt="Polymer Research"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 id="pageTitle">Join BOX Group</h1>
+            <p id="pageSubtitle">Let's explore together!</p>
+        </div>
     </header>
     <div class="container">
         <h2 class="section-title">Why Choose Us</h2>
-        <div class="intro-box"><p id="introDesc">We are highly motivated to push the boundaries of materials science.</p></div>
+        <div class="intro-box"><p id="introDesc">A student is not necessarily inferior to his teacher, nor is a teacher necessarily more virtuous and talented than his student (弟子不必不如师，师不必贤于弟子).</p></div>
 
         <h2 class="section-title">Open Positions</h2>
         <div class="positions-grid" id="positionsContainer"><p class="loading-msg">Loading from CMS...</p></div>
 
         <h2 class="section-title">How to Apply</h2>
         <div class="contact-box">
-            <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email Applications To</h4><p id="contactEmail">investigator@university.edu</p></div></div>
-            <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Lab Location</h4><p id="contactLocation">School of Materials Science, Main Campus</p></div></div>
-            <div style="flex: 100%; margin-top: 10px;"><p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">Please include your CV...</p></div>
+            <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email Applications To</h4><p id="contactEmail">liboxiao@qust.edu.cn</p></div></div>
+            <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Lab Location</h4><p id="contactLocation">Key Laboratory of Rubber-Plastics, Ministry of Education...</p></div></div>
+            <div style="flex: 100%; margin-top: 10px;"><p id="contactNote" style="margin: 0; font-size: 0.95rem; color: #cbd5e1;">A resume please</p></div>
         </div>
     </div>
-    <footer><p id="footerText">&copy; 2026 Box Lab.</p></footer>
+    <footer><p id="footerText">&copy; 2026 Box Lab. All Rights Reserved.</p></footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // === 1. 初始化轮播图的函数 ===
+            const initSwiper = () => {
+                new Swiper('.hero-swiper', {
+                    loop: true,
+                    effect: 'fade', // 使用渐变切换效果显得更高级
+                    autoplay: {
+                        delay: 4000, // 每4秒切换一次
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            };
+
+            // === 2. 从 CMS 抓取轮播图照片数据 ===
+            // 建议在你的 CMS 后台生成一个 data/gallery.json，格式类似：{"images": [{"url": "1.jpg"}, {"url": "2.jpg"}]}
+            fetch('data/gallery.json').then(res => res.json()).then(data => {
+                const galleryContainer = document.getElementById('galleryContainer');
+                if(data.images && data.images.length > 0) {
+                    galleryContainer.innerHTML = ''; // 清空默认占位图
+                    data.images.forEach(img => {
+                        galleryContainer.innerHTML += `<div class="swiper-slide"><img src="${img.url}" alt="${img.alt || 'Lab Photo'}"></div>`;
+                    });
+                }
+                initSwiper(); // 数据加载完后初始化
+            }).catch(() => {
+                // 如果没有拿到图片（比如还没建立 gallery.json），保留默认图片并直接初始化
+                console.log("No gallery JSON found, using default images.");
+                initSwiper();
+            });
+
+            // === 3. 原有的 Global JSON 逻辑 ===
             fetch('data/global.json').then(res => res.json()).then(data => {
                 if(data.nav_brand) document.getElementById('navBrandText').textContent = data.nav_brand;
                 if(data.footer_text) document.getElementById('footerText').textContent = data.footer_text;
@@ -82,6 +173,7 @@
                 }
             }).catch(() => console.log("No global settings found."));
 
+            // === 4. 原有的 Positions JSON 逻辑 ===
             fetch('data/positions.json').then(res => res.json()).then(data => {
                 const container = document.getElementById('positionsContainer'); container.innerHTML = '';
                 if(data.items && data.items.length > 0) {
