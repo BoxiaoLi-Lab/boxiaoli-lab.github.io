@@ -130,3 +130,15 @@ collections:
               - {label: "标签", name: "badge", widget: "string", hint: "如：Urgent"}
               - {label: "职位描述", name: "desc", widget: "text"}
               - {label: "职位要求", name: "reqs", widget: "text"}
+
+      # ================= 新增：照片墙数据 =================
+      - file: "data/gallery.json"
+        label: "6. Join Us 页面轮播图 (Gallery)"
+        name: "gallery"
+        fields:
+          - name: "images"
+            label: "轮播图片列表"
+            widget: "list"
+            fields:
+              - {label: "上传图片", name: "url", widget: "image"}
+              - {label: "图片描述 (如: 团队日常)", name: "alt", widget: "string", required: false}
