@@ -8,145 +8,90 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
-  # 1. 全局页面文字设置 (独立为一个标准 file collection)
-  - name: "global"
-    label: "⚙️ 全局页面文字设置"
-    file: "data/global.json"
-    format: "json"
-    fields:
-      - {label: "导航栏左上角名称", name: "nav_brand", widget: "string", default: "Box Lab"}
-      - {label: "底部版权信息", name: "footer_text", widget: "string", default: "© 2026 Box Lab. All Rights Reserved."}
-      - label: "1. 主页 (Home) 顶部文字"
-        name: "home"
-        widget: "object"
+  - name: "site_data"
+    label: "网站数据管理"
+    files:
+      - file: "data/global.json"
+        label: "⚙️ 全局页面文字设置"
+        name: "global"
         fields:
-          - {label: "大标题", name: "title", widget: "string", default: "Box Lab —— Thinking out of the Box"}
-          - {label: "副标题", name: "subtitle", widget: "string", default: "Junior PI: Dr. Boxiao Li (Senior PI: Jianming Zhang)"}
-      - label: "2. 发表论文 (Publications) 顶部文字"
-        name: "pub"
-        widget: "object"
+          - {label: "导航栏左上角名称", name: "nav_brand", widget: "string", default: "Box Lab"}
+          - {label: "底部版权信息", name: "footer_text", widget: "string", default: "© 2026 Box Lab. All Rights Reserved."}
+          - label: "1. 主页 (Home) 顶部文字"
+            name: "home"
+            widget: "object"
+            fields:
+              - {label: "大标题", name: "title", widget: "string", default: "Box Lab"}
+              - {label: "副标题", name: "subtitle", widget: "string", default: "Junior PI: Dr. Boxiao Li"}
+
+      - file: "data/news.json"
+        label: "1. 主页新闻列表 (News)"
+        name: "news"
         fields:
-          - {label: "大标题", name: "title", widget: "string", default: "Publications"}
-          - {label: "副标题", name: "subtitle", widget: "string", default: "Selected Research Papers and Patents"}
-      - label: "3. 团队成员 (Members) 顶部文字"
+          - name: "items"
+            label: "新闻列表"
+            widget: "list"
+            fields:
+              - {label: "新闻标题", name: "title", widget: "string"}
+              - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
+              - {label: "正文内容", name: "content", widget: "text"}
+              - {label: "新闻配图", name: "image", widget: "image", required: false}
+
+      - file: "data/publications.json"
+        label: "2. 发表论文列表 (Publications)"
+        name: "publications"
+        fields:
+          - name: "items"
+            label: "论文列表"
+            widget: "list"
+            fields:
+              - {label: "发表年份", name: "year", widget: "string", default: "2026"}
+              - {label: "论文标题", name: "title", widget: "string"}
+              - {label: "作者列表", name: "authors", widget: "string"}
+              - {label: "期刊信息", name: "journal", widget: "string"}
+
+      - file: "data/members.json"
+        label: "3. 团队成员列表 (Members)"
         name: "members"
-        widget: "object"
         fields:
-          - {label: "大标题", name: "title", widget: "string", default: "Our Team"}
-          - {label: "副标题", name: "subtitle", widget: "string", default: "Innovation through collaboration and dedication"}
-      - label: "4. 研究与合作 (Researches) 页面文字"
-        name: "res"
-        widget: "object"
-        fields:
-          - {label: "大标题", name: "title", widget: "string", default: "Researches & Cooperation"}
-          - {label: "副标题", name: "subtitle", widget: "string", default: "Advancing Polymer Science through Innovation"}
-          - {label: "团队介绍标题", name: "intro_title", widget: "string", default: "About Our Research Group"}
-          - {label: "团队介绍正文", name: "intro_desc", widget: "text", default: "We are a dynamic research group focused on..."}
-          - {label: "团队介绍配图", name: "intro_img", widget: "image", required: false}
-      - label: "5. 加入我们 (Join Us) 页面文字"
-        name: "join"
-        widget: "object"
-        fields:
-          - {label: "大标题", name: "title", widget: "string", default: "Join Box Lab"}
-          - {label: "副标题", name: "subtitle", widget: "string", default: "Building the future of functional polymers"}
-          - {label: "Why Choose Us 正文", name: "intro_desc", widget: "text", default: "We are highly motivated to push the boundaries..."}
-          - {label: "联系邮箱", name: "email", widget: "string", default: "investigator@university.edu"}
-          - {label: "实验室地址", name: "location", widget: "string", default: "School of Materials Science, Main Campus"}
-          - {label: "申请备注", name: "note", widget: "text", default: "Please include your CV, transcript, and a brief statement..."}
+          - name: "items"
+            label: "成员列表"
+            widget: "list"
+            fields:
+              - {label: "分类", name: "category", widget: "string"}
+              - {label: "姓名", name: "name", widget: "string"}
+              - {label: "头衔/角色", name: "role", widget: "string"}
+              - {label: "简介", name: "detail", widget: "text"}
 
-  # 2. 新闻列表
-  - name: "news"
-    label: "1. 主页新闻列表 (News)"
-    file: "data/news.json"
-    format: "json"
-    fields:
-      - name: "items"
-        label: "新闻列表"
-        widget: "list"
+      - file: "data/researches.json"
+        label: "4. 研究与合作列表 (Researches)"
+        name: "researches"
         fields:
-          - {label: "新闻标题", name: "title", widget: "string"}
-          - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
-          - {label: "正文内容", name: "content", widget: "text"}
-          - {label: "新闻配图", name: "image", widget: "image", required: false}
+          - name: "items"
+            label: "研究方向列表"
+            widget: "list"
+            fields:
+              - {label: "项目名称", name: "title", widget: "string"}
+              - {label: "项目简介", name: "desc", widget: "text"}
 
-  # 3. 论文列表
-  - name: "publications"
-    label: "2. 发表论文列表 (Publications)"
-    file: "data/publications.json"
-    format: "json"
-    fields:
-      - name: "items"
-        label: "论文列表"
-        widget: "list"
+      - file: "data/positions.json"
+        label: "5. 招聘职位列表 (Join Us)"
+        name: "positions"
         fields:
-          - {label: "发表年份", name: "year", widget: "string", default: "2026"}
-          - {label: "论文标题", name: "title", widget: "string"}
-          - {label: "作者列表", name: "authors", widget: "string"}
-          - {label: "期刊信息", name: "journal", widget: "string"}
-          - {label: "DOI链接", name: "doi", widget: "string", required: false}
+          - name: "items"
+            label: "职位列表"
+            widget: "list"
+            fields:
+              - {label: "职位名称", name: "title", widget: "string"}
+              - {label: "职位描述", name: "desc", widget: "text"}
 
-  # 4. 成员列表
-  - name: "members"
-    label: "3. 团队成员列表 (Members)"
-    file: "data/members.json"
-    format: "json"
-    fields:
-      - name: "items"
-        label: "成员列表"
-        widget: "list"
+      - file: "data/gallery.json"
+        label: "6. Join Us 页面轮播图 (Gallery)"
+        name: "gallery"
         fields:
-          - {label: "分类", name: "category", widget: "string", hint: "如：Principal Investigator"}
-          - {label: "姓名", name: "name", widget: "string"}
-          - {label: "头衔/角色", name: "role", widget: "string"}
-          - {label: "研究方向/简介", name: "detail", widget: "text"}
-          - {label: "照片", name: "img", widget: "image", required: false}
-
-  # 5. 研究与合作列表
-  - name: "researches"
-    label: "4. 研究与合作列表 (Researches)"
-    file: "data/researches.json"
-    format: "json"
-    fields:
-      - name: "items"
-        label: "研究方向列表"
-        widget: "list"
-        fields:
-          - {label: "项目名称", name: "title", widget: "string"}
-          - {label: "项目简介", name: "desc", widget: "text"}
-          - {label: "配图", name: "img", widget: "image", required: false}
-      - name: "coops"
-        label: "合作团队列表"
-        widget: "list"
-        fields:
-          - {label: "机构/公司名", name: "name", widget: "string"}
-          - {label: "机构类型", name: "inst", widget: "string"}
-          - {label: "合作详情", name: "desc", widget: "text"}
-          - {label: "Logo配图", name: "img", widget: "image", required: false}
-
-  # 6. 职位列表
-  - name: "positions"
-    label: "5. 招聘职位列表 (Join Us)"
-    file: "data/positions.json"
-    format: "json"
-    fields:
-      - name: "items"
-        label: "职位列表"
-        widget: "list"
-        fields:
-          - {label: "职位名称", name: "title", widget: "string"}
-          - {label: "标签", name: "badge", widget: "string", hint: "如：Urgent"}
-          - {label: "职位描述", name: "desc", widget: "text"}
-          - {label: "职位要求", name: "reqs", widget: "text"}
-
-  # 7. 照片墙数据
-  - name: "gallery"
-    label: "6. Join Us 页面轮播图 (Gallery)"
-    file: "data/gallery.json"
-    format: "json"
-    fields:
-      - name: "images"
-        label: "轮播图片列表"
-        widget: "list"
-        fields:
-          - {label: "上传图片", name: "url", widget: "image"}
-          - {label: "图片描述 (如: 团队日常)", name: "alt", widget: "string", required: false}
+          - name: "images"
+            label: "轮播图片列表"
+            widget: "list"
+            fields:
+              - {label: "上传图片", name: "url", widget: "image"}
+              - {label: "图片描述", name: "alt", widget: "string", required: false}
