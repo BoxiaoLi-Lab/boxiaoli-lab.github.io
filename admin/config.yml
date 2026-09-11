@@ -5,13 +5,13 @@ backend:
   base_url: https://sveltia-cms-auth.liboxiao19890504.workers.dev
 
 media_folder: "images"
-public_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "site_data"
     label: "网站数据管理"
     files:
-      # ================= 新增：全局文字设置 =================
+      # ================= 全局文字设置 =================
       - file: "data/global.json"
         label: "⚙️ 全局页面文字设置 (Global)"
         name: "global"
@@ -56,7 +56,7 @@ collections:
               - {label: "实验室地址", name: "location", widget: "string", default: "School of Materials Science, Main Campus"}
               - {label: "申请备注", name: "note", widget: "text", default: "Please include your CV, transcript, and a brief statement..."}
 
-      # ================= 下面是原来的列表数据 =================
+      # ================= 列表数据 =================
       - file: "data/news.json"
         label: "1. 主页新闻列表 (News)"
         name: "news"
@@ -68,7 +68,7 @@ collections:
               - {label: "新闻标题", name: "title", widget: "string"}
               - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
               - {label: "正文内容", name: "content", widget: "text"}
-              - {label: "新闻配图", name: "image", widget: "image", required: false}
+              - {label: "新闻配图", name: "img", widget: "image", required: false}
               
       - file: "data/publications.json"
         label: "2. 发表论文列表 (Publications)"
@@ -131,7 +131,7 @@ collections:
               - {label: "职位描述", name: "desc", widget: "text"}
               - {label: "职位要求", name: "reqs", widget: "text"}
 
-      # ================= 新增：照片墙数据 =================
+      # ================= 照片墙数据 =================
       - file: "data/gallery.json"
         label: "6. Join Us 页面轮播图 (Gallery)"
         name: "gallery"
