@@ -68,7 +68,7 @@ collections:
               - {label: "新闻标题", name: "title", widget: "string"}
               - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
               - {label: "正文内容", name: "content", widget: "text"}
-              - {label: "新闻配图", name: "img", widget: "image", required: false}
+              - {label: "新闻配图", name: "image", widget: "image", required: false}
               
       - file: "data/publications.json"
         label: "2. 发表论文列表 (Publications)"
