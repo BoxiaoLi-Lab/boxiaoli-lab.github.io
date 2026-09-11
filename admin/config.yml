@@ -10,11 +10,12 @@ public_folder: "/images"
 collections:
   - name: "site_data"
     label: "网站数据管理"
+    format: "json"
     files:
       # ================= 全局文字设置 =================
-      - file: "data/global.json"
+      - name: "global"
         label: "⚙️ 全局页面文字设置 (Global)"
-        name: "global"
+        file: "data/global.json"
         fields:
           - {label: "导航栏左上角名称", name: "nav_brand", widget: "string", default: "Box Lab"}
           - {label: "底部版权信息", name: "footer_text", widget: "string", default: "© 2026 Box Lab. All Rights Reserved."}
@@ -57,9 +58,9 @@ collections:
               - {label: "申请备注", name: "note", widget: "text", default: "Please include your CV, transcript, and a brief statement..."}
 
       # ================= 列表数据 =================
-      - file: "data/news.json"
+      - name: "news"
         label: "1. 主页新闻列表 (News)"
-        name: "news"
+        file: "data/news.json"
         fields:
           - name: "items"
             label: "新闻列表"
@@ -69,10 +70,10 @@ collections:
               - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
               - {label: "正文内容", name: "content", widget: "text"}
               - {label: "新闻配图", name: "image", widget: "image", required: false}
-              
-      - file: "data/publications.json"
+
+      - name: "publications"
         label: "2. 发表论文列表 (Publications)"
-        name: "publications"
+        file: "data/publications.json"
         fields:
           - name: "items"
             label: "论文列表"
@@ -83,10 +84,10 @@ collections:
               - {label: "作者列表", name: "authors", widget: "string"}
               - {label: "期刊信息", name: "journal", widget: "string"}
               - {label: "DOI链接", name: "doi", widget: "string", required: false}
-              
-      - file: "data/members.json"
+
+      - name: "members"
         label: "3. 团队成员列表 (Members)"
-        name: "members"
+        file: "data/members.json"
         fields:
           - name: "items"
             label: "成员列表"
@@ -97,10 +98,10 @@ collections:
               - {label: "头衔/角色", name: "role", widget: "string"}
               - {label: "研究方向/简介", name: "detail", widget: "text"}
               - {label: "照片", name: "img", widget: "image", required: false}
-              
-      - file: "data/researches.json"
+
+      - name: "researches"
         label: "4. 研究与合作列表 (Researches)"
-        name: "researches"
+        file: "data/researches.json"
         fields:
           - name: "items"
             label: "研究方向列表"
@@ -117,10 +118,10 @@ collections:
               - {label: "机构类型", name: "inst", widget: "string"}
               - {label: "合作详情", name: "desc", widget: "text"}
               - {label: "Logo配图", name: "img", widget: "image", required: false}
-              
-      - file: "data/positions.json"
+
+      - name: "positions"
         label: "5. 招聘职位列表 (Join Us)"
-        name: "positions"
+        file: "data/positions.json"
         fields:
           - name: "items"
             label: "职位列表"
@@ -132,9 +133,9 @@ collections:
               - {label: "职位要求", name: "reqs", widget: "text"}
 
       # ================= 照片墙数据 =================
-      - file: "data/gallery.json"
+      - name: "gallery"
         label: "6. Join Us 页面轮播图 (Gallery)"
-        name: "gallery"
+        file: "data/gallery.json"
         fields:
           - name: "images"
             label: "轮播图片列表"
