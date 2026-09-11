@@ -17,7 +17,7 @@
     {
       "category": "Students",
       "name": "Hanbo Wu",
-      "role": "Master Student",
+      "role": "Master",
       "detail": "Thermal Management",
       "img": "/images/微信图片_20260911162006_31_517.jpg"
     },
@@ -25,6 +25,20 @@
       "category": "Jointly Trained Students",
       "name": "Jianchao Zhang",
       "role": "Ph. D. Candidate",
+      "detail": "Thermal Management",
+      "img": ""
+    },
+    {
+      "category": "Jointly Trained Students",
+      "name": "Yirun Liu",
+      "role": "Master",
+      "detail": "Thermal Management",
+      "img": ""
+    },
+    {
+      "category": "Jointly Trained Students",
+      "name": "Fangshuo Li",
+      "role": "Master",
       "detail": "Thermal Management",
       "img": ""
     }
