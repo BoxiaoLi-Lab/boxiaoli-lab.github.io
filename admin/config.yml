@@ -15,43 +15,74 @@ collections:
         label: "⚙️ 全局页面文字设置"
         name: "global"
         fields:
-          - {label: "导航栏名称", name: "nav_brand", widget: "string"}
-          - {label: "底部版权", name: "footer_text", widget: "string"}
-          - label: "主页顶部文字"
+          - {label: "导航栏左上角名称", name: "nav_brand", widget: "string", default: "Box Lab"}
+          - {label: "底部版权信息", name: "footer_text", widget: "string", default: "© 2026 Box Lab. All Rights Reserved."}
+          - label: "1. 主页 (Home) 顶部文字"
             name: "home"
             widget: "object"
             fields:
-              - {label: "标题", name: "title", widget: "string"}
+              - {label: "大标题", name: "title", widget: "string"}
               - {label: "副标题", name: "subtitle", widget: "string"}
+          - label: "2. 发表论文 (Publications) 顶部文字"
+            name: "pub"
+            widget: "object"
+            fields:
+              - {label: "大标题", name: "title", widget: "string"}
+              - {label: "副标题", name: "subtitle", widget: "string"}
+          - label: "3. 团队成员 (Members) 顶部文字"
+            name: "members"
+            widget: "object"
+            fields:
+              - {label: "大标题", name: "title", widget: "string"}
+              - {label: "副标题", name: "subtitle", widget: "string"}
+          - label: "4. 研究与合作 (Researches) 页面文字"
+            name: "res"
+            widget: "object"
+            fields:
+              - {label: "大标题", name: "title", widget: "string"}
+              - {label: "副标题", name: "subtitle", widget: "string"}
+              - {label: "团队介绍标题", name: "intro_title", widget: "string"}
+              - {label: "团队介绍正文", name: "intro_desc", widget: "text"}
+              - {label: "团队介绍配图", name: "intro_img", widget: "image", required: false}
+          - label: "5. 加入我们 (Join Us) 页面文字"
+            name: "join"
+            widget: "object"
+            fields:
+              - {label: "大标题", name: "title", widget: "string"}
+              - {label: "副标题", name: "subtitle", widget: "string"}
+              - {label: "正文描述", name: "intro_desc", widget: "text"}
+              - {label: "联系邮箱", name: "email", widget: "string"}
+              - {label: "实验室地址", name: "location", widget: "string"}
 
       - file: "data/news.json"
-        label: "1. 新闻列表"
+        label: "1. 主页新闻列表 (News)"
         name: "news"
         fields:
           - name: "items"
             label: "新闻列表"
             widget: "list"
             fields:
-              - {label: "标题", name: "title", widget: "string"}
-              - {label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
-              - {label: "内容", name: "content", widget: "text"}
-              - {label: "配图", name: "image", widget: "image", required: false}
+              - {label: "新闻标题", name: "title", widget: "string"}
+              - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
+              - {label: "正文内容", name: "content", widget: "text"}
+              - {label: "新闻配图", name: "image", widget: "image", required: false}
 
       - file: "data/publications.json"
-        label: "2. 论文列表"
+        label: "2. 发表论文列表 (Publications)"
         name: "publications"
         fields:
           - name: "items"
             label: "论文列表"
             widget: "list"
             fields:
-              - {label: "年份", name: "year", widget: "string"}
-              - {label: "标题", name: "title", widget: "string"}
-              - {label: "作者", name: "authors", widget: "string"}
-              - {label: "期刊", name: "journal", widget: "string"}
+              - {label: "发表年份", name: "year", widget: "string"}
+              - {label: "论文标题", name: "title", widget: "string"}
+              - {label: "作者列表", name: "authors", widget: "string"}
+              - {label: "期刊信息", name: "journal", widget: "string"}
+              - {label: "DOI链接", name: "doi", widget: "string", required: false}
 
       - file: "data/members.json"
-        label: "3. 成员列表"
+        label: "3. 团队成员列表 (Members)"
         name: "members"
         fields:
           - name: "items"
@@ -60,38 +91,50 @@ collections:
             fields:
               - {label: "分类", name: "category", widget: "string"}
               - {label: "姓名", name: "name", widget: "string"}
-              - {label: "角色", name: "role", widget: "string"}
-              - {label: "简介", name: "detail", widget: "text"}
+              - {label: "头衔/角色", name: "role", widget: "string"}
+              - {label: "研究方向/简介", name: "detail", widget: "text"}
+              - {label: "照片", name: "img", widget: "image", required: false}
 
       - file: "data/researches.json"
-        label: "4. 研究方向"
+        label: "4. 研究与合作列表 (Researches)"
         name: "researches"
         fields:
           - name: "items"
-            label: "研究列表"
+            label: "研究方向列表"
             widget: "list"
             fields:
-              - {label: "名称", name: "title", widget: "string"}
-              - {label: "简介", name: "desc", widget: "text"}
+              - {label: "项目名称", name: "title", widget: "string"}
+              - {label: "项目简介", name: "desc", widget: "text"}
+              - {label: "配图", name: "img", widget: "image", required: false}
+          - name: "coops"
+            label: "合作团队列表"
+            widget: "list"
+            fields:
+              - {label: "机构/公司名", name: "name", widget: "string"}
+              - {label: "机构类型", name: "inst", widget: "string"}
+              - {label: "合作详情", name: "desc", widget: "text"}
+              - {label: "Logo配图", name: "img", widget: "image", required: false}
 
       - file: "data/positions.json"
-        label: "5. 招聘职位"
+        label: "5. 招聘职位列表 (Join Us)"
         name: "positions"
         fields:
           - name: "items"
             label: "职位列表"
             widget: "list"
             fields:
-              - {label: "名称", name: "title", widget: "string"}
-              - {label: "描述", name: "desc", widget: "text"}
+              - {label: "职位名称", name: "title", widget: "string"}
+              - {label: "标签", name: "badge", widget: "string"}
+              - {label: "职位描述", name: "desc", widget: "text"}
+              - {label: "职位要求", name: "reqs", widget: "text"}
 
       - file: "data/gallery.json"
-        label: "6. 轮播图"
+        label: "6. Join Us 页面轮播图 (Gallery)"
         name: "gallery"
         fields:
           - name: "images"
-            label: "图片列表"
+            label: "轮播图片列表"
             widget: "list"
             fields:
-              - {label: "图片", name: "url", widget: "image"}
-              - {label: "描述", name: "alt", widget: "string", required: false}
+              - {label: "上传图片", name: "url", widget: "image"}
+              - {label: "图片描述", name: "alt", widget: "string", required: false}
